@@ -31,10 +31,6 @@ app.use(function (req, res, next) {
 });
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/s/', express.static(__dirname + '/app/public'));
-app.use(app.router);
-
-server.listen(app.get('port'));
 
 // Connect to auth
 db = mongoose.createConnection(keys.passport.database, {
@@ -48,6 +44,13 @@ db = mongoose.createConnection(keys.passport.database, {
 });
 db.on('error', console.error.bind(console, 'Auth connection error:'));
 
+function finalAndOpen() {
+	app.use('/s/', express.static(__dirname + '/app/public'));
+	app.use(app.router);
+
+	server.listen(app.get('port'));
+}
+
 require('./app/server/models/account')(db, function(Account) {
 	passport.use(Account.createStrategy());
 	passport.serializeUser(Account.serializeUser());
@@ -60,6 +63,7 @@ require('./app/server/models/account')(db, function(Account) {
 			require('./app/server/router')(app, passport, Account, keys.blog.dev);
 
 			console.log('Using development environment.');
+			finalAndOpen();
 		});
 	});
 
@@ -79,6 +83,7 @@ require('./app/server/models/account')(db, function(Account) {
 			require('./app/server/router')(app, passport, Account, keys.blog.live);
 
 			console.log('Using production environment.');
+			finalAndOpen();
 		});
 	});
 });
