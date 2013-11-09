@@ -63,12 +63,12 @@ html(lang="en")
 
 		- if (!correctKey)
 
-			script(src="http://code.jquery.com/jquery-latest.min.js")
+			script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
 			script.
 				$(function(){
 					$('#contact').bind({
 						mouseenter: function() {
-							$('#contact').html("<a href='" + "http://www.twitter.com/fishrock123" + "'>tweet</a> or <a href='" + "mailto:fishrock123@rocketmail.com?subject=Xenon" + "'>email</a>");
+							$('#contact').html("<a href='" + "https://www.twitter.com/fishrock123" + "'>tweet</a> or <a href='" + "mailto:fishrock123@rocketmail.com?subject=Xenon" + "'>email</a>");
 						},
 						mouseleave: function() {
 							$('#contact').html("<a href='..'>contact</a>");
