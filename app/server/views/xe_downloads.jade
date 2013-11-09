@@ -1,0 +1,77 @@
+!!! 5
+//This site is hosted on node.js by nodejitsu! :D
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		code
+			meta(name="viewport", content="width=device-width")
+		link(rel="stylesheet", href="../s/xenon.min.css")
+		link(rel="stylesheet", href="../s/animate.min.css")
+		title Xenon Download
+	body
+		include template/ie8
+		header
+			.wip
+				img(src="../s/wip.svg", alt="Work In Progress!")
+
+			.animated.bounceInLeft
+				a(href="../xenon").btn.btn-normal &laquo; Home
+
+		.animated.fadeIn
+			br
+			br
+			- var correctKey = query.key === '2324ba724e8f832ab1712cddf29c7318c97dcd5233';
+			- if (correctKey)
+				script.
+					if (navigator.appVersion.indexOf("Win")!=-1) document.write("<a href='" + "https://dl.dropbox.com/u/29314740/3l33t/Xenon.zip" + "' class='btn btn-large'>" + "Download Xenon for Windows" + "</a>");
+					if (navigator.appVersion.indexOf("Mac")!=-1) document.write("<a href='" + "https://dl.dropbox.com/u/29314740/3l33t/Xenon.app.zip"+ "' class='btn btn-large'>" + "Download Xenon for Mac OSX" + "</a>");
+					if (navigator.appVersion.indexOf("X11")!=-1) document.write("<a href='" + "https://dl.dropbox.com/u/29314740/3l33t/Xenon.zip"+ "' class='btn btn-large'>" + "Download Xenon.zip" + "</a>");
+					if (navigator.appVersion.indexOf("Linux")!=-1) document.write("<a href='" + "https://dl.dropbox.com/u/29314740/3l33t/Xenon.zip"+ "'> class='btn btn-large'" + "Download Xenon for Linux (.zip)" + "</a>");
+				br
+				br
+				br
+				.norm
+					| Please note that Xenon is like, at the pre-pre-pre-alpha stage,
+					|  and it is highly incomplete and lacks content.
+
+			- else
+				| Sorry! Downloads are not yet available. :(
+				br
+				| If you are interested, please <!---->
+				.inline#contact
+					a(href="..") contact
+				|  me.
+
+			br
+			br
+			br
+		a(href="changelog").btn.btn-small Changelog
+
+		noscript
+			.err
+				p
+					| This Site Is Kinda Broke Without JavaScript. :(
+					br
+					| If you enable it and reload this page everything will work.
+					a(href="http://enable-javascript.com/", target="_blank") How?
+
+	footer
+		br
+		br
+		br
+		| &copy; 2012 Fishrock123
+
+		- if (!correctKey)
+
+			script(src="http://code.jquery.com/jquery-latest.min.js")
+			script.
+				$(function(){
+					$('#contact').bind({
+						mouseenter: function() {
+							$('#contact').html("<a href='" + "http://www.twitter.com/fishrock123" + "'>tweet</a> or <a href='" + "mailto:fishrock123@rocketmail.com?subject=Xenon" + "'>email</a>");
+						},
+						mouseleave: function() {
+							$('#contact').html("<a href='..'>contact</a>");
+						}
+					});
+				});

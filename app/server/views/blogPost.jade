@@ -1,0 +1,16 @@
+.blog-line
+.blog-padd
+article.blog-post
+	.nope.blog-id!= post._id
+	h2.inline.title
+		a(href='?title=#{post.title}').inline!= post.title
+	time(datetime='#{post.date}').post-info.date.inline!= moment(post.date).fromNow()
+	br
+	.content!= post.body
+	.kudo-div
+		- if (cookies['' + post._id] === 'true')
+			a(href="").inline-b.kudos_button.icon.checked &#xF00C;
+		- else
+			a(href="").inline-b.kudos_button.icon &#xF067;
+		.inline.kudos!= post.kudos
+		.inline Kudos

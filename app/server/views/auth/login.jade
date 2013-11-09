@@ -1,0 +1,19 @@
+.login.hidden
+	.triangle
+	.login_box
+		h3 Log In
+
+		.spacing-container
+			#auth-err.err.hidden
+			#auth-success.hidden
+
+		form(action="/auth", method="post")#login
+			.full
+				label(for="user").icon &#xF007;
+				input(type="text", name="username", placeholder='Username')#user.r
+			.full
+				label(for="pass").icon &#xF084;
+				input(type="password", name="password", placeholder='Password')#pass.r
+			.full
+				a(href="/signup").inline-b.l Want an account? Sure you do!
+				input(type="submit", value="Log In")#submit.inline-b.r

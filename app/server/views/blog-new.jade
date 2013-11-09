@@ -1,0 +1,43 @@
+!!! 5
+//This site is hosted on node.js by nodejitsu! :D
+html(lang="en")
+	include template/head
+		title Blog Editor
+		// JQuery!
+		script(src="http://code.jquery.com/jquery-latest.min.js")
+
+	body
+		include template/header-nav
+
+		.padd-top
+
+		#editor.center
+
+			if (user && user.type === 'admin')
+
+				form(accept-charset="UTF-8", action="/blog-new", method="post")#new-post
+					div(style="margin:0;padding:0;display:inline")
+						input(name="utf8", type="hidden", value="✓")
+
+					input(name="title", placeholder="Title", size="auto", type="text").labeled#edit-title
+
+					textarea(cols="auto", name="body", placeholder="Body", style="resize: none; overflow-y: hidden; height: 50px;").labled#edit-body
+
+					.blog-line
+					.submit-post
+						a(href="#")#submit Post this!
+
+				script.
+					$(document).ready(function () {
+						$("a#submit").click(function (e) {
+							e.preventDefault();
+							e.stopPropagation();
+							return $('#new-post').submit(), !1;
+						});
+					});
+
+			else
+				- console.log('WARNING: IP: ' + query.ip + ' does not have a key!')
+				.err Authorization Llama is unsatisfied by your credentials. Noob.
+
+	include template/footer
