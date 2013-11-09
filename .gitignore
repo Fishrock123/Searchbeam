@@ -1,0 +1,17 @@
+# Temp files
+*~
+*#
+
+# Node Modules
+node_modules
+npm-debug.log
+
+# File system
+.DS_Store
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Authorization llama says Shoo.
+keys.json

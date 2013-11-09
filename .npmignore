@@ -1,0 +1,23 @@
+# Temp files
+*~
+*#
+
+# Node Modules
+node_modules
+npm-debug.log
+
+# File system
+.DS_Store
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Build system
+Gruntfile.coffee
+
+# Dev lint
+src/*
+TODO.md
+Contributing.md
+dev.js
