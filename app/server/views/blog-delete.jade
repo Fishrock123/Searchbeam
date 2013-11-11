@@ -3,8 +3,6 @@
 html(lang="en")
 	include template/head
 		title Blog Deletor
-		// JQuery!
-		script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
 
 	body
 		include template/header-nav
@@ -28,17 +26,17 @@ html(lang="en")
 					.submit-post
 						a(href="#").err#submit Delete This Post
 
-				script.
-					$(document).ready(function () {
-						$("a#submit").click(function (e) {
-							e.preventDefault();
-							e.stopPropagation();
-							return $('#new-post').submit(), !1;
-						});
-					});
-
 			else
 				- console.log('WARNING: IP: ' + query.ip + ' does not have a key!')
 				.err Authorization Llama is unsatisfied by your credentials. Noob.
 
 	include template/footer
+
+		script.
+			$(document).ready(function () {
+				$("a#submit").click(function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					return $('#new-post').submit(), !1;
+				});
+			});
