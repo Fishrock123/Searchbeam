@@ -2,9 +2,9 @@ $(document).ready(function() {
 	var s = 0
 		, timeid = -1
 		, lastScroll = 0
-		, page = window.location.pathname.slice(1);
+		, page = window.location.pathname.slice(1) + window.location.search;
 	if (page === '') { page = 'home'; }
-	page = page.match(/home|about|projects|blog/);
+	page = page.match(/home|about|projects|blog(?!\?title=|\?id=)/);
 	if (page && page.length > 0) {
 		$('#' + page[0]).children().addClass('current-page');
 	}
