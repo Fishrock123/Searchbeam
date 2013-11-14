@@ -61,6 +61,10 @@ exports.getByTitle = function(title, callback) {
 	Post.find({ title: title }).limit(1).exec(callback);
 };
 
+exports.getByID = function(id, callback) {
+	Post.find({ _id: id }).limit(1).exec(callback);
+};
+
 exports.kudo = function(id, amount, callback) {
 	Post.findOneAndUpdate({ _id: id }, { $inc: { kudos: amount } }).exec(callback);
 }

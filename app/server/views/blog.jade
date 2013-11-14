@@ -59,7 +59,7 @@ html(lang="en")
 
 				bindKudosButtons();
 
-			if query.title
+			if query.title || query.id
 				script.
 					$(document).ready(function() {
 
@@ -67,7 +67,7 @@ html(lang="en")
 							type: "POST",
 							url: 'blog-posts',
 							contentType: "application/json",
-							data: JSON.stringify({ title: "#{query.title}" }),
+							data: JSON.stringify({title: '#{query.title}', post_id: '#{query.id}'}),
 							dataType: "html",
 							error: function(jqXHR, textStatus, errorThrown) {
 								$("#articles").html("<div class=err>" + errorThrown + ' (' + textStatus + ')</div>');

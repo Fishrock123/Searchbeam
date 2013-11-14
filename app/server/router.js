@@ -146,20 +146,24 @@ module.exports = function(app, passport, Account, dbString) {
 		});
 
 		app.post('/blog-posts', function(req, res) {
+			function sendOnePost(err, article) {
+				if (err) {
+					console.log(err);
+					res.status(400).end('Internal Server Error: ' + err);
+				} else {
+					res.type('html');
+					res.render('blogPost', {
+						post: article[0],
+						moment: moment,
+						cookies: req.signedCookies
+					});
+				}
+			}
+
 			if (req.body.title) {
-				blog.getByTitle(req.body.title, function(err, article) {
-					if (err) {
-						console.log(err);
-						res.status(400).end('Internal Server Error: ' + err);
-					} else {
-						res.type('html');
-						res.render('blogPost', {
-							post: article[0],
-							moment: moment,
-							cookies: req.signedCookies
-						});
-					}
-				});
+				blog.getByTitle(req.body.title, sendOnePost);
+			} else if (req.body.post_id) {
+				blog.getByID(req.body.post_id, sendOnePost);
 			} else {
 				blog.getByPage(req.body.page, 4, function(err, articles, page, lastPage) {
 					page = page / 4;

@@ -3,7 +3,7 @@
 article.blog-post
 	.nope.blog-id!= post._id
 	h2.inline.title
-		a(href='?title=#{post.title}').inline!= post.title
+		a(href='?id=#{post._id}').inline!= post.title
 	time(datetime='#{post.date}').post-info.date.inline!= moment(post.date).fromNow()
 	br
 	.content!= post.body
