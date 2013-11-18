@@ -121,7 +121,6 @@ module.exports = function(app, passport, Account, dbString) {
 								maxAge: 90000000000 // Probably like a few years.
 							});
 							res.json({ kudos: doc.kudos, self: true });
-							res.end();
 						}
 					});
 				} else if (req.body.action = 'unkudo') {
@@ -136,7 +135,6 @@ module.exports = function(app, passport, Account, dbString) {
 								signed: true
 							});
 							res.json({ kudos: doc.kudos, self: false });
-							res.end();
 						}
 					});
 				}
@@ -282,13 +280,11 @@ module.exports = function(app, passport, Account, dbString) {
 			if (req.accepts('json')) {
 				res.type('json');
 				res.json({ error: '404: Not found' });
-				res.end();
 				return;
 			}
 
 			res.type('txt');
 			res.send('404: Not found');
-			res.end();
 		});
 
 		console.log('searchbeam.jit.su has successfully started!');
