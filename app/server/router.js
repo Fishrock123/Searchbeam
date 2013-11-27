@@ -118,10 +118,12 @@ module.exports = function(app, passport, Account, dbString) {
 		});
 
 		app.post('/register', function(req, res) {
+			if (!req.body.username || !req.body.password) return res.status(400).redirect('/signup');
 			console.log('registering a new account');
 			Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
 				if (err) {
 					console.log(err);
+					res.status(400).redirect('/signup');
 				} else {
 					res.redirect('/');
 					console.log('Successfully registered a new account!');
