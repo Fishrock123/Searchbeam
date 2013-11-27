@@ -7,6 +7,7 @@ var fs = require('fs')
 	, jade = require('jade')
 	, highlight = require('highlight.js')
 	, blog = require('./modules/blog')
+	, validate = require('./modules/validate')
 	, keys = require('../../keys.json')
 	, version = require('../../package.json').version;
 
@@ -14,6 +15,8 @@ var subdirs = [[/xe_/, 'xenon/'], [/kapp_/, 'kappacino/']];
 
 module.exports = function(app, passport, Account, dbString) {
 	var timeout, status, ip;
+
+	validate.loadAuth(Account);
 
 	blog.loadDb(setRoutes, dbString);
 
@@ -92,6 +95,26 @@ module.exports = function(app, passport, Account, dbString) {
 			}
 			res.type('html');
 			res.render('auth/button');
+		});
+
+		app.post('/validate', function(req, res) {
+			var out = {};
+			res.type('json');
+			if (req.body.password) {
+				out.pass = validate.password(req.body.password);
+			}
+			if (req.body.username) {
+				out.user = validate.username(req.body.username);
+				if (out.user.valid) {
+					validate.userAvaliable(req.body.username, function(avail) {
+						out.user = avail;
+						res.json(out);
+					});
+				}
+			}
+			if (out.user === undefined || out.user.err) {
+				res.json(out);
+			}
 		});
 
 		app.post('/register', function(req, res) {
