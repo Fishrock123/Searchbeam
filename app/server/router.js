@@ -99,6 +99,7 @@ module.exports = function(app, passport, Account, dbString) {
 			Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
 				if (err) {
 					console.log(err);
+					res.end(400);
 				} else {
 					res.redirect('/');
 					console.log('Successfully registered a new account!');
