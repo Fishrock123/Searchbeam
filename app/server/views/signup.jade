@@ -24,19 +24,26 @@ html(lang="en")
 							p.about In the future, they will be linked to my games.
 							p.about In addition, I hope to add various other login services someday.
 						.padd-half
-					.padd-top
+					.padd-small
 
-					.info
+					.err#err_msg
 
+					.padd-small
 					form(action="/register", method="post")#signup
 						.full
 							label(for="s_user").icon &#xF007;
 							input(type="text", name="username", placeholder='New Username')#s_user.r
+						.padd-small
 						.full
 							label(for="s_pass").icon &#xF084;
 							input(type="password", name="password", placeholder='Password')#s_pass.r
 						.full
-							input(type="submit", value="Register").inline-b.r
+							label(for="s_pass_conf").icon.invert &#xF064;
+							input(type="password", name="password-confirm", placeholder='Confirm')#s_pass_conf.r
+						.full
+							label(for="s_submit").icon.hidden &#xF071;
+							input(type="submit", value="Register")#s_submit.inline-b.r.blurable.disabled.greyed
 					.padd-half
 
 	include template/footer
+		script(src="s/signup.min.js")

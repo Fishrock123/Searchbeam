@@ -7,6 +7,7 @@ var fs = require('fs')
 	, jade = require('jade')
 	, highlight = require('highlight.js')
 	, blog = require('./modules/blog')
+	, validate = require('./modules/validate')
 	, keys = require('../../keys.json')
 	, version = require('../../package.json').version;
 
@@ -14,6 +15,8 @@ var subdirs = [[/xe_/, 'xenon/'], [/kapp_/, 'kappacino/']];
 
 module.exports = function(app, passport, Account, dbString) {
 	var timeout, status, ip;
+
+	validate.loadAuth(Account);
 
 	blog.loadDb(setRoutes, dbString);
 
@@ -61,7 +64,7 @@ module.exports = function(app, passport, Account, dbString) {
 			}
 		}
 
-		app.post('/auth', passport.authenticate('local'), function(req, res, next) {
+		app.post('/auth', function(req, res, next) {
 			res.type('json');
 			passport.authenticate('local', function(err, user, info) {
 				console.log(info);
@@ -94,16 +97,31 @@ module.exports = function(app, passport, Account, dbString) {
 			res.render('auth/button');
 		});
 
+		app.post('/validate', function(req, res) {
+			res.type('json');
+			validate.form(req.body, function(out) {
+				res.json(out);
+			});
+		});
+
 		app.post('/register', function(req, res) {
-			if (!req.body.username || !req.body.password) return res.status(400).redirect('/signup');
-			console.log('registering a new account');
-			Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
-				if (err) {
-					console.log(err);
-					res.status(400).redirect('/signup');
-				} else {
-					res.redirect('/');
-					console.log('Successfully registered a new account!');
+			res.type('json');
+			validate.form(req.body, function(out) {
+				if (!out.user || out.user.err || !out.pass || out.pass.err) {
+					res.status(400);
+					res.json(out);
+				} else if (out.user.valid && out.pass.valid) {
+					console.log('registering a new account with username: ' + req.body.username);
+					Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+						if (err) {
+							console.log(err);
+							res.status(500).json({ err: 'Error registering account. Please contact @Fishrock123 <fishrock123@rocketmail.com>'});
+						} else {
+							out.registered = true;
+							res.json(out);
+							console.log('Successfully registered a new account!');
+						}
+					});
 				}
 			});
 		});

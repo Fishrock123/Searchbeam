@@ -169,6 +169,10 @@ h3 {
 	color: #E11 !important;
 }
 
+.green {
+	color: #06C630 !important;
+}
+
 .checked {
 	color: #06E030 !important;
 }
@@ -382,6 +386,12 @@ pre code {
 	-webkit-filter: grayscale(100%) blur(1px);
 	-o-filter: grayscale(100%) blur(1px);
 	filter: grayscale(100%) blur(1px);
+}
+
+.greyed {
+	-webkit-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
 }
 
 .login_box {
@@ -599,6 +609,10 @@ blockquote {
 	Fancy things.
    ======================= */
 
+label.err {
+	cursor: pointer;
+}
+
 #etc_arrow {
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
@@ -667,6 +681,16 @@ blockquote {
 }
 scrollbar {
 	width: 0;
+}
+
+input.disabled {
+	cursor: not-allowed !important;
+	outline-color: #FFF;
+}
+
+input.disabled:hover {
+	background-color: buttonface;
+	color: buttontext;
 }
 
 .centered:before {
