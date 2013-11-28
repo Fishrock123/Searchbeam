@@ -7,6 +7,7 @@ exports.loadAuth = loadAuth;
 exports.userAvaliable = userAvaliable;
 exports.username = username;
 exports.password = password;
+exports.form = form;
 
 function loadAuth(model) {
 	Account = model;
@@ -43,7 +44,7 @@ function username(val) {
 		return { err: 'Username must contain at least 3 letters.' };
 	} else if (/[_ -:.]{4,}/.test(val)) {
 		return { err: 'Username may have no more than 4 underscores, colons, periods, or spaces.' };
-	} else {
+	} else {  // Todo: prevent names starting or ending with [ -.:]
 		return { err: null, valid: true };
 	}
 }
@@ -58,6 +59,25 @@ function password(val, cb) {
 		return { err: 'Password must be no more than 64 characters long.' };
 	} else { // The top 500 worst passwords are all under 10 characters long, so that alone should weed out many bad passwords.
 		return { err: null, valid: true };
+	}
+}
+
+function form(json, cb) {
+	var out = {};
+	if (json.password) {
+		out.pass = password(json.password);
+	}
+	if (json.username) {
+		out.user = username(json.username);
+		if (out.user.valid) {
+			userAvaliable(json.username, function(avali) {
+				out.user = avali;
+				cb(out);
+			});
+		}
+	}
+	if (out.user === undefined || out.user.err) {
+		cb(out);
 	}
 }
 

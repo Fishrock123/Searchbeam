@@ -24,10 +24,11 @@ html(lang="en")
 							p.about In the future, they will be linked to my games.
 							p.about In addition, I hope to add various other login services someday.
 						.padd-half
-					.padd-half
+					.padd-small
 
-					.info
+					.err#err_msg
 
+					.padd-small
 					form(action="/register", method="post")#signup
 						.full
 							label(for="s_user").icon &#xF007;
@@ -40,129 +41,9 @@ html(lang="en")
 							label(for="s_pass_conf").icon.invert &#xF064;
 							input(type="password", name="password-confirm", placeholder='Confirm')#s_pass_conf.r
 						.full
+							label(for="s_submit").icon.hidden &#xF071;
 							input(type="submit", value="Register")#s_submit.inline-b.r.blurable.disabled.greyed
 					.padd-half
 
 	include template/footer
-		script.
-			$(document).ready(function() {
-				var fields = {
-						user: {timer: 0, valid: false, check: checkUser, ajax: undefined},
-						pass: {timer: 0, valid: false, check: checkPass, ajax: undefined},
-						conf: {timer: 0, valid: false, check: confPass}
-					}, valid = false;
-				$('#s_user').on('input', fields.user, setCheckerTimer);
-				$('#s_pass').on('input', fields.pass, setCheckerTimer);
-				$('#s_pass_conf').on('input', fields.conf, setCheckerTimer);
-
-				$("#signup").submit(verifySubmit);
-
-				function verifySubmit(ev) {
-					return valid;
-				}
-
-				function setCheckerTimer(ev) {
-					ev.data.valid = false;
-					checkValidated();
-					window.clearTimeout(ev.data.timer);
-					ev.data.timer = window.setTimeout(ev.data.check, 1100);
-				}
-
-				function checkValidated() {
-					if (valid = (fields.user.valid && fields.pass.valid && fields.conf.valid)) {
-						$('#s_submit').removeClass('disabled greyed');
-					} else {
-						$('#s_submit').addClass('disabled greyed');
-					}
-				}
-
-				function checkUser() {
-					var input, val, self = fields.user;
-					input = $('#s_user');
-					val = input.val();
-					self.valid = false;
-					if (val === undefined || val === null || val.length < 1) {
-						input.parent().children(".icon").removeClass("green err").html("&#xF007;");
-					} else if (val.length < 3 || val.length > 20) {
-						input.parent().children(".icon").removeClass("green").addClass("err").html("&#xF071;");
-					} else {
-						if (self.ajax) self.ajax.abort();
-						self.ajax = $.ajax({
-							type: "POST",
-							url: 'validate',
-							contentType: "application/json",
-							data: JSON.stringify({ username: val }),
-							dataType: "json",
-							error: function(jqXHR, textStatus, errorThrown) {
-								self.valid = false;
-								input.parent().children(".icon").removeClass("green").addClass("err").html("&#xF071;");
-							},
-							success: function(data) {
-								if (data.user.valid) {
-									self.valid = data.user.valid;
-									input.parent().children(".icon").removeClass("err").addClass("green").html("&#xF007;");
-								} else {
-									self.valid = false;
-									input.parent().children(".icon").removeClass("green").addClass("err").html("&#xF071;");
-								}
-								checkValidated();
-							},
-							timeout: 20000
-						});
-					}
-				}
-
-				function checkPass() {
-					var input, val, self = fields.pass;
-					input = $('#s_pass');
-					val = input.val();
-					self.valid = false;
-					confPass();
-					if (val === undefined || val === null || val.length < 1) {
-						input.parent().children(".icon").removeClass("green err").html("&#xF084;");
-					} else if (val.length < 10 || val.length > 64) {
-						input.parent().children(".icon").removeClass("green").addClass("err").html("&#xF071;");
-					} else {
-						if (self.ajax) self.ajax.abort();
-						self.ajax = $.ajax({
-							type: "POST",
-							url: 'validate',
-							contentType: "application/json",
-							data: JSON.stringify({ password: val }),
-							dataType: "json",
-							error: function(jqXHR, textStatus, errorThrown) {
-								self.valid = false;
-								input.parent().children(".icon").removeClass("green").addClass("err").html("&#xF071;");
-							},
-							success: function(data) {
-								if (data.pass.valid) {
-									self.valid = data.pass.valid;
-									input.parent().children(".icon").removeClass("err").addClass("green").html("&#xF084;");
-								} else {
-									self.valid = false;
-									input.parent().children(".icon").removeClass("green").addClass("err").html("&#xF071;");
-								}
-								checkValidated();
-							},
-							timeout: 20000
-						});
-					}
-				}
-
-				function confPass() {
-					var input, val, self = fields.conf;
-					input = $('#s_pass_conf');
-					val = input.val();
-					if (val === undefined || val === null || val.length < 1) {
-						self.valid = false;
-						input.parent().children(".icon").removeClass("green err").addClass('invert').html("&#xF064;");
-					} else if (val !== $('#s_pass').val()) {
-						self.valid = false;
-						input.parent().children(".icon").removeClass("green invert").addClass("err").html("&#xF119;");
-					} else {
-						self.valid = true;
-						input.parent().children(".icon").removeClass("err invert").addClass("green").html("&#xF00C;");
-					}
-					checkValidated();
-				}
-			});
+		script(src="s/signup.min.js")

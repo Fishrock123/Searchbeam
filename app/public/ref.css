@@ -685,6 +685,7 @@ scrollbar {
 
 input.disabled {
 	cursor: not-allowed !important;
+	outline-color: #FFF;
 }
 
 input.disabled:hover {
