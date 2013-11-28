@@ -1,8 +1,6 @@
 
 === The To-Do List for SearchBeam.jit.su ===
 
--	Enhance signup page.
-
 - 	Move the Kappacino.com dev pages into different project directory.
 
 -	Finish the Blog's Editor.
@@ -11,6 +9,8 @@
 
 
 ==== Completed Stuffs ====
+
+-	Signup page form validation with live feedback.
 
 -	Revamp the project page.
 
