@@ -77,12 +77,29 @@ require('./app/server/models/account')(db, function(Account) {
 					})
 				});
 			}
+		} else if (/raw|dump/i.test(line)) {
+			var res = line.split(' ');
+			if (res.length === 2 && res[1] !== null) {
+				Account.findByUsername(res[1], function(err, doc) {
+					if (err) {
+						console.log(err);
+					}
+					console.log(doc);
+				});
+			}
 		} else if (/list/i.test(line)) {
 			Account.find({}).exec(function(err, docs) {
 				if (err) {
 					console.log(err);
+				} else if (docs !== null) {
+					for (var i = 0; i < docs.length; i++) {
+						console.log('~' + i);
+						console.log('    username: ' + docs[i].username);
+						console.log('    _id: ' + docs[i]._id);
+						console.log('    hash_version: ' + docs[i].hash_version);
+						console.log('    type: ' + docs[i].type);
+					}
 				}
-				console.log(docs);
 			});
 		} else if (/kill|die|terminate|stop|close|exit/i.test(line)) {
 			rl.close();
