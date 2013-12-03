@@ -111,17 +111,18 @@ p {
 	color: #383838;
 }
 
-.blog-post h2 a:hover {
+.blog-post h2 a:active,
+.blog-post h2 a:focus,
+.blog-post h2 a:hover,
+.blog-post .content a:active,
+.blog-post .content a:focus,
+.blog-post .content a:hover {
 	color: #FF8300;
 }
 
 .blog-post .content a {
 	color: #262626;
 	border-bottom: 1px solid #D1D1D1;
-}
-
-.blog-post .content a:hover {
-	color: #FF8300;
 }
 
 h1 {
@@ -242,8 +243,12 @@ a {
 	transition: all 0.18s linear;
 	text-decoration: none;
 	color: #E97B08;
+	outline-color: #646464;
+	outline-width: 3px;
 }
 
+a:active,
+a:focus,
 a:hover {
 	color: #FF8300;
 }
@@ -815,6 +820,8 @@ header span {
 	margin-right: 32px;
 }
 
+header a:active,
+header a:focus,
 header a:hover {
 	-webkit-transform: scale(1.1);
 	-moz-transform: scale(1.1);
