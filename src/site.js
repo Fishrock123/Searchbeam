@@ -48,6 +48,15 @@ $(document).ready(function() {
 	});
 	$('#cover').on('touchend', function(e) {
 		hideLogin(100);
+	}).hover(function(e) {
+		if (timeid === -1) hideLogin(800);
+	});
+	$(this).on('mouseout', function(e) {
+        var from = e.relatedTarget || e.toElement;
+        if (!from || from.nodeName == "HTML") {
+            window.clearTimeout(timeid);
+            timeid = -1;
+        }
 	});
 	$('#auth').click(function(e) {
 		if (user === false) return false;
