@@ -102,9 +102,10 @@ p {
 	font-weight: normal;
 	float: left;
 	text-align: left;
-	margin: 4px 0 0 4%;
+	margin: 4px 4%
 	font-family: 'source_sans_pro-bold';
-	font-size: 24px
+	font-size: 24px;
+	width: 100%
 }
 
 .blog-post h2 a {
@@ -136,9 +137,13 @@ h3 {
 }
 
 .blog-post .date {
+	line-height: 24px;
 	float: right;
 	text-align: right;
 	font-family: 'source_sans_pro';
+	margin: auto 6px;
+	position: relative;
+	top: 4px;
 }
 
 .text-left {
@@ -555,9 +560,9 @@ form .r {
 }
 
 .blog-post {
-	width: 54%;
+	max-width: 550px;
 	text-align: center;
-	padding-bottom: 42px;
+	padding: 0 18px 42px;
 	margin-left: auto;
 	margin-right: auto;
 }
