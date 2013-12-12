@@ -5,10 +5,10 @@
 
 -	Finish the Blog's Editor.
 
--	Fix the Blog's resizing issues on small widths.
-
 
 ==== Completed Stuffs ====
+
+-	Fix the Blog's resizing issues on small widths.
 
 -	Signup page form validation with live feedback.
 
