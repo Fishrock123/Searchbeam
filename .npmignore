@@ -17,7 +17,8 @@ npm-debug.log
 Gruntfile.coffee
 
 # Dev lint
-src/*
+src
+assets
 TODO.md
 Contributing.md
 dev.js
