@@ -246,6 +246,15 @@ module.exports = function(app, passport, Account, dbString) {
 
 		// Xenon stuff
 
+		app.get('/xenon', function(req, res) {
+			res.type('html');
+			res.render('xenon/home', {
+				query: req.query,
+				user: req.user,
+				version: version
+			});
+		});
+
 		timeout = undefined;
 		status = 'Server Offline';
 		// Server IP
