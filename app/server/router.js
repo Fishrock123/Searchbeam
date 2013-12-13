@@ -170,7 +170,7 @@ module.exports = function(app, passport, Account, dbString) {
 					res.status(400).end('Internal Server Error: ' + err);
 				} else {
 					res.type('html');
-					res.render('blogPost', {
+					res.render('blog/Post', {
 						post: article[0],
 						moment: moment,
 						cookies: req.signedCookies
@@ -190,7 +190,7 @@ module.exports = function(app, passport, Account, dbString) {
 						res.status(400).end('Internal Server Error: ' + err);
 					} else {
 						res.type('html');
-						res.render('blogPosts', {
+						res.render('blog/Posts', {
 							posts: articles,
 							moment: moment,
 							page: page < 1 ? 0 : page,
