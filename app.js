@@ -25,10 +25,6 @@ app.use(express.urlencoded());
 app.use(express.cookieParser(keys.express.cookies));
 app.use(express.session({ secret: keys.express.session }));
 app.use(express.methodOverride());
-app.use(function (req, res, next) {
-	res.header('X-Geek-Status', 'You\'re awesome. p.s: Narwhals.');
-	next();
-});
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -46,6 +42,10 @@ db.on('error', console.error.bind(console, 'Auth connection error:'));
 
 function finalAndOpen() {
 	app.use('/s/', express.static(__dirname + '/app/public'));
+	app.use(function(req, res, next) {
+		res.header('X-Geek-Status', 'You\'re awesome. p.s: Narwhals.');
+		next();
+	});
 	app.use(app.router);
 
 	server.listen(app.get('port'));
