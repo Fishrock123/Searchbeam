@@ -11,7 +11,7 @@ var fs = require('fs')
 	, keys = require('../../keys.json')
 	, version = require('../../package.json').version;
 
-var subdirs = [[/xe_/, 'xenon/'], [/kapp_/, 'kappacino/']];
+var subdirs = ['xenon', 'kappacino'];
 
 module.exports = function(app, passport, Account, dbString) {
 	var timeout, status, ip;
@@ -32,25 +32,22 @@ module.exports = function(app, passport, Account, dbString) {
 		});
 
 		fs.readdir(__dirname + '/views', function(err, files) {
-			for (var i = 0; i < files.length; i++) {
-				loadPage(files[i]);
-			}
+			files.forEach(loadPage);
 		});
 
-		function loadPage(page) {
+		function loadPage(page, supdir) {
 			var ext = page.slice(page.lastIndexOf('.', page.length))
-				, pageName = page.slice(0, page.indexOf('.'))
-				, dir = pageName;
-			for (var i = 0; i < subdirs.length; i++) {
-				if (subdirs[i][0].test(pageName)) {
-					dir = pageName.replace(subdirs[i][0], subdirs[i][1]);
-					break;
-				}
+				, view = page.slice(0, page.indexOf('.'))
+				, dir = view;
+			if (!(supdir > 0)) {
+				dir = supdir + '/' + dir;
+				view = supdir + '/' + view;
+				page = supdir + '/' + page;
 			}
 			if (ext === '.jade') {
 				app.get('/' + dir, function(req, res) {
 					res.type('html');
-					res.render(pageName, {
+					res.render(view, {
 						query: req.query,
 						user: req.user,
 						version: version
@@ -60,6 +57,15 @@ module.exports = function(app, passport, Account, dbString) {
 				app.get('/' + dir, function(req, res) {
 					res.type('html');
 					res.sendfile(__dirname + '/views/' + page);
+				});
+			} else if (page.indexOf('.') === -1
+					&& subdirs.some(function(subdir) {
+						return subdir === page;
+					})) {
+				fs.readdir(__dirname + '/views/' + page, function(err, files) {
+					for (var i = files.length - 1; i >= 0; i--) {
+						loadPage(files[i], page);
+					};
 				});
 			}
 		}
