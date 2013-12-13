@@ -5,7 +5,6 @@ var fs = require('fs')
 	, sanitize = require('validator').sanitize
 	, moment = require('moment')
 	, jade = require('jade')
-	, highlight = require('highlight.js')
 	, blog = require('./modules/blog')
 	, validate = require('./modules/validate')
 	, keys = require('../../keys.json')
