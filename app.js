@@ -75,7 +75,7 @@ require('./app/server/models/account')(db, function(Account) {
 			res.setHeader('Strict-Transport-Security', 'max-age=8640000; includeSubDomains');
 
 			if (req.headers['x-forwarded-proto'] !== 'https') {
-				return res.redirect(301, 'https://' + req.headers.host + '/');
+				return res.redirect(301, 'https://' + req.host + (req.path || '/'));
 			} else next();
 		});
 
