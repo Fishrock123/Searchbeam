@@ -3,7 +3,7 @@ module.exports = (grunt) ->
 	require('load-grunt-tasks') grunt
 
 	grunt.initConfig
-		pkg: grunt.file.readJSON("package.json")
+		pkg: grunt.file.readJSON "package.json"
 
 		uglify:
 
@@ -76,5 +76,6 @@ module.exports = (grunt) ->
           { expand: true, cwd: 'app/public/kappacino/img',  src: '**', dest: '../kappacino/images', filter: 'isFile' }
         ]
 
-	grunt.registerTask "default", ["uglify", "cssmin", "replace", "fileregexrename", "copy"]
-	grunt.registerTask "build", ["uglify", "cssmin", "replace", "fileregexrename", "copy"]
+	grunt.registerTask "default", ["uglify", "cssmin"]
+	grunt.registerTask "build", ["uglify", "cssmin"]
+	grunt.registerTask "kappacino", ["uglify", "cssmin", "replace", "fileregexrename", "copy"]
