@@ -137,7 +137,7 @@ module.exports = function(app, passport, Account, dbString) {
 					blog.kudo(req.body.postid, 1, function(err, doc) {
 						if (err) {
 							console.err('Kudos error: ' + err);
-							res.end(500);
+							res.status(500).end();
 							return;
 						} else {
 							res.type('json');
@@ -152,7 +152,7 @@ module.exports = function(app, passport, Account, dbString) {
 					blog.kudo(req.body.postid, -1, function(err, doc) {
 						if (err) {
 							console.err('Kudos error: ' + err);
-							res.end(500);
+							res.status(500).end();
 							return;
 						} else {
 							res.type('json');
@@ -164,7 +164,7 @@ module.exports = function(app, passport, Account, dbString) {
 					});
 				}
 			} else {
-				res.end(400);
+				res.status(400).end();
 			}
 		});
 
