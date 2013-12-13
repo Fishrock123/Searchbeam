@@ -17,9 +17,7 @@
     "validator": "1.5.x",
     "moment": "2.2.x",
     "passport": "0.1.x",
-    "passport-local-mongoose": "0.2.x",
-    "highlight.js": "7.x",
-    "socket.io": "0.9.x"
+    "passport-local-mongoose": "0.2.x"
   },
   "devDependencies": {
     "load-grunt-tasks": "0.2.x",
@@ -28,7 +26,6 @@
     "grunt-contrib-copy": "0.4.x",
     "grunt-contrib-cssmin": "0.6.x",
     "grunt-text-replace": "0.3.x",
-    "grunt-file-regex-rename": "0.1.x",
     "request": "2.27.x"
   }
 }
