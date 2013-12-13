@@ -60,16 +60,6 @@ module.exports = (grunt) ->
 					to: 'fonts'
 				}]
 
-		fileregexrename:
-			dist:
-				files:
-					"../kappacino/*": "../kappacino/*"
-				options:
-					replacements: [
-						pattern: /kapp_/
-						replacement: ''
-					]
-
 		copy:
       main:
         files: [
@@ -78,4 +68,4 @@ module.exports = (grunt) ->
 
 	grunt.registerTask "default", ["uglify", "cssmin"]
 	grunt.registerTask "build", ["uglify", "cssmin"]
-	grunt.registerTask "kappacino", ["uglify", "cssmin", "replace", "fileregexrename", "copy"]
+	grunt.registerTask "kappacino", ["uglify", "cssmin", "replace", "copy"]
