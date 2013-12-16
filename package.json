@@ -9,6 +9,10 @@
   "engines": {
     "node": "0.10.x"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Fishrock123/Searchbeam.git"
+  },
   "dependencies": {
       "express": "3.x"
     , "jade": "0.35.x"
