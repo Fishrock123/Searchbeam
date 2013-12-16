@@ -79,7 +79,7 @@ module.exports = function(app, passport, Account, dbString) {
 				}
 				if (!user) {
 					res.json({ error: "That user does not exist." });
-					return res.redirect('/register');
+					return;
 				}
 				req.logIn(user, function(err) {
 					if (err) { return next(err); }
