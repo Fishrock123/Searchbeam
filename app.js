@@ -6,12 +6,12 @@ var express = require('express')
   	, passport = require('passport')
   	, mongoose = require('mongoose')
   	, passportLocalMongoose = require('passport-local-mongoose')
+  	, RedisStore = require('connect-redis')(express)
   	, keys = require(__dirname + '/keys.json')
   	, version = require(__dirname + '/package.json').version
-  	, db;
+  	, db, session_store;
 
 console.log('APP VERSION = ' + version);
-
 
 // Use all the settings! (Mostly.)
 app.set('port', 8080);
@@ -23,7 +23,14 @@ app.use(express.favicon(__dirname + '/app/public/SB-Logo.ico'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.cookieParser(keys.express.cookies));
-app.use(express.session({ secret: keys.express.session }));
+
+session_store = new RedisStore(keys.redis_session);
+session_store.on('disconnect', function(err) { console.error(err); });
+
+app.use(express.session({
+	  store: session_store
+	, secret: keys.express.session
+}));
 app.use(express.methodOverride());
 app.use(passport.initialize());
 app.use(passport.session());
