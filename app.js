@@ -25,7 +25,7 @@ app.use(express.urlencoded());
 app.use(express.cookieParser(keys.express.cookies));
 
 session_store = new RedisStore(keys.redis_session);
-session_store.on('disconnect', function(err) { console.error(err); });
+session_store.client.on('error', function(err) { console.error(err); });
 
 app.use(express.session({
 	  store: session_store
