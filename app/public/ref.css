@@ -102,7 +102,7 @@ p {
 	font-weight: normal;
 	float: left;
 	text-align: left;
-	margin: 4px 4%
+	margin: 4px 4%;
 	font-family: 'source_sans_pro-bold';
 	font-size: 24px;
 	width: 100%
@@ -988,10 +988,6 @@ footer #copy {
 		display: none;
 	}
 }
-
-/*@media screen and (max-width: 720px) {
-}*/
-
 
 @media screen and (max-width: 640px) {
 	.logo-orange {
