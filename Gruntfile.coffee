@@ -21,15 +21,23 @@ module.exports = (grunt) ->
 					{ expand: true, cwd: 'src/retinajs', src: ['*.js', '!*.*.js'], dest: 'app/public/', filter: 'isFile', ext: '.min.js' }
 				]
 
+		myth:
+			dist:
+				files: [
+					'app/public/ref.min.css': ['app/public/ref.css']
+					'app/public/kappacino/styles.min.css': ['app/public/kappacino/styles.css']
+					'app/public/xenon.min.css': ['app/public/xenon.css']
+				]
+
 		cssmin:
 			options:
 				banner: "/* © 2013, Jeremiah Senkpiel, built: <%= grunt.template.today(\"yyyy-mm-dd\") %> */"
 
 			minify:
 				files: [
-					'app/public/ref.min.css': ['app/public/ref.css']
-					'app/public/kappacino/styles.min.css': ['app/public/kappacino/styles.css']
-					'app/public/xenon.min.css': ['app/public/xenon.css']
+					'app/public/ref.min.css': ['app/public/ref.min.css']
+					'app/public/kappacino/styles.min.css': ['app/public/kappacino/styles.min.css']
+					'app/public/xenon.min.css': ['app/public/xenon.min.css']
 				]
 
 		replace:
@@ -65,6 +73,6 @@ module.exports = (grunt) ->
           			{ expand: true, cwd: 'app/public/kappacino/img',  src: '**', dest: '../kappacino/images', filter: 'isFile' }
         		]
 
-	grunt.registerTask "default", ["uglify", "cssmin"]
-	grunt.registerTask "build", ["uglify", "cssmin"]
-	grunt.registerTask "kappacino", ["uglify", "cssmin", "replace", "copy"]
+	grunt.registerTask "default", ["uglify", "myth", "cssmin"]
+	grunt.registerTask "build", ["uglify", "myth", "cssmin"]
+	grunt.registerTask "kappacino", ["uglify", "myth", "cssmin", "replace", "copy"]

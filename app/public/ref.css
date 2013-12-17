@@ -1,6 +1,8 @@
 
 /* =======================
 	Somewhat clean. CSS for searchbeam.jit.su by Jeremiah Senkpiel.
+
+	The following is all run through myth, a CSS-spec polyfill preprocessor. - http://www.myth.io/
    ======================= */
 
 /* =======================
@@ -32,6 +34,15 @@
   src: url('fontawesome-webfont.ttf') format('truetype');
 }
 
+:root {
+	var-orange: #FF8300;
+	var-orange-dark: #E97B08;
+	var-grey: #646464;
+	var-dark: #595959;
+	var-black: #494949;
+	var-faint: #D8D8D8;
+}
+
 * {
 	-webkit-tap-highlight-color: transparent;
 }
@@ -51,12 +62,8 @@ p {
 }
 
 .current-page {
-	color: #646464;
+	color: var(grey);
 	pointer-events: none;
-	-webkit-transform: scale(1.1);
-	-moz-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	-o-transform: scale(1.1);
 	transform: scale(1.1);
 }
 
@@ -118,7 +125,7 @@ p {
 .blog-post .content a:active,
 .blog-post .content a:focus,
 .blog-post .content a:hover {
-	color: #FF8300;
+	color: var(orange);
 }
 
 .blog-post .content a {
@@ -199,7 +206,7 @@ abbr {
 cite {
 	margin-top: 12px;
 	margin-left: 20px;
-	color: #595959;
+	color: var(dark);
 	letter-spacing: 0;
 }
 
@@ -209,18 +216,18 @@ cite {
 }
 
 .orange {
-	color: #FF8300;
+	color: var(orange);
 }
 
 .dark {
-	color: #595959;
+	color: var(dark);
 }
 
 .logo-orange {
 	font-family: 'source_sans_pro-semibold';
 	font-size: 104px;
 	text-align: right;
-	color: #FF8300;
+	color: var(orange);
 	/*text-rendering: optimizeLegibility;*/
 }
 
@@ -228,7 +235,7 @@ cite {
 	font-family: 'source_sans_pro-semibold';
 	font-size: 64px;
 	text-align: right;
-	color: #595959;
+	color: var(dark);
 	/*text-rendering: optimizeLegibility;*/
 }
 
@@ -242,20 +249,17 @@ li {
 }
 
 a {
-	-webkit-transition: all 0.18s linear;
-	-moz-transition: all 0.18s linear;
-	-o-transition: all 0.18s linear;
 	transition: all 0.18s linear;
 	text-decoration: none;
-	color: #E97B08;
-	outline-color: #646464;
+	color: var(orange-dark);
+	outline-color: var(grey);
 	outline-width: 3px;
 }
 
 a:active,
 a:focus,
 a:hover {
-	color: #FF8300;
+	color: var(orange);
 }
 
 b {
@@ -305,7 +309,7 @@ pre code {
 }
 
 .black {
-	color: #494949;
+	color: var(faint);
 }
 
 .light {
@@ -313,7 +317,7 @@ pre code {
 }
 
 .faint {
-	color: #D8D8D8 !important;
+	color:var(faint) !important;
 }
 
 
@@ -328,22 +332,18 @@ pre code {
 	height: 0px;
 	border-style: solid;
 	border-width: 10px 8px 0 8px;
-	border-color: #646464 transparent transparent transparent;
-	-webkit-transform: translateZ(0);
+	border-color: var(grey) transparent transparent transparent;
+	transform: translateZ(0);
 }
 
 #auth {
 	position: fixed;
 	left: 6px;
 	bottom: 6px;
-	color: #646464;
+	color: var(grey);
 	font-size: 12px;
 	z-index: 299;
-	-webkit-transition: color 0.8s ease-in-out;
-	-o-transition: color 0.8s ease-in-out;
-	-ms-transition: color 0.8s ease-in-out;
 	transition: color 0.8s ease-in-out;
-	-moz-transition: color 0.8s ease-in-out;
 }
 
 #auth-success {
@@ -370,11 +370,7 @@ pre code {
 }
 
 .cover-transition {
-	-webkit-transition: opacity 0.8s ease-in-out, z-index 0.8s ease-in-out;
-	-o-transition: opacity 0.8s ease-in-out, z-index 0.8s ease-in-out;
-	-ms-transition: opacity 0.8s ease-in-out, z-index 0.8s ease-in-out;
 	transition: opacity 0.8s ease-in-out, z-index 0.8s ease-in-out;
-	-moz-transition: opacity 0.8s ease-in-out, z-index 0.8s ease-in-out;
 }
 
 .show_cover {
@@ -383,24 +379,16 @@ pre code {
 }
 
 .blurable {
-	-webkit-transform: translateZ(0);
-	-o-transform: translateZ(0);
 	transform: translateZ(0);
-	-webkit-transition: -webkit-filter 0.8s linear;
-	-o-transition: -webkit-filter 0.8s linear;
 	transition: -webkit-filter 0.8s linear;
 	-moz-transition: filter 0.8s linear;
 }
 
 .blur {
-	-webkit-filter: grayscale(100%) blur(1px);
-	-o-filter: grayscale(100%) blur(1px);
 	filter: grayscale(100%) blur(1px);
 }
 
 .greyed {
-	-webkit-filter: grayscale(100%);
-	-o-filter: grayscale(100%);
 	filter: grayscale(100%);
 }
 
@@ -410,7 +398,7 @@ pre code {
 	left: 28px;
 	width: 400px;
 	height: 230px;
-	box-shadow: inset 0 0 2px #646464;
+	box-shadow: inset 0 0 2px var(grey);
 	background-color: #EEE;
 	border-radius: 6px;
 	z-index: 300;
@@ -445,7 +433,7 @@ textarea.labeled {
 
 input {
 	margin: 2px;
-	outline-color: #646464;
+	outline-color: var(grey);
 	outline-width: 3px;
 }
 
@@ -457,7 +445,7 @@ input[type="password"], input[type="text"] {
 	padding: 1px;
 	font-size: 18px;
 	border: 0;
-	border: 7px solid #FF8300;
+	border: 7px solid var(orange);
 	border-radius: 3px;
 }
 
@@ -465,14 +453,14 @@ input[type="submit"] {
 	padding: 2px 6px 3px;
 	font-size: 18px;
 	border: 0;
-	border: 7px solid #FF8300;
+	border: 7px solid var(orange);
 	border-radius: 3px;
 	cursor: pointer;
 	-webkit-appearance: none;
 }
 
 input[type="submit"]:hover {
-	color: #646464;
+	color: var(grey);
 	background-color: #EEE;
 }
 
@@ -507,7 +495,7 @@ form .r {
 	font-size: 18px;
 	line-height: 25px;
 	border: 0;
-	border-left: 7px solid #FF8300;
+	border-left: 7px solid var(orange);
 	min-height: 500px;
 }
 
@@ -519,7 +507,7 @@ form .r {
 	padding-left: 15px;
 	font-size: 24px;
 	border: 0;
-	border-left: 7px solid #FF8300;
+	border-left: 7px solid var(orange);
 }
 
 .header-padd {
@@ -624,19 +612,12 @@ label.err {
 }
 
 #etc_arrow {
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 	position: relative;
 	top: 1px;
 }
 
 .invert {
-	-webkit-transform: scale(1,-1);
-	-moz-transform: scale(1,-1);
-	-ms-transform: scale(1,-1);
-	-o-transform: scale(1,-1);
 	transform: scale(1,-1);
 }
 
@@ -675,9 +656,6 @@ label.err {
 }
 
 #etc {
-	-webkit-transition: all 0.18s linear;
-	-moz-transition: all 0.18s linear;
-	-o-transition: all 0.18s linear;
 	transition: all 0.18s linear;
 }
 
@@ -738,7 +716,7 @@ input.disabled:hover {
 }
 
 .kudos_button {
-	color: #646464;
+	color: var(grey);
 	top: 1px;
 	position: relative;
 	width: 21px;
@@ -787,7 +765,6 @@ header {
 }
 
 .shadow header {
-	-webkit-box-shadow: 0px 3px 6px rgba(250, 250, 250, 0.8);
 	box-shadow: 0px 3px 6px rgba(250, 250, 250, 0.8);
 }
 
@@ -808,9 +785,6 @@ header .line {
 	border-bottom: 1px solid #555;
 	margin-left: auto;
 	margin-right: auto;
-	-webkit-transition: all 0.1s linear;
-	-moz-transition: all 0.1s linear;
-	-o-transition: all 0.1s linear;
 	transition: all 0.1s linear;
 }
 
@@ -828,10 +802,6 @@ header span {
 header a:active,
 header a:focus,
 header a:hover {
-	-webkit-transform: scale(1.1);
-	-moz-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	-o-transform: scale(1.1);
 	transform: scale(1.1);
 }
 
@@ -861,18 +831,17 @@ nav ul, nav ol {
 body {
 	margin: 0;
 	background-color: #FFF;
-	color: #646464;
+	color: var(grey);
 	text-align: center;
 	font-family: 'source_sans_pro-semibold';
 }
 
 .shadow footer {
-	-webkit-box-shadow: 0px -3px 6px rgba(250, 250, 250, 0.8);
 	box-shadow: 0px -3px 6px rgba(250, 250, 250, 0.8);
 }
 
 footer {
-	color: #646464;
+	color: var(grey);
 	position: fixed;
 	font-size: 12px;
 	bottom: 0px;
