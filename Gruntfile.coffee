@@ -6,7 +6,6 @@ module.exports = (grunt) ->
 		pkg: grunt.file.readJSON "package.json"
 
 		uglify:
-
 			dist:
 				options:
 					banner: "/* © 2013, Jeremiah Senkpiel, built: <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
@@ -61,10 +60,10 @@ module.exports = (grunt) ->
 				}]
 
 		copy:
-      main:
-        files: [
-          { expand: true, cwd: 'app/public/kappacino/img',  src: '**', dest: '../kappacino/images', filter: 'isFile' }
-        ]
+      		main:
+        		files: [
+          			{ expand: true, cwd: 'app/public/kappacino/img',  src: '**', dest: '../kappacino/images', filter: 'isFile' }
+        		]
 
 	grunt.registerTask "default", ["uglify", "cssmin"]
 	grunt.registerTask "build", ["uglify", "cssmin"]
