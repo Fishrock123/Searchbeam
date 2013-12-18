@@ -1,0 +1,3 @@
+If you are here, you should probably go check out the repo; seachbeam.jit.su is Open-Source.
+
+Repository: git@github.com:Fishrock123/Searchbeam.git

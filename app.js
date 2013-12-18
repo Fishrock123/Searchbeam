@@ -53,6 +53,7 @@ db.on('error', console.error.bind(console, 'Auth connection error:'));
 
 function finalAndOpen() {
 	app.use('/s/', express.static(__dirname + '/app/public'));
+	app.use('/', express.static(__dirname + '/app/rootfiles'));
 	app.use(function(req, res, next) {
 		res.header('X-Geek-Status', 'You\'re awesome. p.s: Narwhals.');
 		next();
