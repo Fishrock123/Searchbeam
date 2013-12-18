@@ -41,6 +41,11 @@
 	var-dark: #595959;
 	var-black: #494949;
 	var-faint: #D8D8D8;
+	var-green: #06C630;
+	var-green-bright: #06E030;
+	var-red: #E11;
+	var-code-border: 1px solid #E7E7E7;
+	var-header-line: 1px solid #555;
 }
 
 * {
@@ -179,19 +184,19 @@ h3 {
 }
 
 .err {
-	color: #E11 !important;
+	color: var(red) !important;
 }
 
 .green {
-	color: #06C630 !important;
+	color: var(green) !important;
 }
 
 .checked {
-	color: #06E030 !important;
+	color: var(green) !important;
 }
 
 .checked:hover {
-	color: #E11 !important;
+	color: var(red) !important;
 }
 
 .norm {
@@ -283,12 +288,12 @@ code {
 	padding: 0 4px;
 	font-size: 0.667em;
 	border-radius: 3px;
-	border: 1px solid #E7E7E7;
+	border: var(code-border);
 }
 
 pre {
 	background-color: #F8F8F8;
-	border: 1px solid #E7E7E7;
+	border: var(code-border);
 	overflow: auto;
 	padding: 6px 10px;
 	border-radius: 3px;
@@ -313,7 +318,7 @@ pre code {
 }
 
 .faint {
-	color:var(faint) !important;
+	color: var(faint) !important;
 }
 
 
@@ -343,7 +348,7 @@ pre code {
 }
 
 #auth-success {
-	color: #06E030;
+	color: var(green-bright);
 }
 
 .spacing-container {
@@ -648,7 +653,7 @@ label.err {
 
 .column-line {
 	margin-left: 20px;
-	border-left: 1px solid #555;
+	border-left: var(header-line);
 }
 
 #etc {
@@ -720,7 +725,7 @@ input.disabled:hover {
 }
 
 .kudos_button:hover {
-	color: #06E030;
+	color: var(green-bright);
 }
 
 .kudo-div {
@@ -778,7 +783,7 @@ header nav {
 header .line {
 	height: 55px;
 	width: 90%;
-	border-bottom: 1px solid #555;
+	border-bottom: var(header-line);
 	margin-left: auto;
 	margin-right: auto;
 	transition: all 0.1s linear;
@@ -805,7 +810,7 @@ header b {
 	display: inline-block;
 	width: 0px;
 	text-indent: -9999em;
-	border-left: 1px solid #555;
+	border-left: var(header-line);
 }
 
 nav ul#proj_down {
@@ -813,8 +818,8 @@ nav ul#proj_down {
 	left: 30%;
 	top: 55px;
 	background-color: #ECECEC;
-	border-left: 1px solid #555;
-	border-right: 1px solid #555;
+	border-left: var(header-line);
+	border-right: var(header-line);
 }
 
 nav ul, nav ol {
@@ -929,7 +934,7 @@ footer #copy {
 		margin-bottom: 2px;
 		height: 0px;
 		width: 90%;
-		border-bottom: 1px solid #555;
+		border-bottom: var(header-line);
 		margin-left: auto;
 		margin-right: auto;
 	}
