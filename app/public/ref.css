@@ -78,7 +78,6 @@ p {
 	font-style: normal;
 	text-decoration: inherit;
 	-webkit-font-smoothing: antialiased;
-	*margin-right: .3em;
 	display: inline-block;
 	speak: none;
 }
@@ -176,7 +175,7 @@ h3 {
 }
 
 .inline-b {
- display: inline-block;
+ 	display: inline-block;
 }
 
 .list {
@@ -329,8 +328,8 @@ pre code {
    ======================= */
 
 .triangle {
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-style: solid;
 	border-width: 10px 8px 0 8px;
 	border-color: var(grey) transparent transparent transparent;
@@ -457,6 +456,7 @@ input[type="submit"] {
 	border: 7px solid var(orange);
 	border-radius: 3px;
 	cursor: pointer;
+	-moz-appearance: none;
 	-webkit-appearance: none;
 }
 
@@ -766,7 +766,7 @@ header {
 }
 
 .shadow header {
-	box-shadow: 0px 3px 6px rgba(250, 250, 250, 0.8);
+	box-shadow: 0 3px 6px rgba(250, 250, 250, 0.8);
 }
 
 header nav {
@@ -808,7 +808,7 @@ header a:hover {
 
 header b {
 	display: inline-block;
-	width: 0px;
+	width: 0;
 	text-indent: -9999em;
 	border-left: var(header-line);
 }
@@ -838,14 +838,14 @@ body {
 }
 
 .shadow footer {
-	box-shadow: 0px -3px 6px rgba(250, 250, 250, 0.8);
+	box-shadow: 0 -3px 6px rgba(250, 250, 250, 0.8);
 }
 
 footer {
 	color: var(grey);
 	position: fixed;
 	font-size: 12px;
-	bottom: 0px;
+	bottom: 0;
 	width: 100%;
 	height: 26px;
 	right: 0;
@@ -930,13 +930,10 @@ footer #copy {
 	}
 
 	.content-line {
-		margin-top: 11px;
-		margin-bottom: 2px;
-		height: 0px;
+		margin: 11px auto 2px;
+		height: 0;
 		width: 90%;
 		border-bottom: var(header-line);
-		margin-left: auto;
-		margin-right: auto;
 	}
 
 	.column-line {
@@ -974,7 +971,7 @@ footer #copy {
 	}
 
 	.login_box {
-		left: 0px;
+		left: 0;
 		width: 320px;
 	}
 
@@ -983,7 +980,7 @@ footer #copy {
 	}
 
 	form .r {
-		right: 0px;
+		right: 0;
 	}
 
 	.desktop {
