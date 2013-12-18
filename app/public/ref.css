@@ -274,7 +274,7 @@ span#version, span#dd, #version-centered {
 	line-height: 12px;
 }
 
-code, textarea, input[type="text"], input[type="password"] {
+.e-date, code, textarea, input[type="text"], input[type="password"] {
 	font-family: 'hermit';
 }
 
@@ -284,10 +284,6 @@ code {
 	font-size: 0.667em;
 	border-radius: 3px;
 	border: 1px solid #E7E7E7;
-}
-
-.e-date {
-	font-family: 'hermit';
 }
 
 pre {
