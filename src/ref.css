@@ -46,6 +46,12 @@
 	var-red: #E11;
 	var-code-border: 1px solid #E7E7E7;
 	var-header-line: 1px solid #555;
+	var-base: 16px;
+	var-tiny: 10px;
+	var-small: 12px;
+	var-smaller: 18px;
+	var-medium: 20px;
+	var-larger: 24px;
 }
 
 * {
@@ -55,7 +61,7 @@
 html {
 	-ms-zoom: 1;
 	zoom: 1;
-	font-size: 16px;
+	font-size: var(base);
 }
 
 p {
@@ -83,13 +89,13 @@ p {
 }
 
 .icon-small {
-	font-size: 16px;
-	line-height: 20px;
+	font-size: var(base);
+	line-height: var(medium);
 }
 
 .txt {
 	display: inline-block;
-	font-size: 18px;
+	font-size: var(smaller);
 }
 
 .about {
@@ -106,7 +112,7 @@ p {
 	text-align: left;
 	font-family: 'source_sans_pro';
 	line-height: 23px;
-	padding-top: 20px;
+	padding-top: var(medium);
 }
 
 .blog-post h2 {
@@ -115,7 +121,7 @@ p {
 	text-align: left;
 	margin: 4px 4%;
 	font-family: 'source_sans_pro-bold';
-	font-size: 24px;
+	font-size: var(larger);
 	width: 100%
 }
 
@@ -142,13 +148,13 @@ h1 {
 }
 
 h3 {
-	font-size: 18px;
+	font-size: var(smaller);
 	font-family: 'source_sans_pro-semibold';
 	color: #383838;
 }
 
 .blog-post .date {
-	line-height: 24px;
+	line-height: var(larger);
 	float: right;
 	text-align: right;
 	font-family: 'source_sans_pro';
@@ -162,8 +168,8 @@ h3 {
 }
 
 .small {
-	font-size: 10px;
-	line-height: 20px;
+	font-size: var(tiny);
+	line-height: var(medium);
 }
 
 .descr {
@@ -209,7 +215,7 @@ abbr {
 
 cite {
 	margin-top: 12px;
-	margin-left: 20px;
+	margin-left: var(medium);
 	color: var(dark);
 	letter-spacing: 0;
 }
@@ -241,7 +247,7 @@ cite {
 }
 
 h2 {
-	font-size: 20px;
+	font-size: var(medium);
 	color: #383838;
 }
 
@@ -271,8 +277,8 @@ b {
 span#version, span#dd, #version-centered {
 	display: inline;
 	color: #E0E0E0;
-	font-size: 10px;
-	line-height: 12px;
+	font-size: var(tiny);
+	line-height: var(small);
 }
 
 .e-date, code, textarea, input[type="text"], input[type="password"] {
@@ -291,7 +297,7 @@ pre {
 	background-color: #F8F8F8;
 	border: var(code-border);
 	overflow: auto;
-	padding: 6px 10px;
+	padding: 6px var(tiny);
 	border-radius: 3px;
 }
 
@@ -338,7 +344,7 @@ pre code {
 	left: 6px;
 	bottom: 6px;
 	color: var(grey);
-	font-size: 12px;
+	font-size: var(small);
 	z-index: 299;
 	transition: color 0.8s ease-in-out;
 }
@@ -403,7 +409,7 @@ pre code {
 
 .login > .triangle {
 	position: fixed;
-	bottom: 20px;
+	bottom: var(medium);
 	left: 36px;
 	z-index: 300;
 }
@@ -440,7 +446,7 @@ input {
 
 input[type="password"], input[type="text"] {
 	padding: 1px;
-	font-size: 18px;
+	font-size: var(smaller);
 	border: 0;
 	border: 7px solid var(orange);
 	border-radius: 3px;
@@ -448,7 +454,7 @@ input[type="password"], input[type="text"] {
 
 input[type="submit"] {
 	padding: 2px 6px 3px;
-	font-size: 18px;
+	font-size: var(smaller);
 	border: 0;
 	border: 7px solid var(orange);
 	border-radius: 3px;
@@ -463,9 +469,9 @@ input[type="submit"]:hover {
 }
 
 form .icon {
-	width: 20px;
-	font-size: 24px;
-	line-height: 18px;
+	width: var(medium);
+	font-size: var(larger);
+	line-height: var(smaller);
 }
 
 form .l {
@@ -490,7 +496,7 @@ form .r {
 	width: 100%;
 	padding: 7px;
 	padding-left: 15px;
-	font-size: 18px;
+	font-size: var(smaller);
 	line-height: 25px;
 	border: 0;
 	border-left: 7px solid var(orange);
@@ -503,7 +509,7 @@ form .r {
 	width: 80%;
 	padding: 7px;
 	padding-left: 15px;
-	font-size: 24px;
+	font-size: var(larger);
 	border: 0;
 	border-left: 7px solid var(orange);
 }
@@ -595,9 +601,9 @@ blockquote {
 	margin: 8px;
 	border-radius: 3px;
 	box-shadow: 0 0 5px rgba(10, 10, 10, 0.6);
-	padding: 6px 10px 6px 10px;
+	padding: 6px var(tiny);
 	display: inline-block;
-	line-height: 16px;
+	line-height: var(base);
 }
 
 
@@ -649,7 +655,7 @@ label.err {
 }
 
 .column-line {
-	margin-left: 20px;
+	margin-left: var(medium);
 	border-left: var(header-line);
 }
 
@@ -709,7 +715,7 @@ input.disabled:hover {
 }
 
 .post-info {
-	font-size: 12px;
+	font-size: var(small);
 	margin-top: 12px;
 }
 
@@ -726,7 +732,7 @@ input.disabled:hover {
 }
 
 .kudo-div {
-	font-size: 18px;
+	font-size: var(smaller);
 	float: right;
 	margin-right: 20%;
 	padding: 2px 6px 3px 3px;
@@ -741,7 +747,7 @@ header {
 	font-family: 'source_sans_pro-semibold';
 	display: table;
 	margin: 0 auto;
-	font-size: 20px;
+	font-size: var(medium);
 	line-height: 45px;
 	position: fixed;
 	width: 100%;
@@ -841,7 +847,7 @@ body {
 footer {
 	color: var(grey);
 	position: fixed;
-	font-size: 12px;
+	font-size: var(small);
 	bottom: 0;
 	width: 100%;
 	height: 26px;
@@ -866,7 +872,7 @@ footer #site-info {
 }
 
 footer #copy {
-	right: 20px;
+	right: var(medium);
 }
 
 /* =======================
@@ -923,7 +929,7 @@ footer #copy {
 	}
 
 	.padd-top {
-		padding-top: 20px;
+		padding-top: var(medium);
 	}
 
 	.content-line {
