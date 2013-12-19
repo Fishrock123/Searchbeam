@@ -31,7 +31,7 @@
 
 @font-face {
   font-family: 'FontAwesome';
-  src: url('fontawesome-webfont.ttf') format('truetype');
+  src: url('fontawesome-webfont.woff') format('woff'), url('fontawesome-webfont.tff') format('tff');
 }
 
 :root {
