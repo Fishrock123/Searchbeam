@@ -338,7 +338,7 @@ pre code {
 	width: 0;
 	height: 0;
 	border-style: solid;
-	border-width: 10px 8px 0 8px;
+	border-width: 10px 8px 0;
 	border-color: var(grey) transparent;
 	transform: translateZ(0);
 }
