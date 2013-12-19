@@ -33,7 +33,7 @@ module.exports = (grunt) ->
 
 			minify:
 				files: [
-					'app/public/ref.min.css': ['app/public/ref.min.css']
+					'app/public/ref.min.css': ['app/public/ref.css']
 					'app/public/kappacino/styles.min.css': ['app/public/kappacino/styles.css']
 					'app/public/xenon.min.css': ['app/public/xenon.css']
 				]
