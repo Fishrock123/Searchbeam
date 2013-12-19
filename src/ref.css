@@ -227,20 +227,17 @@ cite {
 	color: var(dark);
 }
 
-.logo-orange {
+.logo {
 	font-family: 'source_sans_pro-semibold';
-	font-size: 104px;
 	text-align: right;
-	color: var(orange);
-	/*text-rendering: optimizeLegibility;*/
 }
 
-.logo-dark {
-	font-family: 'source_sans_pro-semibold';
+.logo.orange {
+	font-size: 104px;
+}
+
+.logo.dark {
 	font-size: 64px;
-	text-align: right;
-	color: var(dark);
-	/*text-rendering: optimizeLegibility;*/
 }
 
 h2 {
@@ -891,21 +888,21 @@ footer #copy {
 }
 
 @media screen and (max-width: 1160px) {
-	.logo-orange {
+	.logo.orange {
 		font-size: 86px;
 	}
 
-	.logo-dark {
+	.logo.dark {
 		font-size: 50px;
 	}
 }
 
 @media screen and (max-width: 960px) {
-	.logo-orange {
+	.logo.orange {
 		font-size: 74px;
 	}
 
-	.logo-dark {
+	.logo.dark {
 		font-size: 46px;
 	}
 }
@@ -941,12 +938,12 @@ footer #copy {
 		border-left: none;
 	}
 
-	.logo-orange {
+	.logo.orange {
 		text-align: center;
 		font-size: 86px;
 	}
 
-	.logo-dark {
+	.logo.dark {
 		text-align: center;
 		font-size: 50px;
 	}
@@ -957,11 +954,11 @@ footer #copy {
 }
 
 @media screen and (max-width: 640px) {
-	.logo-orange {
+	.logo.orange {
 		font-size: 56px;
 	}
 
-	.logo-dark {
+	.logo.dark {
 		font-size: 36px;
 	}
 
