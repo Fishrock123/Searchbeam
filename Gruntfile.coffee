@@ -21,6 +21,12 @@ module.exports = (grunt) ->
 					{ expand: true, cwd: 'src/retinajs', src: ['*.js', '!*.*.js'], dest: 'app/public/', filter: 'isFile', ext: '.min.js' }
 				]
 
+		myth:
+			dist:
+				files: [
+					'app/public/ref.css': ['src/ref.css']
+				]
+
 		cssmin:
 			options:
 				banner: "/* © 2013, Jeremiah Senkpiel, built: <%= grunt.template.today(\"yyyy-mm-dd\") %> */"
@@ -65,6 +71,6 @@ module.exports = (grunt) ->
           			{ expand: true, cwd: 'app/public/kappacino/img',  src: '**', dest: '../kappacino/images', filter: 'isFile' }
         		]
 
-	grunt.registerTask "default", ["uglify", "cssmin"]
-	grunt.registerTask "build", ["uglify", "cssmin"]
-	grunt.registerTask "kappacino", ["uglify", "cssmin", "replace", "copy"]
+	grunt.registerTask "default", ["uglify", "myth", "cssmin"]
+	grunt.registerTask "build", ["uglify", "myth", "cssmin"]
+	grunt.registerTask "kappacino", ["uglify", "myth", "cssmin", "replace", "copy"]

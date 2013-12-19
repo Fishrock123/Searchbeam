@@ -1,0 +1,1004 @@
+
+/* =======================
+	Somewhat clean. CSS for searchbeam.jit.su by Jeremiah Senkpiel.
+
+	The following is all run through myth, a CSS-spec polyfill preprocessor. - http://www.myth.io/
+   ======================= */
+
+/* =======================
+	Mainly Typography jibber-jabber
+   ======================= */
+
+@font-face {
+	font-family: 'source_sans_pro-semibold';
+	src: url('SourceSansPro-Semibold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'source_sans_pro';
+	src: url('SourceSansPro-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'source_sans_pro-bold';
+	src: url('SourceSansPro-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'hermit';
+	src: url('Hermit.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('fontawesome-webfont.woff') format('woff'), url('fontawesome-webfont.tff') format('tff');
+}
+
+:root {
+	var-orange: #FF8300;
+	var-orange-dark: #E97B08;
+	var-grey: #646464;
+	var-dark: #595959;
+	var-darker: #494949;
+	var-black: #383838;
+	var-darkest: #262626;
+	var-faint: #D8D8D8;
+	var-green: #06C630;
+	var-green-bright: #06E030;
+	var-red: #E11;
+	var-code-border: 1px solid #E7E7E7;
+	var-header-line: 1px solid #555;
+	var-base: 16px;
+	var-tiny: 10px;
+	var-small: 12px;
+	var-smaller: 18px;
+	var-medium: 20px;
+	var-larger: 24px;
+	var-regular-trans: 0.8s;
+	var-fast-trans: all 0.18s linear;
+}
+
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
+html {
+	-ms-zoom: 1;
+	zoom: 1;
+	font-size: var(base);
+}
+
+p {
+	line-height: 1.4em;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.current-page {
+	color: var(grey);
+	pointer-events: none;
+	transform: scale(1.1);
+}
+
+.icon {
+	font-family: 'FontAwesome';
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: inherit;
+	-webkit-font-smoothing: antialiased;
+	display: inline-block;
+	speak: none;
+}
+
+.icon-small {
+	font-size: var(base);
+	line-height: var(medium);
+}
+
+.txt {
+	display: inline-block;
+	font-size: var(smaller);
+}
+
+.about {
+	font-size: inherit;
+	font-family: 'source_sans_pro';
+	font-style: normal;
+}
+
+.submit-post a {
+	text-decoration: none;
+}
+
+.blog-post .content {
+	text-align: left;
+	font-family: 'source_sans_pro';
+	line-height: 23px;
+	padding-top: var(medium);
+}
+
+.blog-post h2 {
+	font-weight: normal;
+	float: left;
+	text-align: left;
+	margin: 4px 4%;
+	font-family: 'source_sans_pro-bold';
+	font-size: var(larger);
+	width: 100%
+}
+
+.blog-post h2 a {
+	color: var(black);
+}
+
+.blog-post h2 a:active,
+.blog-post h2 a:focus,
+.blog-post h2 a:hover,
+.blog-post .content a:active,
+.blog-post .content a:focus,
+.blog-post .content a:hover {
+	color: var(orange);
+}
+
+.blog-post .content a {
+	color: var(black);
+	border-bottom: 1px solid #D1D1D1;
+}
+
+h1 {
+	font-size: 28px;
+}
+
+h3 {
+	font-size: var(smaller);
+	font-family: 'source_sans_pro-semibold';
+	color: var(black);
+}
+
+.blog-post .date {
+	line-height: var(larger);
+	float: right;
+	text-align: right;
+	font-family: 'source_sans_pro';
+	margin: auto 6px;
+	position: relative;
+	top: 4px;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.small {
+	font-size: var(tiny);
+	line-height: var(medium);
+}
+
+.descr {
+	font-style: italic;
+}
+
+.inline {
+	display: inline;
+}
+
+.inline-b {
+ 	display: inline-block;
+}
+
+.list {
+	text-align: left;
+}
+
+.err {
+	color: var(red) !important;
+}
+
+.green {
+	color: var(green) !important;
+}
+
+.checked {
+	color: var(green) !important;
+}
+
+.checked:hover {
+	color: var(red) !important;
+}
+
+.norm {
+	font-size: 14px;
+}
+
+abbr {
+	border: none;
+	cursor: help;
+}
+
+cite {
+	margin-top: 12px;
+	margin-left: var(medium);
+	color: var(dark);
+	letter-spacing: 0;
+}
+
+.boxed.small {
+	position: relative;
+	top: -3px;
+}
+
+.orange {
+	color: var(orange);
+}
+
+.dark {
+	color: var(dark);
+}
+
+.logo {
+	font-family: 'source_sans_pro-semibold';
+	text-align: right;
+}
+
+.logo.orange {
+	font-size: 104px;
+}
+
+.logo.dark {
+	font-size: 64px;
+}
+
+h2 {
+	font-size: var(medium);
+	color: var(black);
+}
+
+li {
+	text-align: left;
+}
+
+a {
+	transition: var(fast-trans);
+	text-decoration: none;
+	color: var(orange-dark);
+	outline-color: var(grey);
+	outline-width: 3px;
+}
+
+a:active,
+a:focus,
+a:hover {
+	color: var(orange);
+}
+
+b {
+	font-family: 'source_sans_pro-bold';
+	font-weight: normal;
+}
+
+span#version, span#dd, #version-centered {
+	display: inline;
+	color: #E0E0E0;
+	font-size: var(tiny);
+	line-height: var(small);
+}
+
+.e-date, code, textarea, input[type="text"], input[type="password"] {
+	font-family: 'hermit';
+}
+
+code {
+	white-space: nowrap;
+	padding: 0 4px;
+	font-size: 0.667em;
+	border-radius: 3px;
+	border: var(code-border);
+}
+
+pre {
+	background-color: #F8F8F8;
+	border: var(code-border);
+	overflow: auto;
+	padding: 6px var(tiny);
+	border-radius: 3px;
+}
+
+pre code {
+	white-space: pre-wrap;
+	padding: 0;
+	border: none;
+}
+
+.large {
+	font-size: 32px;
+}
+
+.black {
+	color: var(darker);
+}
+
+.light {
+	color: #B1B1B1;
+}
+
+.faint {
+	color: var(faint) !important;
+}
+
+
+/* =======================
+	Boxes and stuff, because CSS doesn't allow display: triangle.
+
+	Oh, haha, it actually does: http://codepen.io/chriscoyier/full/lotjh
+   ======================= */
+
+.triangle {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 8px 0;
+	border-color: var(grey) transparent;
+	transform: translateZ(0);
+}
+
+#auth {
+	position: fixed;
+	left: 6px;
+	bottom: 6px;
+	color: var(grey);
+	font-size: var(small);
+	z-index: 299;
+	transition: color var(regular-trans) ease-in-out;
+}
+
+#auth-success {
+	color: var(green-bright);
+}
+
+.spacing-container {
+	height: 1.2em;
+}
+
+#auth > .icon {
+	vertical-align: -1px;
+}
+
+#cover {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	opacity: 0;
+	background: rgba(0,0,0,0.76);
+}
+
+.cover-transition {
+	transition: opacity var(regular-trans) ease-in-out, z-index var(regular-trans) ease-in-out;
+}
+
+.show_cover {
+	opacity: 1 !important;
+	z-index: 100 !important;
+}
+
+.blurable {
+	transform: translateZ(0);
+	transition: -webkit-filter var(regular-trans) linear;
+	-moz-transition: filter var(regular-trans) linear;
+}
+
+.blur {
+	filter: grayscale(100%) blur(1px);
+}
+
+.greyed {
+	filter: grayscale(100%);
+}
+
+.login_box {
+	position: fixed;
+	bottom: 28px;
+	left: 28px;
+	width: 400px;
+	height: 230px;
+	box-shadow: inset 0 0 2px var(grey);
+	background-color: #EEE;
+	border-radius: 6px;
+	z-index: 300;
+}
+
+.login > .triangle {
+	position: fixed;
+	bottom: var(medium);
+	left: 36px;
+	z-index: 300;
+}
+
+.downset {
+	position: relative;
+	top: 6px;
+}
+
+#version-centered {
+	display: none;
+	text-align: center;
+	text-indent: -60px;
+}
+
+.wide {
+	width: 86%;
+}
+
+textarea.labeled {
+	padding-top: 32px;
+	margin-top: 0;
+}
+
+input {
+	margin: 2px;
+	outline-color: var(grey);
+	outline-width: 3px;
+}
+
+.login_box input {
+	width: 72%;
+}
+
+input[type="password"], input[type="text"] {
+	padding: 1px;
+	font-size: var(smaller);
+	border: 0;
+	border: 7px solid var(orange);
+	border-radius: 3px;
+}
+
+input[type="submit"] {
+	padding: 2px 6px 3px;
+	font-size: var(smaller);
+	border: 0;
+	border: 7px solid var(orange);
+	border-radius: 3px;
+	cursor: pointer;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+
+input[type="submit"]:hover {
+	color: var(grey);
+	background-color: #EEE;
+}
+
+form .icon {
+	width: var(medium);
+	font-size: var(larger);
+	line-height: var(smaller);
+}
+
+form .l {
+	position: relative;
+	left: -16px;
+	z-index: 310;
+}
+
+form .r {
+	position: relative;
+	right: -10px;
+	z-index: 311;
+}
+
+#submit {
+	width: 80px;
+}
+
+#editor > textarea {
+	clear: both;
+	display: block;
+	width: 100%;
+	padding: 7px;
+	padding-left: 15px;
+	font-size: var(smaller);
+	line-height: 25px;
+	border: 0;
+	border-left: 7px solid var(orange);
+	min-height: 500px;
+}
+
+#editor > input {
+	clear: both;
+	display: block;
+	width: 80%;
+	padding: 7px;
+	padding-left: 15px;
+	font-size: var(larger);
+	border: 0;
+	border-left: 7px solid var(orange);
+}
+
+.header-padd {
+	padding-top: 65px;
+}
+
+.inline-padd {
+	display: inline-block;
+	padding-left: 8px;
+	padding-right: 10px;
+	height: 1em;
+}
+
+.full {
+	width: 100%;
+}
+
+.left {
+	text-align: left;
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.column {
+	float: left;
+	width: 50%;
+}
+
+.padd-small {
+	padding-top: 8px;
+}
+
+.blog-padd {
+	padding-top: 42px;
+}
+
+.blog-post {
+	max-width: 550px;
+	text-align: center;
+	padding: 0 18px 42px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.padd-top {
+	padding-top: 60px;
+}
+
+.padd-offset {
+	padding-top: 92px;
+}
+
+.padd {
+	margin: 0 25px;
+	margin-bottom: 50px;
+}
+
+.padd-about {
+	margin: 0 40px;
+	margin-bottom: 10px;
+	line-height: 1.2em;
+}
+
+.padd-half {
+	padding-top: 25px;
+}
+
+.logo-padd {
+	margin-bottom: 50px;
+}
+
+.padd-bottom {
+	height: 26px;
+	width: 100%;
+}
+
+blockquote {
+	border-radius: 3px;
+	box-shadow: 0 0 6px rgba(10, 10, 10, 0.6);
+	padding: 10px;
+}
+
+.boxed {
+	margin: 8px;
+	border-radius: 3px;
+	box-shadow: 0 0 5px rgba(10, 10, 10, 0.6);
+	padding: 6px var(tiny);
+	display: inline-block;
+	line-height: var(base);
+}
+
+
+/* =======================
+	Fancy things.
+   ======================= */
+
+label.err {
+	cursor: pointer;
+}
+
+#etc_arrow {
+	transition: all 0.3s ease-in-out;
+	position: relative;
+	top: 1px;
+}
+
+.invert {
+	transform: scale(1,-1);
+}
+
+::-moz-selection {
+	background: rgba(65, 65, 65, 0.1);
+	text-shadow: none;
+}
+::selection {
+	background: rgba(65, 65, 65, 0.1);
+	text-shadow: none;
+}
+
+#scripts {
+	display: none;
+}
+
+.line {
+	width: 70%;
+	border-bottom: 1px solid #AAA;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.blog-line {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	border-top: 1px solid #D3D3D3;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.column-line {
+	margin-left: var(medium);
+	border-left: var(header-line);
+}
+
+#etc {
+	transition: var(fast-trans);
+}
+
+
+/* =======================
+	Here be penguins.
+   ======================= */
+
+::-webkit-scrollbar {
+	width: 0;
+}
+scrollbar {
+	width: 0;
+}
+
+input.disabled {
+	cursor: not-allowed !important;
+	outline-color: #FFF;
+}
+
+input.disabled:hover {
+	background-color: buttonface;
+	color: buttontext;
+}
+
+.centered:before {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.centered {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hidden {
+	display: none;
+}
+
+.visible {
+	opacity: 1;
+}
+
+.nope {
+	/* Never remove this class via Javascript. Use .hidden instead. */
+	display: none;
+	opacity: 0;
+	z-index: -1;
+}
+
+.post-info {
+	font-size: var(small);
+	margin-top: 12px;
+}
+
+.kudos_button {
+	color: var(grey);
+	top: 1px;
+	position: relative;
+	width: 21px;
+	text-align: center;
+}
+
+.kudos_button:hover {
+	color: var(green-bright);
+}
+
+.kudo-div {
+	font-size: var(smaller);
+	float: right;
+	margin-right: 20%;
+	padding: 2px 6px 3px 3px;
+	border: 1px solid #C7C7C7;
+	border-radius: 3px;
+}
+
+header {
+	background-color: rgba(250, 250, 250, 0.95);
+	background-color: #FFF;
+	color: #333;
+	font-family: 'source_sans_pro-semibold';
+	display: table;
+	margin: 0 auto;
+	font-size: var(medium);
+	line-height: 45px;
+	position: fixed;
+	width: 100%;
+	padding-top: 10px;
+	z-index: 4;
+}
+
+#home, #projects {
+	z-index: 10;
+}
+
+#about, #blog {
+	z-index: 11;
+}
+
+#projects > .mobile {
+	position: relative;
+	left: 2px
+}
+
+.shadow header {
+	box-shadow: 0 3px 6px rgba(250, 250, 250, 0.8);
+}
+
+header nav {
+	width: 764px;
+	position: fixed;
+	left: 50%;
+	margin: 0 0 0 -382px;
+}
+
+.mobile {
+	display: none;
+}
+
+header .line {
+	height: 55px;
+	width: 90%;
+	border-bottom: var(header-line);
+	margin-left: auto;
+	margin-right: auto;
+	transition: all 0.1s linear;
+}
+
+header a {
+	text-decoration: none;
+}
+
+header span {
+	display: inline-block;
+	position: relative;
+	margin-left: 32px;
+	margin-right: 32px;
+}
+
+header a:active,
+header a:focus,
+header a:hover {
+	transform: scale(1.1);
+}
+
+header b {
+	display: inline-block;
+	width: 0;
+	text-indent: -9999em;
+	border-left: var(header-line);
+}
+
+nav ul#proj_down {
+	position: absolute;
+	left: 30%;
+	top: 55px;
+	background-color: #ECECEC;
+	border-left: var(header-line);
+	border-right: var(header-line);
+}
+
+nav ul, nav ol {
+	list-style: none;
+	list-style-image: none;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 0;
+	background-color: #FFF;
+	color: var(grey);
+	text-align: center;
+	font-family: 'source_sans_pro-semibold';
+}
+
+.shadow footer {
+	box-shadow: 0 -3px 6px rgba(250, 250, 250, 0.8);
+}
+
+footer {
+	color: var(grey);
+	position: fixed;
+	font-size: var(small);
+	bottom: 0;
+	width: 100%;
+	height: 26px;
+	right: 0;
+	background-color: rgba(250, 250, 250, 0.95);
+	background-color: #FFF;
+	z-index: 3;
+}
+
+footer a {
+	text-decoration: none;
+}
+
+footer div {
+	display: inline;
+	position: fixed;
+	bottom: 5px;
+}
+
+footer #site-info {
+	right: 180px;
+}
+
+footer #copy {
+	right: var(medium);
+}
+
+/* =======================
+	This is 2013. Therefore, responsive website.
+   ======================= */
+
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+	p, blockquote, #etc {
+		letter-spacing: 0.02em;
+	}
+
+	address, h1 {
+		letter-spacing: 0.01em;
+	}
+
+	header {
+		letter-spacing: 1px;
+	}
+}
+
+@media screen and (max-width: 1160px) {
+	.logo.orange {
+		font-size: 86px;
+	}
+
+	.logo.dark {
+		font-size: 50px;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.logo.orange {
+		font-size: 74px;
+	}
+
+	.logo.dark {
+		font-size: 46px;
+	}
+}
+
+@media screen and (max-width: 820px) {
+	.column {
+		float: left;
+		width: 100%;
+	}
+
+	textarea {
+		min-height: 200px;
+	}
+
+	.center {
+		float: none;
+		margin: 0 40px;
+	}
+
+	.padd-top {
+		padding-top: var(medium);
+	}
+
+	.content-line {
+		margin: 11px auto 2px;
+		height: 0;
+		width: 90%;
+		border-bottom: var(header-line);
+	}
+
+	.column-line {
+		margin-left: 0;
+		border-left: none;
+	}
+
+	.logo.orange {
+		text-align: center;
+		font-size: 86px;
+	}
+
+	.logo.dark {
+		text-align: center;
+		font-size: 50px;
+	}
+
+	span#dd, span#jitsu {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.logo.orange {
+		font-size: 56px;
+	}
+
+	.logo.dark {
+		font-size: 36px;
+	}
+
+	header span {
+		margin-left: 14px;
+		margin-right: 14px;
+	}
+
+	.login_box {
+		left: 0;
+		width: 320px;
+	}
+
+	form .l {
+		left: -6px;
+	}
+
+	form .r {
+		right: 0;
+	}
+
+	.desktop {
+		display: none;
+	}
+
+	.mobile {
+		display: inline-block;
+	}
+
+	#site-info {
+		display: none;
+	}
+}
