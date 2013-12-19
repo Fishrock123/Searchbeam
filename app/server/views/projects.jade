@@ -3,6 +3,8 @@
 html(lang="en")
 	include template/head
 		title Projects by SearchBeam
+		link(rel="prev", href="/about").nope
+		link(rel="next", href="/blog").nope
 		style.
 			.padd {
 				margin-bottom: 0px;
@@ -225,6 +227,10 @@ html(lang="en")
 						h4
 							a(href="https://github.com/senchalabs/connect", target="_blank") senchalabs/connect
 							span  &nbsp; -&nbsp; Node.js middleware layer.
+					.subproj.git
+						h4
+							a(href="https://github.com/expressjs/compressible", target="_blank") expressjs/compressible
+							span  &nbsp; -&nbsp; Content-Types.
 					.subproj.git
 						h4
 							a(href="https://github.com/primus/primus", target="_blank") primus
