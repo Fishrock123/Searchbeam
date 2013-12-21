@@ -143,7 +143,7 @@ p {
 }
 
 .blog-post .content a {
-	color: var(black);
+	color: var(darkest);
 	border-bottom: 1px solid #D1D1D1;
 }
 
