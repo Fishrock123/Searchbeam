@@ -5,21 +5,33 @@
 
 -	Finish the Blog's Editor.
 
+-	Integrate SASS & Myth someday.
+
+-	Maybe switch to Koa.js from Express?
+
+-	Validate the Login form.
+
+-	Write more blog posts.
+
+-	Make the login button have a larger touchable area on mobile.
+
 
 ==== Completed Stuffs ====
 
--	Fix the Blog's resizing issues on small widths.
+-	✓ Use Myth to pre-process CSS according to CSS spec.
 
--	Signup page form validation with live feedback.
+-	✓ Fix the Blog's resizing issues on small widths.
 
--	Revamp the project page.
+-	✓ Signup page form validation with live feedback.
 
--	Open-Sourced!!!
+-	✓ Revamp the project page.
 
--	Implemented an account system! (For games / blog.)
+-	✓ Open-Sourced!!!
 
--	"Officially" launched!
+-	✓ Implemented an account system! (For games / blog.)
 
--	Blog!
+-	✓ "Officially" launched!
 
-- 	Overhaul to searchbeam.jit.su - Done, long ago now.
+-	✓ Blog!
+
+- 	✓ Overhaul to searchbeam.jit.su - Done, long ago now.
