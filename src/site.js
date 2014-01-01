@@ -2,6 +2,7 @@ $(document).ready(function() {
 	var s = 0
 		, timeid = -1
 		, lastScroll = 0
+		, didDrag = false
 		, page = window.location.pathname.slice(1) + window.location.search;
 	if (page === '') { page = 'home'; }
 	page = page.match(/home|about|projects|blog(?!\?title=|\?id=)/);
@@ -43,8 +44,13 @@ $(document).ready(function() {
 		showLogin(300);
 	}, function(e) {
 		hideLogin(800);
+	});
+	$('#auth_touchbox').on('touchstart', function(e) {
+		didDrag = false;
+	}).on('touchmove', function(e) {
+		didDrag = true;
 	}).on('touchend', function(e) {
-		showLogin(60);
+		if (!didDrag) showLogin(60);
 	});
 	$('#cover').on('touchend', function(e) {
 		hideLogin(100);
