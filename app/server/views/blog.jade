@@ -64,7 +64,6 @@ html(lang="en")
 			if query.title || query.id
 				script.
 					$(document).ready(function() {
-
 						$.ajax({
 							type: "POST",
 							url: 'blog-posts',
@@ -86,9 +85,7 @@ html(lang="en")
 					var page = #{query.page || 0};
 
 					$(document).ready(function() {
-
 						function getPosts(i) {
-							console.log(i);
 							$.ajax({
 								type: "POST",
 								url: 'blog-posts',
