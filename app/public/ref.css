@@ -345,6 +345,15 @@ pre code {
   color: #06E030;
 }
 
+#auth_touchbox {
+  background-color: transparent;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  width: 80px;
+}
+
 .spacing-container {
   height: 1.2em;
 }
