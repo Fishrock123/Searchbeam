@@ -43,14 +43,13 @@ exports.loadDb = function(cb, dbString, native) {
 };
 
 exports.getByPage = function(index, amount, callback) {
-	var page = index * 4
-		, lastPage = postCount - 1;
-	lastPage = lastPage < 0 ? 0 : lastPage;
-	if (page >= lastPage) {
-		page = lastPage;
+	var   page = index * 4
+		, lastIndex = postCount - 1
+		, lastPage = false;
+
+	if (page >= lastIndex) {
+		page = lastIndex < 0 ? 0 : lastIndex;
 		lastPage = true;
-	} else {
-		lastPage = false;
 	}
 	Post.find().sort('-date').skip(page).limit(4).exec(function(err, docs) {
 		callback(err, docs, page, lastPage);
