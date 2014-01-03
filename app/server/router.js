@@ -9,8 +9,7 @@ var fs = require('fs')
   , validate = require('./modules/validate')
   , keys = require('../../keys.json')
   , version = require('../../package.json').version
-
-var subdirs = ['xenon', 'kappacino']
+  , subdirs = ['xenon', 'kappacino']
 
 module.exports = function(app, passport, Account, dbString) {
   var timeout, status, ip

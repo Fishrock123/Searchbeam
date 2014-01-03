@@ -9,9 +9,10 @@ var express = require('express')
   , RedisStore = require('connect-redis')(express)
   , keys = require(__dirname + '/keys.json')
   , version = require(__dirname + '/package.json').version
-  , db, session_opts = {
-    secret: keys.express.session
-  }
+  , db
+  , session_opts = {
+      secret: keys.express.session
+    }
 
 console.log('APP VERSION = ' + version)
 

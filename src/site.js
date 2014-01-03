@@ -4,11 +4,13 @@ $(document).ready(function() {
     , lastScroll = 0
     , didDrag = false
     , page = window.location.pathname.slice(1) + window.location.search
+
   if (page === '') { page = 'home' }
   page = page.match(/home|about|projects|blog(?!\?title=|\?id=)/)
   if (page && page.length > 0) {
     $('#' + page[0]).children().addClass('current-page')
   }
+
   $(window).scroll(function() {
     ((s = $(window).scrollTop()) > 25 ? s = 25 : s) < 0 ? s = 0 : s
     if (s === lastScroll) return
@@ -16,9 +18,11 @@ $(document).ready(function() {
     $('header > .line').css('height', (55 - s) + 'px')
     lastScroll = s
   })
+
   window.setTimeout(function() {
     $('#cover').addClass('cover-transition')
   }, 1000)
+
   function hideLogin(time) {
     window.clearTimeout(timeid)
     timeid = window.setTimeout(function() {
@@ -28,6 +32,7 @@ $(document).ready(function() {
       $('#auth').addClass('faint')
     }, time)
   }
+
   function showLogin(time) {
     window.clearTimeout(timeid)
     timeid = -1
@@ -40,23 +45,32 @@ $(document).ready(function() {
       }, time)
     }
   }
+
   $('#auth, .login_box, .login > .triangle').hover(function(e) {
     showLogin(300)
   }, function(e) {
     hideLogin(800)
   })
-  $('#auth_touchbox').on('touchstart', function(e) {
+
+  $('#auth_touchbox')
+  .on('touchstart', function(e) {
     didDrag = false
-  }).on('touchmove', function(e) {
+  })
+  .on('touchmove', function(e) {
     didDrag = true
-  }).on('touchend', function(e) {
+  })
+  .on('touchend', function(e) {
     if (!didDrag) showLogin(60)
   })
-  $('#cover').on('touchend', function(e) {
+
+  $('#cover')
+  .on('touchend', function(e) {
     hideLogin(100)
-  }).hover(function(e) {
+  })
+  .hover(function(e) {
     if (timeid === -1) hideLogin(800)
   })
+
   $(this).on('mouseout', function(e) {
     var from = e.relatedTarget || e.toElement
     if (!from || from.nodeName == "HTML") {
@@ -64,6 +78,7 @@ $(document).ready(function() {
         timeid = -1
     }
   })
+
   $('#auth').click(function(e) {
     if (user === false) return false
     $('#ainfo').text('Logging out...')
@@ -83,6 +98,7 @@ $(document).ready(function() {
     })
     return false
   })
+
   $('#login').submit(function(e) {
     $("#auth-err, #auth-success").hide()
     $.ajax({

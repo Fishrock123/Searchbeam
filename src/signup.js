@@ -1,9 +1,11 @@
 $(document).ready(function() {
   var fields = {
-      user: {timer: 0, valid: false, check: checkUser, ajax: undefined},
-      pass: {timer: 0, valid: false, check: checkPass, ajax: undefined},
-      conf: {timer: 0, valid: false, check: confPass}
-    }, valid = false, ajax = undefined
+        user: {timer: 0, valid: false, check: checkUser, ajax: undefined},
+        pass: {timer: 0, valid: false, check: checkPass, ajax: undefined},
+        conf: {timer: 0, valid: false, check: confPass}
+      }
+    , valid = false, ajax = undefined
+
   $('#s_user').on('input', fields.user, setCheckerTimer)
   $('#s_pass').on('input', fields.pass, setCheckerTimer)
   $('#s_pass_conf').on('input', fields.conf, setCheckerTimer)

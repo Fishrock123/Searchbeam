@@ -1,8 +1,7 @@
 
 // Import all the stuffs!
 var mongoose = require('mongoose')
-
-var db, blogSchema, Post, postCount
+  , db, blogSchema, Post, postCount
 
 exports.loadDb = function(cb, dbString, native) {
 
