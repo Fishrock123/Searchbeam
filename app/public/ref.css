@@ -1,11 +1,11 @@
 /* =======================
-	Somewhat clean. CSS for searchbeam.jit.su by Jeremiah Senkpiel.
+  Somewhat clean. CSS for searchbeam.jit.su by Jeremiah Senkpiel.
 
-	The following is all run through myth, a CSS-spec polyfill preprocessor. - http://www.myth.io/
+  The following is all run through myth, a CSS-spec polyfill preprocessor. - http://www.myth.io/
    ======================= */
 
 /* =======================
-	Mainly Typography jibber-jabber
+  Mainly Typography jibber-jabber
    ======================= */
 
 @font-face {
@@ -314,9 +314,9 @@ pre code {
 }
 
 /* =======================
-	Boxes and stuff, because CSS doesn't allow display: triangle.
+  Boxes and stuff, because CSS doesn't allow display: triangle.
 
-	Oh, haha, it actually does: http://codepen.io/chriscoyier/full/lotjh
+  Oh, haha, it actually does: http://codepen.io/chriscoyier/full/lotjh
    ======================= */
 
 .triangle {
@@ -617,7 +617,7 @@ blockquote {
 }
 
 /* =======================
-	Fancy things.
+  Fancy things.
    ======================= */
 
 label.err {
@@ -678,7 +678,7 @@ label.err {
 }
 
 /* =======================
-	Here be penguins.
+  Here be penguins.
    ======================= */
 
 ::-webkit-scrollbar {
@@ -898,7 +898,7 @@ footer #copy {
 }
 
 /* =======================
-	This is 2013. Therefore, responsive website.
+  This is 2013. Therefore, responsive website.
    ======================= */
 
 @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {

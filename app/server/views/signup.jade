@@ -1,50 +1,50 @@
 !!! 5
 //This site is hosted on node.js by nodejitsu! :D
 html(lang="en")
-	include template/head
-		title Get a SearchBeam account.
-		link(rel="prev", href="/").nope
+  include template/head
+    title Get a SearchBeam account.
+    link(rel="prev", href="/").nope
 
-	include template/header-nav
+  include template/header-nav
 
-	body
-		include template/ie8
-		.blurable
-			.padd-top
-				include template/noscript
-				if user
-					h3 You are already logged in! No need to make an account again? :)
-				else
+  body
+    include template/ie8
+    .blurable
+      .padd-top
+        include template/noscript
+        if user
+          h3 You are already logged in! No need to make an account again? :)
+        else
 
-					.column
-						.padd-about.align-left
-							h2
-								.icon.icon-small &#xF054;
-								|   You can get a SearchBeam account here.
-							p.about They don't have much use yet. Currently, they let me edit my blog easier.
-							p.about In the future, they will be linked to my games.
-							p.about In addition, I hope to add various other login services someday.
-						.padd-half
-					.padd-small
+          .column
+            .padd-about.align-left
+              h2
+                .icon.icon-small &#xF054;
+                |   You can get a SearchBeam account here.
+              p.about They don't have much use yet. Currently, they let me edit my blog easier.
+              p.about In the future, they will be linked to my games.
+              p.about In addition, I hope to add various other login services someday.
+            .padd-half
+          .padd-small
 
-					.err#err_msg
+          .err#err_msg
 
-					.padd-small
-					form(action="/register", method="post")#signup
-						.full
-							label(for="s_user").icon &#xF007;
-							input(type="text", name="username", placeholder='New Username')#s_user.r
-						.padd-small
-						.full
-							label(for="s_pass").icon &#xF084;
-							input(type="password", name="password", placeholder='Password')#s_pass.r
-						.full
-							label(for="s_pass_conf").icon.invert &#xF064;
-							input(type="password", name="password-confirm", placeholder='Confirm')#s_pass_conf.r
-						.full
-							label(for="s_submit").icon.hidden &#xF071;
-							input(type="submit", value="Register")#s_submit.inline-b.r.blurable.disabled.greyed
-					.padd-half
+          .padd-small
+          form(action="/register", method="post")#signup
+            .full
+              label(for="s_user").icon &#xF007;
+              input(type="text", name="username", placeholder='New Username')#s_user.r
+            .padd-small
+            .full
+              label(for="s_pass").icon &#xF084;
+              input(type="password", name="password", placeholder='Password')#s_pass.r
+            .full
+              label(for="s_pass_conf").icon.invert &#xF064;
+              input(type="password", name="password-confirm", placeholder='Confirm')#s_pass_conf.r
+            .full
+              label(for="s_submit").icon.hidden &#xF071;
+              input(type="submit", value="Register")#s_submit.inline-b.r.blurable.disabled.greyed
+          .padd-half
 
-	include template/footer
-		script(src="s/signup.min.js")
+  include template/footer
+    script(src="s/signup.min.js")

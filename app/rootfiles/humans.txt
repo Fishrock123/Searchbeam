@@ -1,16 +1,16 @@
 /* ME */
-	Everything: Jeremiah `Fishrock123` Senkpiel
-	Email: fishrock123@rocketmail.com
-	Twitter: @Fishrock123
-	From: Toronto, Ontario, Canada
+  Everything: Jeremiah `Fishrock123` Senkpiel
+  Email: fishrock123@rocketmail.com
+  Twitter: @Fishrock123
+  From: Toronto, Ontario, Canada
 
 /* THANKS TO */
-	All my great friends and family! :D
+  All my great friends and family! :D
 
-	All those who maintain and have contributed to all the open-source libraries used for this site!
+  All those who maintain and have contributed to all the open-source libraries used for this site!
 
 /* SITE */
-	Repository: git@github.com:Fishrock123/Searchbeam.git
-	Language: English
-	Doctype: HTML5
-	Text Editor: Sublime Text 2!
+  Repository: git@github.com:Fishrock123/Searchbeam.git
+  Language: English
+  Doctype: HTML5
+  Text Editor: Sublime Text 2!
