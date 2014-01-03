@@ -8,7 +8,7 @@ module.exports = (grunt) ->
     uglify:
       dist:
         options:
-          banner: "/* © 2013, Jeremiah Senkpiel, built: <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
+          banner: "/* © 2014, Jeremiah Senkpiel, built: <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
         files: [
           { expand: true, cwd: 'src/', src: ['*.js', '!*.*.js'], dest: 'app/public/', filter: 'isFile', ext: '.min.js' }
           { expand: true, cwd: 'src/', src: '*.TextInput.js', dest: 'app/public/', filter: 'isFile', ext: '.TextInput.min.js' }
@@ -29,7 +29,7 @@ module.exports = (grunt) ->
 
     cssmin:
       options:
-        banner: "/* © 2013, Jeremiah Senkpiel, built: <%= grunt.template.today(\"yyyy-mm-dd\") %> */"
+        banner: "/* © 2014, Jeremiah Senkpiel, built: <%= grunt.template.today(\"yyyy-mm-dd\") %> */"
 
       minify:
         files: [
