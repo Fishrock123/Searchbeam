@@ -3,8 +3,8 @@ module.exports = function(db, cb) {
       type: { type: String, default: 'user' },
       displayname: String,
       hash_version: { type: Number, default: 1 }
-  });
-  Account.plugin(require('passport-local-mongoose'), require('../../../keys.json').passport.options);
+  })
+  Account.plugin(require('passport-local-mongoose'), require('../../../keys.json').passport.options)
 
-  cb(db.model('Account', Account));
-};
+  cb(db.model('Account', Account))
+}
