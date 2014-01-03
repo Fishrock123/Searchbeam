@@ -1,264 +1,264 @@
 !!! 5
 //This site is hosted on node.js by nodejitsu! :D
 html(lang="en")
-	include template/head
-		title Projects by SearchBeam
-		link(rel="prev", href="/about").nope
-		link(rel="next", href="/blog").nope
-		style.
-			.padd {
-				margin-bottom: 0px;
-			}
-			.proj {
-				padding: 8px 20px;
-				border-radius: 1px;
-				color: #000;
-				min-height: 130px;
-			}
-			.subproj {
-				padding: 8px 20px;
-				border-radius: 1px;
-				color: #000;
-			}
-			.subproj h4 {
-				text-align: left;
-			}
-			.subproj span {
-				font-family: 'source_sans_pro';
-				font-size: 14px
-			}
-			.proj h3 {
-				text-align: left;
-				line-height: 42px;
-			}
-			.proj span.i-t {
-				margin-left: 8px;
-				display: inline-table;
-			}
-			.proj span.i-t .small {
-				line-height: 12px;
-				display: table-cell;
-				vertical-align: middle;
-			}
-			.proj p {
-				line-height: 1.5em;
-			}
-			.proj p span {
-				border-radius: 3px;
-				padding: 0 3px 0 3px;
-			}
-			.proj .boxed.small {
-				position: static;
-				margin: 0 8px 0 8px;
-			}
+  include template/head
+    title Projects by SearchBeam
+    link(rel="prev", href="/about").nope
+    link(rel="next", href="/blog").nope
+    style.
+      .padd {
+        margin-bottom: 0px;
+      }
+      .proj {
+        padding: 8px 20px;
+        border-radius: 1px;
+        color: #000;
+        min-height: 130px;
+      }
+      .subproj {
+        padding: 8px 20px;
+        border-radius: 1px;
+        color: #000;
+      }
+      .subproj h4 {
+        text-align: left;
+      }
+      .subproj span {
+        font-family: 'source_sans_pro';
+        font-size: 14px
+      }
+      .proj h3 {
+        text-align: left;
+        line-height: 42px;
+      }
+      .proj span.i-t {
+        margin-left: 8px;
+        display: inline-table;
+      }
+      .proj span.i-t .small {
+        line-height: 12px;
+        display: table-cell;
+        vertical-align: middle;
+      }
+      .proj p {
+        line-height: 1.5em;
+      }
+      .proj p span {
+        border-radius: 3px;
+        padding: 0 3px 0 3px;
+      }
+      .proj .boxed.small {
+        position: static;
+        margin: 0 8px 0 8px;
+      }
 
-			#conquest {
-				font-family: source_sans_pro;
-				background-color: #292929;
-				/*border: 2px dotted #E97B08;*/
-				box-shadow: inset 0 0 6px rgba(10, 10, 10, 0.6);
-				color: #CCC;
-			}
-			#conquest a {
-				cursor: not-allowed !important;
-			}
-			#conquest p span {
-				background-color: #262626;
-				border: 1px dotted #E97B08;
-			}
+      #conquest {
+        font-family: source_sans_pro;
+        background-color: #292929;
+        /*border: 2px dotted #E97B08;*/
+        box-shadow: inset 0 0 6px rgba(10, 10, 10, 0.6);
+        color: #CCC;
+      }
+      #conquest a {
+        cursor: not-allowed !important;
+      }
+      #conquest p span {
+        background-color: #262626;
+        border: 1px dotted #E97B08;
+      }
 
-			#bukkit {
-				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3590DA), to(#0A66B8));
-				background: -moz-linear-gradient(19% 75% 90deg, #3590DA, #0A66B8);
-				background-color: #1E71BD;
-				box-shadow: inset 0 0 6px rgba(10, 10, 10, 0.6);
-				color: #E7E7F5;
-			}
-			#bukkit a {
-				color: #a5cae4;
-			}
-			#bukkit a:hover {
-				color: #f0f0f0;
-			}
-			#bukkit p span {
-				background-color: #1E71BD;
-				border: 1px dotted #a5cae4;
-			}
+      #bukkit {
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3590DA), to(#0A66B8));
+        background: -moz-linear-gradient(19% 75% 90deg, #3590DA, #0A66B8);
+        background-color: #1E71BD;
+        box-shadow: inset 0 0 6px rgba(10, 10, 10, 0.6);
+        color: #E7E7F5;
+      }
+      #bukkit a {
+        color: #a5cae4;
+      }
+      #bukkit a:hover {
+        color: #f0f0f0;
+      }
+      #bukkit p span {
+        background-color: #1E71BD;
+        border: 1px dotted #a5cae4;
+      }
 
-			#kappacino {
-				background-image: url('s/kappacino_background.png');
-				box-shadow: inset 0 0 3px rgba(10, 10, 10, 0.6);
-			}
-			#kappacino a {
-				color: #0B3F15;
-				background-color: rgba(223, 238, 214, 0.94);
-				border-radius: 3px;
-				padding: 4px;
-				padding-left: 6px;
-			}
-			#kappacino a:hover {
-				color: #3BA44D;
-			}
-			#kappacino p span {
-				background-color: #8FC689;
-				border: 1px dotted #0B3F15;
-			}
+      #kappacino {
+        background-image: url('s/kappacino_background.png');
+        box-shadow: inset 0 0 3px rgba(10, 10, 10, 0.6);
+      }
+      #kappacino a {
+        color: #0B3F15;
+        background-color: rgba(223, 238, 214, 0.94);
+        border-radius: 3px;
+        padding: 4px;
+        padding-left: 6px;
+      }
+      #kappacino a:hover {
+        color: #3BA44D;
+      }
+      #kappacino p span {
+        background-color: #8FC689;
+        border: 1px dotted #0B3F15;
+      }
 
-			#git {
-				background-image: url('s/GitHub-Mark-120px-plus.png');
-				background-position: 80% 46%;
-				background-repeat: no-repeat;
-			}
-			.git {
-				background-color: #f3f3f3;
-				background-image: -moz-linear-gradient(#f9f9f9, #f3f3f3);
-				background-image: -webkit-linear-gradient(#f9f9f9, #f3f3f3);
-				background-image: linear-gradient(#f9f9f9, #f3f3f3);
-				box-shadow: inset 0 0 3px rgba(10, 10, 10, 0.6);
-				text-shadow: 0 1px 0 #fff;
-				border-bottom: 1px solid #e5e5e5;
-			}
-			.git a {
-				color: #333333;
-			}
-			.git a:hover {
-				color: #4183C4;
-			}
-			.git p {
-				text-align: left;
-				font-family: 'source_sans_pro';
-				font-size: 14px;
-			}
-			.git p span {
-				background-color: #FDFDFD;
-				border: 1px dotted #555;
-			}
+      #git {
+        background-image: url('s/GitHub-Mark-120px-plus.png');
+        background-position: 80% 46%;
+        background-repeat: no-repeat;
+      }
+      .git {
+        background-color: #f3f3f3;
+        background-image: -moz-linear-gradient(#f9f9f9, #f3f3f3);
+        background-image: -webkit-linear-gradient(#f9f9f9, #f3f3f3);
+        background-image: linear-gradient(#f9f9f9, #f3f3f3);
+        box-shadow: inset 0 0 3px rgba(10, 10, 10, 0.6);
+        text-shadow: 0 1px 0 #fff;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .git a {
+        color: #333333;
+      }
+      .git a:hover {
+        color: #4183C4;
+      }
+      .git p {
+        text-align: left;
+        font-family: 'source_sans_pro';
+        font-size: 14px;
+      }
+      .git p span {
+        background-color: #FDFDFD;
+        border: 1px dotted #555;
+      }
 
-			#cli-s {
-				font-family: source_sans_pro;
-				background-color: #222;
-				box-shadow: inset 0 0 6px rgba(10, 10, 10, 0.6);
-				color: #06E500;
-			}
-			#cli-s a {
-				font-family: source_sans_pro;
-				text-decoration: none;
-				color: #06E500;
-			}
-			#cli-s a:hover {
-				color: #06AA00;
-			}
-			#cli-s p span {
-				background-color: #1E1E1E;
-				border: 1px dotted #049A00;
-			}
+      #cli-s {
+        font-family: source_sans_pro;
+        background-color: #222;
+        box-shadow: inset 0 0 6px rgba(10, 10, 10, 0.6);
+        color: #06E500;
+      }
+      #cli-s a {
+        font-family: source_sans_pro;
+        text-decoration: none;
+        color: #06E500;
+      }
+      #cli-s a:hover {
+        color: #06AA00;
+      }
+      #cli-s p span {
+        background-color: #1E1E1E;
+        border: 1px dotted #049A00;
+      }
 
-			#xenon {
-				background-color: #000;
-				color: #BBB;
-			}
-			#xenon a {
-				color: #765EDC;
-			}
-			#xenon a:hover {
-				color: #967EFC;
-			}
-			#xenon p span {
-				background-color: #111;
-				border: 1px dotted #967EFC;
-			}
+      #xenon {
+        background-color: #000;
+        color: #BBB;
+      }
+      #xenon a {
+        color: #765EDC;
+      }
+      #xenon a:hover {
+        color: #967EFC;
+      }
+      #xenon p span {
+        background-color: #111;
+        border: 1px dotted #967EFC;
+      }
 
-	.shadow
-		include template/header-nav
+  .shadow
+    include template/header-nav
 
-	body
-		include template/ie8
-		.blurable
-			.padd-top
-			.column
-				.padd
-					.padd-half
-					.proj#kappacino
-						h3
-							a(href="http://kappacino.com/", target="_blank") kappacino.com
-						p
-							| A friend's portfolio website.
-							br
-							| I did all the <!---->
-							span HTML
-							|  and <!---->
-							span CSS
-							|  workings of the site's pages.
-					.proj#cli-s
-						h3
-							a(href="https://github.com/fishrock123/cli-status", target="_blank") cli-status
-						p
-							| Flexible status and progress indicators for your <!---->
-							span Node.js
-							|  cli.
-					.proj#xenon
-						h3
-							a(href="xenon", target="_blank") Xenon
-						p
-							| A functional but mostly incomplete 2D open-world MMO wild-west game written in <!---->
-							span Java
-							| .
-					.proj#bukkit
-						h3
-							a(href="http://dev.bukkit.org/home/", target="_blank") My Bukkit plugins
-						p
-							span Java
-							|  plugins I made for the minecraft server mod 'Bukkit'.
-							br
-							| These were my <!---->
-							span first code projects
-							| , and some of them I only maintain.
-							| As of now, I update them only very rarely.
-			.column
-				.padd
-					.padd-top
-					.proj#git.git
-						h3
-							a(href="https://github.com/Fishrock123", target="_blank") GitHub Contributions
-						.padd-small
-						p
-							| Contributor to
-					.subproj.git
-						h4
-							a(href="https://github.com/expressjs/compressible/commits?author=Fishrock123", target="_blank") expressjs/compressible
-							span  &nbsp; -&nbsp; Content-Types.
-					.subproj.git
-						h4
-							a(href="https://github.com/senchalabs/connect/commits?author=Fishrock123", target="_blank") senchalabs/connect
-							span  &nbsp; -&nbsp; Node.js middleware layer.
-					.subproj.git
-						h4
-							a(href="https://github.com/koajs/compress/commits?author=Fishrock123", target="_blank") koajs/compress
-							span  &nbsp; -&nbsp; Gzip middleware for <!---->
-							a(href="https://github.com/koajs/koa") koa
-							| .
-					.subproj.git
-						h4
-							a(href="https://github.com/primus/primus/commits?author=Fishrock123", target="_blank") primus
-							span  &nbsp; -&nbsp; Node.js real-time networking abstraction.
-					.subproj.git
-						h4
-							a(href="https://github.com/GoodBoyDigital/pixi.js/commits?author=Fishrock123", target="_blank") pixi.js
-							span  &nbsp; -&nbsp; Super fast WebGL 2D renderer.
-					.subproj.git
-						h4
-							a(href="https://github.com/stripe/jquery.payment/commits?author=Fishrock123", target="_blank") stripe/jquery.payment
-							span  &nbsp; -&nbsp; Validate credit card forms.
-					.subproj.git
-						h4
-							a(href="https://github.com/schteppe/p2.js/commits?author=Fishrock123", target="_blank") schteppe/p2.js
-							span  &nbsp; -&nbsp; A JavaScript 2D rigid-body physics engine.
-					.subproj.git
-						h4
-							a(href="https://github.com/ZECTBynmo/node-core-audio/commits?author=Fishrock123", target="_blank") node-core-audio
-							span  &nbsp; -&nbsp; PortAudio node.js bindings.
-		.centered
-			.padd-half
+  body
+    include template/ie8
+    .blurable
+      .padd-top
+      .column
+        .padd
+          .padd-half
+          .proj#kappacino
+            h3
+              a(href="http://kappacino.com/", target="_blank") kappacino.com
+            p
+              | A friend's portfolio website.
+              br
+              | I did all the <!---->
+              span HTML
+              |  and <!---->
+              span CSS
+              |  workings of the site's pages.
+          .proj#cli-s
+            h3
+              a(href="https://github.com/fishrock123/cli-status", target="_blank") cli-status
+            p
+              | Flexible status and progress indicators for your <!---->
+              span Node.js
+              |  cli.
+          .proj#xenon
+            h3
+              a(href="xenon", target="_blank") Xenon
+            p
+              | A functional but mostly incomplete 2D open-world MMO wild-west game written in <!---->
+              span Java
+              | .
+          .proj#bukkit
+            h3
+              a(href="http://dev.bukkit.org/home/", target="_blank") My Bukkit plugins
+            p
+              span Java
+              |  plugins I made for the minecraft server mod 'Bukkit'.
+              br
+              | These were my <!---->
+              span first code projects
+              | , and some of them I only maintain.
+              | As of now, I update them only very rarely.
+      .column
+        .padd
+          .padd-top
+          .proj#git.git
+            h3
+              a(href="https://github.com/Fishrock123", target="_blank") GitHub Contributions
+            .padd-small
+            p
+              | Contributor to
+          .subproj.git
+            h4
+              a(href="https://github.com/expressjs/compressible/commits?author=Fishrock123", target="_blank") expressjs/compressible
+              span  &nbsp; -&nbsp; Content-Types.
+          .subproj.git
+            h4
+              a(href="https://github.com/senchalabs/connect/commits?author=Fishrock123", target="_blank") senchalabs/connect
+              span  &nbsp; -&nbsp; Node.js middleware layer.
+          .subproj.git
+            h4
+              a(href="https://github.com/koajs/compress/commits?author=Fishrock123", target="_blank") koajs/compress
+              span  &nbsp; -&nbsp; Gzip middleware for <!---->
+              a(href="https://github.com/koajs/koa") koa
+              | .
+          .subproj.git
+            h4
+              a(href="https://github.com/primus/primus/commits?author=Fishrock123", target="_blank") primus
+              span  &nbsp; -&nbsp; Node.js real-time networking abstraction.
+          .subproj.git
+            h4
+              a(href="https://github.com/GoodBoyDigital/pixi.js/commits?author=Fishrock123", target="_blank") pixi.js
+              span  &nbsp; -&nbsp; Super fast WebGL 2D renderer.
+          .subproj.git
+            h4
+              a(href="https://github.com/stripe/jquery.payment/commits?author=Fishrock123", target="_blank") stripe/jquery.payment
+              span  &nbsp; -&nbsp; Validate credit card forms.
+          .subproj.git
+            h4
+              a(href="https://github.com/schteppe/p2.js/commits?author=Fishrock123", target="_blank") schteppe/p2.js
+              span  &nbsp; -&nbsp; A JavaScript 2D rigid-body physics engine.
+          .subproj.git
+            h4
+              a(href="https://github.com/ZECTBynmo/node-core-audio/commits?author=Fishrock123", target="_blank") node-core-audio
+              span  &nbsp; -&nbsp; PortAudio node.js bindings.
+    .centered
+      .padd-half
 
-	.shadow
-		include template/footer
+  .shadow
+    include template/footer

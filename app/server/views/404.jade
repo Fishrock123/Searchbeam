@@ -1,25 +1,25 @@
 // This site is hosted on node.js by nodejitsu! :D
 !!! 5
 html(lang="en")
-	include template/head
-		title 404!
-	include template/header-nav
-		link(rel="prev", href="/").nope
-	body
-		include template/ie8
-		.padd-top
-		.centered
-			code.large Error: 404!
-			.padd-half
-			.animated.flipInX
-				| Oh Noes! The page you tried to go to does not exist.
-				.padd-small
-				code
-					| (
-					span.light= url
-					| )
-				.padd-small
-				| You should probably head back <!---->
-				a(href="https://searchbeam.jit.su").inline.icon &#xF015;
-				| .
-	include template/footer
+  include template/head
+    title 404!
+  include template/header-nav
+    link(rel="prev", href="/").nope
+  body
+    include template/ie8
+    .padd-top
+    .centered
+      code.large Error: 404!
+      .padd-half
+      .animated.flipInX
+        | Oh Noes! The page you tried to go to does not exist.
+        .padd-small
+        code
+          | (
+          span.light= url
+          | )
+        .padd-small
+        | You should probably head back <!---->
+        a(href="https://searchbeam.jit.su").inline.icon &#xF015;
+        | .
+  include template/footer

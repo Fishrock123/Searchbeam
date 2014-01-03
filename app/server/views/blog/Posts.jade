@@ -1,25 +1,25 @@
 for post in posts
-	include Post
+  include Post
 
 if lastPage && page === 0
-	script.
-		page = #{page};
-		$('#older').hide();
+  script.
+    page = #{page};
+    $('#older').hide();
 else if lastPage
-	script.
-		page = #{page};
-		$('#newer').show();
-		$('#spacer').hide();
-		$('#older').hide();
+  script.
+    page = #{page};
+    $('#newer').show();
+    $('#spacer').hide();
+    $('#older').hide();
 else if page > 0
-	script.
-		page = #{page};
-		$('#newer').show();
-		$('#spacer').show();
-		$('#older').show();
+  script.
+    page = #{page};
+    $('#newer').show();
+    $('#spacer').show();
+    $('#older').show();
 else
-	script.
-		page = #{page};
-		$('#older').show();
-		$('#newer').hide();
-		$('#spacer').hide();
+  script.
+    page = #{page};
+    $('#older').show();
+    $('#newer').hide();
+    $('#spacer').hide();
