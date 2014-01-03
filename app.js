@@ -9,7 +9,9 @@ var express = require('express')
   	, RedisStore = require('connect-redis')(express)
   	, keys = require(__dirname + '/keys.json')
   	, version = require(__dirname + '/package.json').version
-  	, db, session_store;
+  	, db, session_opts = {
+			secret: keys.express.session
+		};
 
 console.log('APP VERSION = ' + version);
 
@@ -28,13 +30,12 @@ app.use(function(req, res, next) {
 	next();
 });
 
-session_store = new RedisStore(keys.redis_session);
-session_store.client.on('error', function(err) { console.error(err); });
+app.configure('production', function() {
+	session_opts.store = new RedisStore(keys.redis_session);
+	session_opts.store.client.on('error', function(err) { console.error(err); });
+});
 
-app.use(express.session({
-	  store: session_store
-	, secret: keys.express.session
-}));
+app.use(express.session(session_opts));
 app.use(express.methodOverride());
 app.use(passport.initialize());
 app.use(passport.session());
