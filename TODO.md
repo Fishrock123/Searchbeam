@@ -18,6 +18,8 @@
 
 ==== Completed Stuffs ====
 
+- ✓ Change styling to use 2x spacing and minimal semicolons.
+
 - ✓ Use Myth to pre-process CSS according to CSS spec.
 
 - ✓ Fix the Blog's resizing issues on small widths.
