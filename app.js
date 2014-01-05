@@ -31,10 +31,10 @@ app.use(function(req, res, next) {
   next()
 })
 
-app.configure('production', function() {
+/*app.configure('production', function() {
   session_opts.store = new RedisStore(keys.redis_session)
   session_opts.store.client.on('error', function(err) { console.error(err) })
-})
+})*/
 
 app.use(express.session(session_opts))
 app.use(express.methodOverride())
