@@ -7,6 +7,7 @@ var express = require('express')
   , mongoose = require('mongoose')
   , passportLocalMongoose = require('passport-local-mongoose')
   , RedisStore = require('connect-redis')(express)
+  , compress = require('compression')
   , keys = require(__dirname + '/keys.json')
   , version = require(__dirname + '/package.json').version
   , db
@@ -21,7 +22,7 @@ app.set('port', 8080)
 app.set('views', __dirname + '/app/server/views')
 app.set('view engine', 'jade')
 app.locals.pretty = true
-app.use(express.compress())
+app.use(compress())
 app.use(express.favicon(__dirname + '/app/public/SB-Logo.ico'))
 app.use(express.json())
 app.use(express.urlencoded())

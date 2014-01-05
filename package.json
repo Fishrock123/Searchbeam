@@ -23,6 +23,7 @@
     , "passport": "0.1.x"
     , "passport-local-mongoose": "0.2.x"
     , "connect-redis": "1.4.x"
+    , "compression": "1.0.x"
   },
   "devDependencies": {
       "load-grunt-tasks": "0.2.x"
