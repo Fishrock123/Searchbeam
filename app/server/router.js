@@ -71,8 +71,7 @@ module.exports = function(app, passport, Account, dbString) {
 
     app.post('/auth', function(req, res, next) {
       res.type('json')
-      passport.authenticate('local', function(err, user, info) {
-        console.log(info)
+      passport.authenticate('local', function(err, user) {
         if (err) {
           res.json({ error: err })
           return next(err)
