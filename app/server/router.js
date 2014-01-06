@@ -38,9 +38,10 @@ module.exports = function(app, passport, Account, dbString) {
         , view = page.slice(0, page.indexOf('.'))
         , dir = view
       if (!(supdir > 0)) {
-        dir = supdir + '/' + dir
-        view = supdir + '/' + view
-        page = supdir + '/' + page
+        supdir += '/'
+        dir = supdir + dir
+        view = supdir + view
+        page = supdir + page
       }
       if (ext === '.jade') {
         app.get('/' + dir, function(req, res) {
@@ -61,7 +62,7 @@ module.exports = function(app, passport, Account, dbString) {
             return subdir === page
           })) {
         fs.readdir(__dirname + '/views/' + page, function(err, files) {
-          for (var i = files.length - 1; i >= 0; i--) {
+          for (var i = files.length; i--;) {
             loadPage(files[i], page)
           }
         })
