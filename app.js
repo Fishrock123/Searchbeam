@@ -6,7 +6,6 @@ var express = require('express')
   , passport = require('passport')
   , mongoose = require('mongoose')
   , passportLocalMongoose = require('passport-local-mongoose')
-  , RedisStore = require('connect-redis')(express)
   , compress = require('compression')
   , keys = require(__dirname + '/keys.json')
   , version = require(__dirname + '/package.json').version
@@ -32,12 +31,13 @@ app.use(function(req, res, next) {
   next()
 })
 
-/*app.configure('production', function() {
-  session_opts.store = new RedisStore(keys.redis_session)
-  session_opts.store.client.on('error', function(err) { console.error(err) })
-})*/
-
-app.use(express.session(session_opts))
+app.use(express.cookieSession({
+    secret: keys.express.session
+  , cookie: {
+        signed: true
+      , maxAge: 1000 * 60 * 60 * 4
+    }
+}))
 app.use(express.methodOverride())
 app.use(passport.initialize())
 app.use(passport.session())

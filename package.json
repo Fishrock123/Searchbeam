@@ -22,7 +22,6 @@
     , "moment": "2.2.x"
     , "passport": "0.1.x"
     , "passport-local-mongoose": "0.2.x"
-    , "connect-redis": "1.4.x"
     , "compression": "1.0.x"
   },
   "devDependencies": {
