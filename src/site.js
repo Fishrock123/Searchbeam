@@ -40,7 +40,7 @@ $(document).ready(function() {
     if (user === false) {
       timeid = window.setTimeout(function() {
         $('.login').removeClass('hidden')
-        if (window.innerWidth > 720) $('.blurable').addClass('blur')
+        $('.blurable').addClass('blur')
         $('#cover').addClass('show_cover')
       }, time)
     }
