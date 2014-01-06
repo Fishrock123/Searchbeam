@@ -46,17 +46,17 @@ $(document).ready(function() {
     }
   }
 
-  $('#auth, .login_box, .login > .triangle').hover(function(e) {
+  $('#auth, .login_box, .login > .triangle').hover(function() {
     showLogin(300)
-  }, function(e) {
+  }, function() {
     hideLogin(800)
   })
 
   $('#auth_touchbox')
-  .on('touchstart', function(e) {
+  .on('touchstart', function() {
     didDrag = false
   })
-  .on('touchmove', function(e) {
+  .on('touchmove', function() {
     didDrag = true
   })
   .on('touchend', function(e) {
@@ -64,10 +64,10 @@ $(document).ready(function() {
   })
 
   $('#cover')
-  .on('touchend', function(e) {
+  .on('touchend', function() {
     hideLogin(100)
   })
-  .hover(function(e) {
+  .hover(function() {
     if (timeid === -1) hideLogin(800)
   })
 
@@ -79,7 +79,7 @@ $(document).ready(function() {
     }
   })
 
-  $('#auth').click(function(e) {
+  $('#auth').click(function() {
     if (user === false) return false
     $('#ainfo').text('Logging out...')
     $("#auth-err, #auth-success").hide()
@@ -99,7 +99,7 @@ $(document).ready(function() {
     return false
   })
 
-  $('#login').submit(function(e) {
+  $('#login').submit(function() {
     $("#auth-err, #auth-success").hide()
     $.ajax({
       type: "POST",
