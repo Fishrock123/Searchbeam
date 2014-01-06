@@ -26,10 +26,6 @@ app.use(express.favicon(__dirname + '/app/public/SB-Logo.ico'))
 app.use(express.json())
 app.use(express.urlencoded())
 app.use(express.cookieParser(keys.express.cookies))
-app.use(function(req, res, next) {
-  res.header('Cache-Control', 'max-age=259200')
-  next()
-})
 
 app.use(express.cookieSession({
     secret: keys.express.session
