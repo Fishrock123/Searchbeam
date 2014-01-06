@@ -5,7 +5,7 @@ $(document).ready(function() {
     , didDrag = false
     , page = window.location.pathname.slice(1) + window.location.search
 
-  if (page === '') { page = 'home' }
+  page ||= 'home'
   page = page.match(/home|about|projects|blog(?!\?title=|\?id=)/)
   if (page && page.length > 0) {
     $('#' + page[0]).children().addClass('current-page')
