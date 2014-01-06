@@ -74,8 +74,8 @@ $(document).ready(function() {
   $(this).on('mouseout', function(e) {
     var from = e.relatedTarget || e.toElement
     if (!from || from.nodeName == "HTML") {
-        window.clearTimeout(timeid)
-        timeid = -1
+      window.clearTimeout(timeid)
+      timeid = -1
     }
   })
 
