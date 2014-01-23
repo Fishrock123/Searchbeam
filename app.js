@@ -51,6 +51,14 @@ db = mongoose.createConnection(keys.passport.database, {
 db.on('error', console.error.bind(console, 'Auth connection error:'))
 
 function finalAndOpen() {
+  app.use(function(req, res, next) {
+    res.header('X-Content-Type-Options', 'nosniff')
+    res.header('X-Frame-Options', 'DENY')
+    //res.header('Content-Security-Policy',
+    //  "default-src 'self' 'unsafe-inline'; script-src 'self' apis.google.com ajax.googleapis.com *.google-analytics.com; img-src 'self' data *.google-analytics.com")
+    // When 'unsafe-inline' is supported...
+    next()
+  })
   app.use('/s/', express.static(__dirname + '/app/public'))
   app.use('/', express.static(__dirname + '/app/rootfiles'))
   app.use(function(req, res, next) {
