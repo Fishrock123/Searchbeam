@@ -20,11 +20,6 @@
 }
 
 @font-face {
-  font-family: 'source_sans_pro-italic';
-  src: url('SourceSansPro-It.ttf') format('truetype');
-}
-
-@font-face {
   font-family: 'source_sans_pro-bold';
   src: url('SourceSansPro-Bold.ttf') format('truetype');
 }
@@ -281,12 +276,6 @@ a:hover {
 b {
   font-family: 'source_sans_pro-bold';
   font-weight: normal;
-}
-
-i {
-  font-style: normal;
-  font-family: 'source_sans_pro-italic';
-  color: #A6A6A6;
 }
 
 span#version, span#dd, #version-centered {
