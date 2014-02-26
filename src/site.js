@@ -10,6 +10,8 @@ $(document).ready(function() {
   if (page && page.length > 0)
     $('#' + page[0]).children().addClass('current-page')
 
+  console.log('    ‚‚\n!  ∞¨ ⁻⁻)⧜\n    ˙˙˙˙') // awww yeah
+
   $(window).scroll(function() {
     ((s = $(window).scrollTop()) > 25 ? s = 25 : s) < 0 ? s = 0 : s
     if (s === lastScroll) return
