@@ -7,9 +7,8 @@ $(document).ready(function() {
 
   page = page || 'home'
   page = page.match(/home|about|projects|blog(?!\?title=|\?id=)/)
-  if (page && page.length > 0) {
+  if (page && page.length > 0)
     $('#' + page[0]).children().addClass('current-page')
-  }
 
   $(window).scroll(function() {
     ((s = $(window).scrollTop()) > 25 ? s = 25 : s) < 0 ? s = 0 : s
