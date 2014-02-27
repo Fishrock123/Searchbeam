@@ -5,7 +5,7 @@
 
 - Finish the Blog's Editor.
 
-- Integrate SASS & Myth someday.
+- Integrate SASS or LESS someday?
 
 - Maybe switch to Koa.js from Express?
 
@@ -13,10 +13,11 @@
 
 - Write more blog posts.
 
-- Make the login button have a larger touchable area on mobile.
-
 
 ==== Completed Stuffs ====
+
+
+- ✓ Make the login button have a larger touchable area on mobile.
 
 - ✓ Change styling to use 2x spacing and minimal semicolons.
 
