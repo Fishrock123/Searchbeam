@@ -1,6 +1,8 @@
 
 // Import all the stuffs!
 var fs = require('fs')
+  , crypto = require('crypto')
+  , assert = require('assert')
   , marked = require('marked')
   , sanitize = require('validator').sanitize
   , moment = require('moment')
@@ -11,7 +13,7 @@ var fs = require('fs')
   , version = require('../../package.json').version
   , subdirs = ['xenon', 'kappacino']
 
-module.exports = function(app, passport, Account, dbString) {
+module.exports = function(app, passport, Account, dbString, userKeyMap) {
   var timeout, status, ip
 
   validate.loadAuth(Account)
@@ -73,10 +75,12 @@ module.exports = function(app, passport, Account, dbString) {
       res.type('json')
       passport.authenticate('local', function(err, user) {
         if (err) {
+          res.status(500)
           res.json({ error: err })
           return next(err)
         }
         if (!user) {
+          res.status(401)
           res.json({ error: "That user does not exist." })
           return
         }
@@ -85,7 +89,12 @@ module.exports = function(app, passport, Account, dbString) {
           console.log('Successfully authenticated ' + req.user.username)
           jade.renderFile(__dirname + '/views/auth/button.jade', { user: req.user }, function(err, html) {
             if (err) { return next(err) }
-            res.json({ html: html, success: "Welcome back " + user.username + "!" })
+            res.json({
+                username: user.username
+              , displayname: user.displayname || user.username
+              , html: html
+              , success: "Welcome back " + user.username + "!"
+            });
             return
           })
         })
@@ -128,6 +137,53 @@ module.exports = function(app, passport, Account, dbString) {
           })
         }
       })
+    })
+
+    app.get('/user_data', function(req, res) {
+      if (!req.user) return res.status(401).end()
+
+      var out = {
+          username: req.user.username
+        , displayname: req.user.displayname || req.user.username
+        , type: req.user.type
+      }
+      if (!req.query.game) return res.json(out)
+
+      if (req.query.game === 'conquest') {
+
+        if (!req.user.games) {
+          Account.findByIdAndUpdate(req.user._id, { games: { conquest: { color: '#1AC' }}}, null, function(err, doc) {
+            if (err) {
+              console.log(err)
+              res.status(500).end()
+              return
+            }
+            out.user_game_data = {
+              color: doc.games.conquest.color
+            }
+            res.json(out)
+          })
+
+        } else if (!req.user.games.conquest) {
+          Account.findByIdAndUpdate(req.user._id, { 'games.conquest': { color: '#1AC' }}, null, function(err, doc) {
+            if (err) {
+              console.log(err)
+              res.status(500).end()
+              return
+            }
+            out.user_game_data = {
+              color: doc.games.conquest.color
+            }
+            res.json(out)
+          })
+
+        } else {
+          out.user_game_data = {
+            color: req.user.games.conquest.color
+          }
+          res.json(out)
+        }
+      }
     })
 
     app.post('/blog', function(req, res) {
@@ -229,15 +285,110 @@ module.exports = function(app, passport, Account, dbString) {
         blog.removeArticle({
           title: req.param('title')
         }, function(error) {
-           if (error) res.end('Internal Server Error: ' + error)
-           else {
-          res.status(200)
-          res.redirect('../blog')
-           }
+          if (error) res.end('Internal Server Error: ' + error)
+          else {
+            res.status(200)
+            res.redirect('../blog')
+          }
         })
       } else {
         console.log('WARNING: Received an unauthorized blog-delete POST request!')
         res.status(403).end()
+      }
+    })
+
+    // Conquest stuff
+
+    app.get('/game_session_key', function(req, res) {
+      if (!req.user) return res.status(401).end()
+
+      crypto.randomBytes(48, function(ex, buf) {
+        if (ex) {
+          console.error(ex)
+          res.type('json')
+          res.json({ err: 'Internal server error. Please contact @Fishrock123 <fishrock123@rocketmail.com>' })
+          return
+        }
+        var token = buf.toString('hex')
+          , user = {
+              name: req.user.displayname || req.user.username
+            , time: Date.now()
+          }
+        if (req.query.game)
+          user.game = req.query.game
+        if (req.user.games && req.user.games[req.query.game])
+          user.user_game_data = req.user.games[req.query.game]
+
+        userKeyMap[token] = user
+
+        console.log(userKeyMap[token])
+        res.type('json')
+        res.json({ session_key: token })
+      })
+    })
+
+    app.get('/conquest_color', function(req, res) {
+      if (req.user && req.user.games && req.user.games.conquest) {
+        res.type('json')
+        res.json({ color: req.user.games.conquest.color })
+        return
+      }
+      res.status(401).end()
+    })
+
+    var color_valid = /^#([0-9A-F]{3}$|[0-9A-F]{6}$)/
+    var color_dark = /^#([0-6]{3}$|([0-6][0-9A-F]){3}$)/
+    var color_white = /^#([E-F]{3}$|([E-F][0-9A-F]){3}$)/
+
+    assert(color_valid.test('#EEE'), 'Color 1')
+    assert(color_valid.test('#A67'), 'Color 2')
+    assert(color_valid.test('#B7B3BD'), 'Color 3')
+    assert(color_valid.test('#053428'), 'Color 4')
+    assert( ! color_valid.test('EEE'), 'Color 5')
+    assert( ! color_valid.test('#HTK'), 'Color 6')
+    assert( ! color_valid.test('#aaa'), 'Color 7') // I only use capitals in hex color codes.
+    assert( ! color_valid.test('#0572E3B1'), 'Color 8')
+    assert( ! color_valid.test('#E3B6'), 'Color 9')
+    assert(color_dark.test('#000'), 'Color 10')
+    assert(color_dark.test('#666'), 'Color 11')
+    assert(color_dark.test('#0F0F0F'), 'Color 12')
+    assert(color_dark.test('#6A646E'), 'Color 13')
+    assert( ! color_dark.test('#777'), 'Color 14')
+    assert( ! color_dark.test('#FFF'), 'Color 15')
+    assert( ! color_dark.test('#787E73'), 'Color 16')
+    assert( ! color_dark.test('#E6FA9B'), 'Color 17')
+    assert(color_white.test('#FFF'), 'Color 18')
+    assert(color_white.test('#E0EFE9'), 'Color 19')
+    assert( ! color_white.test('#DDD'), 'Color 20')
+    assert( ! color_white.test('#A7389C'), 'Color 21')
+
+    app.post('/conquest_color', function(req, res) {
+      if (req.user && req.body.color) {
+        res.type('json')
+
+        if (!req.user.games || !req.user.games.conquest)
+          res.json({ err: 'You have never played CONQUEST.' })
+
+        if (!color_valid.test(req.body.color))
+          res.json({ err: 'Server received an invalid color code.' })
+
+        else if (color_dark.test(req.body.color))
+          res.json({ err: 'That color is too dark.' })
+
+        else if (color_white.test(req.body.color))
+          res.json({ err: 'That color is too white.' })
+
+        else {
+          Account.findByIdAndUpdate(req.user._id, { 'games.conquest': { color: req.body.color }}, null, function(err, doc) {
+            if (err) {
+              console.log(err)
+              return res.status(500).end()
+            }
+            res.json({ color: req.body.color })
+          });
+        }
+      } else {
+        res.status(400).end()
       }
     })
 

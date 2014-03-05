@@ -13,6 +13,7 @@ var express = require('express')
   , session_opts = {
       secret: keys.express.session
     }
+  , userKeyMap = {}
 
 console.log('APP VERSION = ' + version)
 
@@ -48,7 +49,18 @@ db = mongoose.createConnection(keys.passport.database, {
     auto_reconnect: true
   }
 })
-db.on('error', console.error.bind(console, 'Auth connection error:'))
+db.on('error', function(err) {
+  console.log(err.stack)
+})
+
+setInterval(cleanKeyMap, 10000)
+
+function cleanKeyMap() {
+  for (key in userKeyMap) {
+    if (Date.now - userKeyMap[key].time > 20000)
+      delete userKeyMap[key]
+  }
+}
 
 function finalAndOpen() {
   app.use(function(req, res, next) {
@@ -79,10 +91,10 @@ require('./app/server/models/account')(db, function(Account) {
   app.configure('development', function() {
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }))
     db.once('open', function() {
-      require('./app/server/router')(app, passport, Account, keys.blog.dev)
+      finalAndOpen()
+      require('./app/server/router')(app, passport, Account, keys.blog.dev, userKeyMap)
 
       console.log('Using development environment.')
-      finalAndOpen()
     })
   })
 
@@ -99,10 +111,10 @@ require('./app/server/models/account')(db, function(Account) {
     })
 
     db.once('open', function() {
-      require('./app/server/router')(app, passport, Account, keys.blog.live)
+      finalAndOpen()
+      require('./app/server/router')(app, passport, Account, keys.blog.live, userKeyMap)
 
       console.log('Using production environment.')
-      finalAndOpen()
     })
   })
 })
