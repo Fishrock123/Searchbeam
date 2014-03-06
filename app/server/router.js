@@ -94,7 +94,7 @@ module.exports = function(app, passport, Account, dbString, userKeyMap) {
               , displayname: user.displayname || user.username
               , html: html
               , success: "Welcome back " + user.username + "!"
-            });
+            })
             return
           })
         })
@@ -149,37 +149,37 @@ module.exports = function(app, passport, Account, dbString, userKeyMap) {
       }
       if (!req.query.game) return res.json(out)
 
-      if (req.query.game === 'conquest') {
+      if (req.query.game === 'space') {
 
         if (!req.user.games) {
-          Account.findByIdAndUpdate(req.user._id, { games: { conquest: { color: '#1AC' }}}, null, function(err, doc) {
+          Account.findByIdAndUpdate(req.user._id, { games: { space: { color: '#1AC' }}}, null, function(err, doc) {
             if (err) {
               console.log(err)
               res.status(500).end()
               return
             }
             out.user_game_data = {
-              color: doc.games.conquest.color
+              color: doc.games.space.color
             }
             res.json(out)
           })
 
-        } else if (!req.user.games.conquest) {
-          Account.findByIdAndUpdate(req.user._id, { 'games.conquest': { color: '#1AC' }}, null, function(err, doc) {
+        } else if (!req.user.games.space) {
+          Account.findByIdAndUpdate(req.user._id, { 'games.space': { color: '#1AC' }}, null, function(err, doc) {
             if (err) {
               console.log(err)
               res.status(500).end()
               return
             }
             out.user_game_data = {
-              color: doc.games.conquest.color
+              color: doc.games.space.color
             }
             res.json(out)
           })
 
         } else {
           out.user_game_data = {
-            color: req.user.games.conquest.color
+            color: req.user.games.space.color
           }
           res.json(out)
         }
@@ -297,7 +297,7 @@ module.exports = function(app, passport, Account, dbString, userKeyMap) {
       }
     })
 
-    // Conquest stuff
+    // stuff for spacemaybe
 
     app.get('/game_session_key', function(req, res) {
       if (!req.user) return res.status(401).end()
@@ -327,10 +327,10 @@ module.exports = function(app, passport, Account, dbString, userKeyMap) {
       })
     })
 
-    app.get('/conquest_color', function(req, res) {
-      if (req.user && req.user.games && req.user.games.conquest) {
+    app.get('/space_color', function(req, res) {
+      if (req.user && req.user.games && req.user.games.space) {
         res.type('json')
-        res.json({ color: req.user.games.conquest.color })
+        res.json({ color: req.user.games.space.color })
         return
       }
       res.status(401).end()
@@ -339,6 +339,8 @@ module.exports = function(app, passport, Account, dbString, userKeyMap) {
     var color_valid = /^#([0-9A-F]{3}$|[0-9A-F]{6}$)/
     var color_dark = /^#([0-6]{3}$|([0-6][0-9A-F]){3}$)/
     var color_white = /^#([E-F]{3}$|([E-F][0-9A-F]){3}$)/
+
+    // todo: separate module with separate unit tests
 
     assert(color_valid.test('#EEE'), 'Color 1')
     assert(color_valid.test('#A67'), 'Color 2')
@@ -362,12 +364,12 @@ module.exports = function(app, passport, Account, dbString, userKeyMap) {
     assert( ! color_white.test('#DDD'), 'Color 20')
     assert( ! color_white.test('#A7389C'), 'Color 21')
 
-    app.post('/conquest_color', function(req, res) {
+    app.post('/space_color', function(req, res) {
       if (req.user && req.body.color) {
         res.type('json')
 
-        if (!req.user.games || !req.user.games.conquest)
-          res.json({ err: 'You have never played CONQUEST.' })
+        if (!req.user.games || !req.user.games.space)
+          res.json({ err: 'You have never played space.' })
 
         if (!color_valid.test(req.body.color))
           res.json({ err: 'Server received an invalid color code.' })
@@ -379,13 +381,13 @@ module.exports = function(app, passport, Account, dbString, userKeyMap) {
           res.json({ err: 'That color is too white.' })
 
         else {
-          Account.findByIdAndUpdate(req.user._id, { 'games.conquest': { color: req.body.color }}, null, function(err, doc) {
+          Account.findByIdAndUpdate(req.user._id, { 'games.space': { color: req.body.color }}, null, function(err, doc) {
             if (err) {
               console.log(err)
               return res.status(500).end()
             }
             res.json({ color: req.body.color })
-          });
+          })
         }
       } else {
         res.status(400).end()
