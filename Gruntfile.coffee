@@ -73,6 +73,7 @@ module.exports = (grunt) ->
       dist:
         files: [
             { expand: true, cwd: 'node_modules/superagent',  src: 'superagent.js', dest: 'app/public', filter: 'isFile' }
+            { expand: true, cwd: 'node_modules/primus',  src: 'primus.js', dest: 'app/public', filter: 'isFile' }
         ]
 
   grunt.registerTask "default", ["uglify", "myth", "cssmin", "copy:dist"]
