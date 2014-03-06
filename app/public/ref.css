@@ -713,7 +713,8 @@ input.disabled:hover {
   margin-right: auto;
 }
 
-.hidden {
+.hidden,
+#scripts {
   display: none;
 }
 
@@ -769,6 +770,8 @@ header {
   z-index: 4;
 }
 
+/* Keeps header icons from interfering while resizing */
+
 #home,
 #projects {
   z-index: 10;
@@ -778,6 +781,8 @@ header {
 #blog {
   z-index: 11;
 }
+
+/* fixes a kerning issue with the fontawesome folder icon */
 
 #projects > .mobile {
   position: relative;
