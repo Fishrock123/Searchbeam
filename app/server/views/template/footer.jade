@@ -1,8 +1,15 @@
 .centered
   .padd-bottom
 #cover.hide_cover(style="position:fixed;z-index:-1;")
-script.
-  var user = false;
+if user
+  script.
+    var user = {
+        username: '#{user.username}'
+      , displayname: '#{user.displayname || user.username}'
+    }
+else
+  script.
+    var user = null
 #auth_touchbox
 a(href='#')#auth.faint
   include ../auth/button
