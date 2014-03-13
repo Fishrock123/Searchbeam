@@ -13,5 +13,9 @@ npm-debug.log
 *.sublime-project
 *.sublime-workspace
 
+# Game stuff
+app/public/spacemaybe
+app/server/views/space.jade
+
 # Authorization llama says Shoo.
 keys.json

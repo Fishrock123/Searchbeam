@@ -79,7 +79,19 @@ function finalAndOpen() {
   })
   app.use(app.router)
 
+  if (module_exists('../spacemaybe/server')) {
+    console.log('starting game server')
+    require('../spacemaybe/server')(server
+      , __dirname + '/app/public/spacemaybe/vendor/primus.js'
+      , userKeyMap)
+  }
+
   server.listen(app.get('port'))
+}
+
+function module_exists( name ) {
+  try { return require.resolve( name ) }
+  catch( e ) { return false }
 }
 
 require('./app/server/models/account')(db, function(Account) {
