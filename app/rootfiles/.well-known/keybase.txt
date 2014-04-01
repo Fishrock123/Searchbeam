@@ -1,0 +1,71 @@
+==================================================================
+https://keybase.io/fishrock
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://searchbeam.jit.su
+  * I am fishrock (https://keybase.io/fishrock) on keybase.
+  * I have a public key with fingerprint FD3A 5288 F042 B685 0C66  B31F 09FE 4473 4EB7 990E
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "fd3a5288f042b6850c66b31f09fe44734eb7990e",
+            "host": "keybase.io",
+            "key_id": "09FE44734EB7990E",
+            "uid": "c4341b9a3a564000b4b02debd8c36b00",
+            "username": "fishrock"
+        },
+        "service": {
+            "hostname": "searchbeam.jit.su",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1396385796,
+    "expire_in": 157680000,
+    "prev": "3c47affb0317b8add0137e58cfbf20d8d986c70c4b0d0e4bbcab4e9e9c0e37cd",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
+Comment: GPGTools - https://gpgtools.org
+
+owGbwMvMwMXo+vXd3kbbdX2Mpw98T2IIttZgqVZKyk+pVLKqVspOBVNpmXnpqUUF
+RZl5JUpWSmkpxommRhYWaQYmRklmFqYGyWZmScaGaQaWaakmJubGJqlJ5paWBqlK
+OkoZ+cUgHUBjkhKLU/Uy84FiQE58ZgpQ1MDSzRWs3tUJpN4VKFcKlkg2MTYxTLJM
+BFpjZmJgYJBkkmRglJKalGKRbGyWZGAAUlicWpSXmJsKck5mcUZRfnK2Uq2OElC0
+LDM5FeRmkNVQFcWpiUXJGUmpibl6WZklesWlQAMKivJL8pPzc4DSGSUlBcVWIO0l
+lQUg9eWpSfFQk+KTMvNSgL4H6ihLLSrOzM9TsjIEqkwuyQQZbWhsaWZsYWpuaaaj
+lFpRkFmUGp8JUmFqbmYBdLgByJ7UMqCRxskm5olpaUkGxobmSRaJKSkGhsbmqaYW
+yWlJaUYGKRYplhZmyeYGyUCfphikmiQlJScmmaRaplomG6QamyenKIH8VpiXr2Rl
+DHRmYjrIV5npeYklpUWpSrWdTDIsDIxcDGysTKD4Y+DiFIDFau1UAYatvjbOq2eu
+uXhBJ02BwSBl5eXM8MTuUz0vzV8umtD5NmT5hxseSeZLJs7o0F+4m5Xtm19T4p2Z
+8c8y3ue4KrY5Jogq1frU868z21Z9bNMZ9rX27zkzduaZxqbnWDvGpNUXSn4+tyl4
+QuLmtfW95s/c8gPv1rA4pPJlBXxJfv+dx8Iu/MHeN1Gm2tKLK/yesH0Nmisb+6xw
+23v2orXGTnvLnCpL78v8a/DfJ7J+f9DM1ffcfxy5KBecJPS4POVlQLGx3H2dNe/5
+8/aarv4R8sbxmBnPqmWLPPfkXJPNeGt/+UTOmgmqz8ruT5lsLufF/vrC17XWP3+x
+vfmyiJctI+Vs20Yeg5LQg2Xsn8uvV/cdvDDxcxT7ycezP98532y/VlyvbeJUGT87
+Ld7TekICHT8/dSdKfKp+H6TG4nkmyGxWzx/btA4Hi3kd7bsmWFpcfxZ9dOrPV+YW
+CyV9Vzk118xNCAr6mq2lnbZ4aUnL//w5FjI8Z7tCDohyTHWpmTDXI9drw9ZU71vp
+y3/duPr3yIwbKk+vH5P52dnWvmDzHcsvPP2Tp20/6fCW/fHvZqlLP5Zqsd8w3Bsu
+des+k/citx+KB49sr7Xd7NLBl8sTcGXu1OU2wcJzeiYfkOuUfSISmfFrE//zSfvt
+GiqPqR5dIm3y1SmFu1c+ec6cv65Ll+ZPmstddLRezjHUMuH9O0/Hqr1rD/zY28OR
+JrDg8CQA
+=GrLb
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/fishrock
+
+==================================================================
