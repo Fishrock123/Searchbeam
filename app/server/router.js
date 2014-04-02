@@ -2,13 +2,13 @@
 // Import all the stuffs!
 var fs = require('fs')
   , crypto = require('crypto')
-  , assert = require('assert')
   , marked = require('marked')
   , sanitize = require('validator').sanitize
   , moment = require('moment')
   , jade = require('jade')
   , blog = require('./modules/blog')
   , validate = require('./modules/validate')
+  , color_ = require('./modules/color_')
   , keys = require('../../keys.json')
   , version = require('../../package.json').version
   , subdirs = ['xenon', 'kappacino']
@@ -336,34 +336,6 @@ module.exports = function(app, passport, Account, dbString, userKeyMap) {
       res.status(401).end()
     })
 
-    var color_valid = /^#([0-9A-F]{3}$|[0-9A-F]{6}$)/
-    var color_dark = /^#([0-6]{3}$|([0-6][0-9A-F]){3}$)/
-    var color_white = /^#([E-F]{3}$|([E-F][0-9A-F]){3}$)/
-
-    // todo: separate module with separate unit tests
-
-    assert(color_valid.test('#EEE'), 'Color 1')
-    assert(color_valid.test('#A67'), 'Color 2')
-    assert(color_valid.test('#B7B3BD'), 'Color 3')
-    assert(color_valid.test('#053428'), 'Color 4')
-    assert( ! color_valid.test('EEE'), 'Color 5')
-    assert( ! color_valid.test('#HTK'), 'Color 6')
-    assert( ! color_valid.test('#aaa'), 'Color 7') // I only use capitals in hex color codes.
-    assert( ! color_valid.test('#0572E3B1'), 'Color 8')
-    assert( ! color_valid.test('#E3B6'), 'Color 9')
-    assert(color_dark.test('#000'), 'Color 10')
-    assert(color_dark.test('#666'), 'Color 11')
-    assert(color_dark.test('#0F0F0F'), 'Color 12')
-    assert(color_dark.test('#6A646E'), 'Color 13')
-    assert( ! color_dark.test('#777'), 'Color 14')
-    assert( ! color_dark.test('#FFF'), 'Color 15')
-    assert( ! color_dark.test('#787E73'), 'Color 16')
-    assert( ! color_dark.test('#E6FA9B'), 'Color 17')
-    assert(color_white.test('#FFF'), 'Color 18')
-    assert(color_white.test('#E0EFE9'), 'Color 19')
-    assert( ! color_white.test('#DDD'), 'Color 20')
-    assert( ! color_white.test('#A7389C'), 'Color 21')
-
     app.post('/space_color', function(req, res) {
       if (req.user && req.body.color) {
         res.type('json')
@@ -371,13 +343,13 @@ module.exports = function(app, passport, Account, dbString, userKeyMap) {
         if (!req.user.games || !req.user.games.space)
           res.json({ err: 'You have never played space.' })
 
-        if (!color_valid.test(req.body.color))
+        if (!color_.valid(req.body.color))
           res.json({ err: 'Server received an invalid color code.' })
 
-        else if (color_dark.test(req.body.color))
+        else if (color_.dark(req.body.color))
           res.json({ err: 'That color is too dark.' })
 
-        else if (color_white.test(req.body.color))
+        else if (color_.white(req.body.color))
           res.json({ err: 'That color is too white.' })
 
         else {
