@@ -79,9 +79,9 @@ function finalAndOpen() {
   })
   app.use(app.router)
 
-  if (module_exists('../spacemaybe/server')) {
+  if (module_exists('../spacemaybe/spacemaybe server')) {
     console.log('starting game server')
-    require('../spacemaybe/server')(server
+    require('../spacemaybe/spacemaybe server')(server
       , __dirname + '/app/public/spacemaybe/vendor/primus.js'
       , userKeyMap)
   }
