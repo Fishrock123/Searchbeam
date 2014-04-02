@@ -33,5 +33,7 @@
     , "grunt-text-replace": "0.3.x"
     , "grunt-myth": "0.1.x"
     , "request": "2.27.x"
+    , "superagent": "0.16.x"
+    , "primus": "2.0.x"
   }
 }

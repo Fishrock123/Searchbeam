@@ -66,11 +66,16 @@ module.exports = (grunt) ->
         }]
 
     copy:
-          main:
-            files: [
-                { expand: true, cwd: 'app/public/kappacino/img',  src: '**', dest: '../kappacino/images', filter: 'isFile' }
-            ]
+      main:
+        files: [
+            { expand: true, cwd: 'app/public/kappacino/img',  src: '**', dest: '../kappacino/images', filter: 'isFile' }
+        ]
+      dist:
+        files: [
+            { expand: true, cwd: 'node_modules/superagent',  src: 'superagent.js', dest: 'app/public', filter: 'isFile' }
+            { expand: true, cwd: 'node_modules/primus',  src: 'primus.js', dest: 'app/public', filter: 'isFile' }
+        ]
 
-  grunt.registerTask "default", ["uglify", "myth", "cssmin"]
-  grunt.registerTask "build", ["uglify", "myth", "cssmin"]
-  grunt.registerTask "kappacino", ["uglify", "myth", "cssmin", "replace", "copy"]
+  grunt.registerTask "default", ["uglify", "myth", "cssmin", "copy:dist"]
+  grunt.registerTask "build", ["uglify", "myth", "cssmin", "copy:dist"]
+  grunt.registerTask "kappacino", ["uglify", "myth", "cssmin", "replace", "copy:main"]

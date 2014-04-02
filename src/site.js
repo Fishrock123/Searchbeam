@@ -38,7 +38,7 @@ $(document).ready(function() {
     window.clearTimeout(timeid)
     timeid = -1
     $('#auth').removeClass('faint')
-    if (user === false) {
+    if (user === null) {
       timeid = window.setTimeout(function() {
         $('.login').removeClass('hidden')
         $('.blurable').addClass('blur')
@@ -81,10 +81,11 @@ $(document).ready(function() {
   })
 
   $('#auth').click(function() {
-    if (user === false) return false
+    if (user === null) return false
     $('#ainfo').text('Logging out...')
     $("#auth-err, #auth-success").hide()
     $('#auth').addClass('faint')
+    user = null
     $.ajax({
       type: "POST",
       url: '/logout',
@@ -116,6 +117,7 @@ $(document).ready(function() {
         } else if (data.success) {
           $("#auth-success").show().text(data.success)
           $("#auth").html(data.html)
+          user = data
           window.clearTimeout(timeid)
           timeid = window.setTimeout(function() {
             $('.login').addClass('hidden')
