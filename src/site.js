@@ -1,8 +1,11 @@
 $(document).ready(function() {
-  var s = 0
-    , timeid = -1
+  var s          = 0
+    , timeid     = -1
     , lastScroll = 0
-    , didDrag = false
+    , didDrag    = false
+    , $window    = $(window)
+    , $header    = $('header')
+    , $hdr_line  = $('header > .line')
     , page = window.location.pathname.slice(1) + window.location.search
 
   page = page || 'home'
@@ -12,11 +15,11 @@ $(document).ready(function() {
 
   console.log('    ‚‚\n!  ∞¨ ⁻⁻)⧜\n    ˙˙˙˙') // awww yeah
 
-  $(window).scroll(function() {
-    ((s = $(window).scrollTop()) > 25 ? s = 25 : s) < 0 ? s = 0 : s
+  $window.scroll(function() {
+    ((s = $window.scrollTop()) > 25 ? s = 25 : s) < 0 ? s = 0 : s
     if (s === lastScroll) return
-    $('header').css('line-height', (45 - s) + 'px')
-    $('header > .line').css('height', (55 - s) + 'px')
+    $header.css('line-height', (45 - s) + 'px')
+    $hdr_line.css('height', (55 - s) + 'px')
     lastScroll = s
   })
 
@@ -47,7 +50,8 @@ $(document).ready(function() {
     }
   }
 
-  $('#auth, .login_box, .login > .triangle').hover(function() {
+  $('#auth, .login_box, .login > .triangle')
+  .hover(function() {
     showLogin(300)
   }, function() {
     hideLogin(800)
