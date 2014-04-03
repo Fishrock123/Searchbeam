@@ -1,13 +1,15 @@
 
 === The To-Do List for SearchBeam.jit.su ===
 
+- Modularity & Unit Tests.
+
 - Move the Kappacino.com dev pages into different project directory.
 
 - Finish the Blog's Editor.
 
 - Integrate SASS or LESS someday?
 
-- Maybe switch to Koa.js from Express?
+- Update to Express 4.
 
 - Validate the Login form.
 
