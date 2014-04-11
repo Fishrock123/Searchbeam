@@ -57,7 +57,7 @@ setInterval(cleanKeyMap, 10000)
 
 function cleanKeyMap() {
   for (key in userKeyMap) {
-    if (Date.now - userKeyMap[key].time > 20000)
+    if (Date.now() - userKeyMap[key].time > 20000)
       delete userKeyMap[key]
   }
 }
