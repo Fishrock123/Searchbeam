@@ -1,0 +1,103 @@
+
+/* =======================
+  Somewhat clean. LESS for searchbeam.jit.su by Jeremiah Senkpiel.
+   ======================= */
+
+@import "vars.less";
+@import "fonts.less";
+@import "override.less";
+@import "base.less";
+@import "blog.less";
+@import "typography.less";
+@import "juicy.less";
+@import "input.less";
+@import "editor.less";
+
+
+/* =======================
+  Here be penguins.
+   ======================= */
+
+.downset {
+  position: relative;
+  top: 6px;
+}
+
+.line {
+  width: 70%;
+  border-bottom: 1px solid #AAA;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.desktop {
+  display: inline-block;
+
+  @media @Mobile-Regular {
+      display: none;
+  }
+}
+
+.mobile {
+  display: none;
+
+  @media @Mobile-Regular {
+    display: inline-block;
+  }
+}
+
+// I legit have no clue where to put this.
+#etc {
+  transition: all @fast-trans linear;
+
+  @media @HDPI {
+    letter-spacing: 0.02em;
+  }
+
+  &_arrow {
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    top: 1px;
+  }
+}
+
+// -- override everything except final media query
+.inline {
+  display: inline;
+}
+
+.inline-b {
+  display: inline-block;
+}
+
+.hidden,
+#scripts {
+  display: none;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.nope {
+  /* Never remove this class via Javascript. Use .hidden instead. */
+  display: none;
+  opacity: 0;
+  z-index: -1;
+}
+// --
+
+@media @Mobile-Large {
+
+  .center {
+    float: none;
+    margin: 0 40px;
+  }
+
+  .content-line {
+    margin: 11px auto 2px;
+    height: 0;
+    width: 90%;
+    border-bottom: @header-line;
+  }
+}

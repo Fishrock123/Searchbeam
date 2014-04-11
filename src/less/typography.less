@@ -1,0 +1,260 @@
+
+p {
+  line-height: 1.4em;
+
+  @media @HDPI {
+    letter-spacing: 0.02em;
+  }
+}
+
+cite {
+  margin-top: 12px;
+  margin-left: @large;
+  color: @gray-1;
+  letter-spacing: 0;
+}
+
+address {
+  @media @HDPI {
+    letter-spacing: 0.01em;
+  }
+}
+
+li {
+  text-align: left;
+}
+
+h1 {
+  font-size: 28px;
+
+  @media @HDPI {
+    letter-spacing: 0.01em;
+  }
+}
+
+h2 {
+  font-size: @large;
+  color: @black-2;
+}
+
+h3 {
+  font-size: @medium;
+  font-family: @SSP-Semi;
+  color: @black-2;
+}
+
+abbr {
+  border: none;
+  cursor: help;
+}
+
+a {
+  transition: all @fast-trans linear;
+  text-decoration: none;
+  color: @orange-dark;
+  outline-color: @gray-2;
+  outline-width: 3px;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: @orange;
+  }
+}
+
+b {
+  font-family: @SSP-Bold;
+  font-weight: normal;
+}
+
+.e-date,
+code,
+textarea,
+input[type="text"],
+input[type="password"] {
+  font-family: @Hermit;
+}
+
+code {
+  white-space: nowrap;
+  padding: 0 4px;
+  font-size: 0.667em;
+  border-radius: 3px;
+  border: @code-border;
+}
+
+pre {
+  background-color: #F8F8F8;
+  border: @code-border;
+  overflow: auto;
+  padding: 6px @tiny;
+  border-radius: 3px;
+
+  code {
+    white-space: pre-wrap;
+    padding: 0;
+    border: none;
+  }
+}
+
+// =============================================================================
+// =============================================================================
+//  Elements above
+//
+//  Classes below
+// =============================================================================
+// =============================================================================
+
+#version,
+#dd {
+  display: inline;
+  color: #E0E0E0;
+  font-size: @tiny;
+  line-height: @small;
+
+  @media @Mobile-Large {
+    display: none;
+  }
+}
+
+.align-left {
+  text-align: left;
+}
+
+.current-page {
+  color: @gray-2;
+  pointer-events: none;
+  transform: scale(1.1);
+}
+
+.icon {
+  font-family: @FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  speak: none;
+}
+
+.icon-small {
+  font-size: @base;
+  line-height: @large;
+}
+
+.txt {
+  display: inline-block;
+  font-size: @medium;
+}
+
+.about {
+  font-size: inherit;
+  font-family: @SSP-Reg;
+  font-style: normal;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.small {
+  font-size: @tiny;
+  line-height: @large;
+}
+
+.descr {
+  font-style: italic;
+}
+
+.list {
+  text-align: left;
+}
+
+.err {
+  color: @red;
+}
+
+.green {
+  color: @green;
+}
+
+.checked {
+  color: @green;
+
+  &:hover {
+    color: @red;
+  }
+}
+
+.norm {
+  font-size: 14px;
+}
+
+.orange {
+  color: @orange;
+}
+
+.dark {
+  color: @gray-1;
+}
+
+.large {
+  font-size: @largest;
+}
+
+.black {
+  color: @black-3;
+}
+
+.light {
+  color: @gray-3;
+}
+
+.faint {
+  color: @faint !important;
+}
+
+.logo {
+  font-family: @SSP-Semi;
+  text-align: right;
+
+  &.orange {
+    font-size: 104px;
+
+    @media @Desktop-Regular {
+      font-size: 86px;
+    }
+    @media @Desktop-Small {
+      font-size: 74px;
+    }
+    @media @Mobile-Large {
+      text-align: center;
+      font-size: 86px;
+    }
+    @media @Mobile-Regular {
+      font-size: 56px;
+    }
+  }
+
+  &.dark {
+    font-size: 64px;
+
+    @media @Desktop-Regular {
+      font-size: 50px;
+    }
+    @media @Desktop-Small {
+      font-size: 46px;
+    }
+    @media @Mobile-Large {
+      text-align: center;
+      font-size: 50px;
+    }
+    @media @Mobile-Regular {
+      font-size: 36px;
+    }
+  }
+
+  &-padd {
+    margin-bottom: 50px;
+  }
+}

@@ -1,0 +1,244 @@
+
+html {
+  -ms-zoom: 1;
+  zoom: 1;
+  font-size: @base;
+}
+
+header {
+  background-color: rgba(250, 250, 250, 0.95);
+  background-color: #FFF;
+  color: #333;
+  font-family: @SSP-Semi;
+  display: table;
+  margin: 0 auto;
+  font-size: @large;
+  line-height: 45px;
+  position: fixed;
+  width: 100%;
+  padding-top: 10px;
+  z-index: 4;
+
+  // Keeps header icons from interfering while resizing
+  #home,
+  #projects {
+    z-index: 10;
+  }
+  #about,
+  #blog {
+    z-index: 11;
+  }
+
+  // fixes a kerning issue with the fontawesome folder icon
+  #projects > .mobile {
+    position: relative;
+    left: 2px
+  }
+
+  nav {
+    width: 764px;
+    position: fixed;
+    left: 50%;
+    margin: 0 0 0 -382px;
+  }
+
+  .line {
+    height: 55px;
+    width: 90%;
+    border-bottom: @header-line;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.1s linear;
+  }
+
+  b {
+    display: inline-block;
+    width: 0;
+    text-indent: -9999em;
+    border-left: @header-line;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:active,
+    &:focus,
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  span {
+    display: inline-block;
+    position: relative;
+    margin-left: 32px;
+    margin-right: 32px;
+
+    @media @Mobile-Regular {
+      margin-left: 14px;
+      margin-right: 14px;
+    }
+  }
+
+  @media @HDPI {
+    letter-spacing: 1px;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #FFF;
+  color: @gray-2;
+  text-align: center;
+  font-family: @SSP-Semi;
+}
+
+footer {
+  color: @gray-2;
+  position: fixed;
+  font-size: @small;
+  bottom: 0;
+  width: 100%;
+  height: 26px;
+  right: 0;
+  background-color: rgba(250, 250, 250, 0.95);
+  background-color: #FFF;
+  z-index: 3;
+
+  a {
+    text-decoration: none;
+  }
+
+  div {
+    display: inline;
+    position: fixed;
+    bottom: 5px;
+  }
+
+  #site-info {
+    right: 180px;
+
+    @media @Mobile-Regular {
+      display: none;
+    }
+  }
+
+  #copy {
+    right: @large;
+  }
+}
+
+blockquote {
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(10, 10, 10, 0.6);
+  padding: 10px;
+
+  @media @HDPI {
+    letter-spacing: 0.02em;
+  }
+}
+
+// =============================================================================
+// =============================================================================
+//  Elements above
+//
+//  Classes below
+// =============================================================================
+// =============================================================================
+
+.wide {
+  width: 86%;
+}
+
+.full {
+  width: 100%;
+}
+
+.left {
+  text-align: left;
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.column {
+  float: left;
+  width: 50%;
+
+  @media @Mobile-Large {
+    width: 100%;
+  }
+
+  &-line {
+    margin-left: @large;
+    border-left: @header-line;
+
+    @media @Mobile-Large {
+      margin-left: 0;
+      border-left: none;
+    }
+  }
+}
+
+.centered {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  &:before {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+
+.inline-padd {
+  display: inline-block;
+  padding-left: 8px;
+  padding-right: 10px;
+  height: 1em;
+}
+
+.padd {
+  margin: 0 25px;
+  margin-bottom: 50px;
+
+  &-small {
+    padding-top: 8px;
+  }
+
+  &-top {
+    padding-top: 60px;
+
+    @media @Mobile-Large {
+      padding-top: @large;
+    }
+  }
+
+  &-header {
+    padding-top: 65px;
+  }
+
+  &-offset {
+    padding-top: 92px;
+  }
+
+  &-about {
+    margin: 0 40px;
+    margin-bottom: 10px;
+    line-height: 1.2em;
+  }
+
+  &-half {
+    padding-top: 25px;
+  }
+
+  &-bottom {
+    height: 26px;
+    width: 100%;
+  }
+}

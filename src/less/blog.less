@@ -1,0 +1,98 @@
+
+.blog {
+  &-post {
+    max-width: 550px;
+    text-align: center;
+    padding: 0 18px 42px;
+    margin-left: auto;
+    margin-right: auto;
+
+    h2 {
+      font-weight: normal;
+      float: left;
+      text-align: left;
+      margin: 4px 4%;
+      font-family: @SSP-Bold;
+      font-size: @larger;
+      width: 100%;
+
+      a {
+        color: @black-2;
+
+        &:active,
+        &:focus,
+        &:hover {
+          color: @orange;
+        }
+      }
+    }
+
+    .content {
+      text-align: left;
+      font-family: @SSP-Reg;
+      line-height: 23px;
+      padding-top: @large;
+
+      a {
+        color: @black-1;
+        border-bottom: 1px solid #D1D1D1;
+
+        &:active,
+        &:focus,
+        &:hover {
+          color: @orange;
+        }
+      }
+    }
+
+    .post-info {
+      font-size: @small;
+      margin-top: 12px;
+    }
+
+    .date {
+      line-height: @larger;
+      float: right;
+      text-align: right;
+      font-family: @SSP-Reg;
+      margin: auto 6px;
+      position: relative;
+      top: 4px;
+    }
+  }
+
+  &-line {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-top: 1px solid #D3D3D3;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &-padd {
+    padding-top: 42px;
+  }
+}
+
+.kudos {
+  &_button {
+    color: @gray-2;
+    top: 1px;
+    position: relative;
+    width: 21px;
+    text-align: center;
+
+    &:hover {
+      color: @green-bright;
+    }
+  }
+  &-div {
+    font-size: @medium;
+    float: right;
+    margin-right: 20%;
+    padding: 2px 6px 3px 3px;
+    border: 1px solid #C7C7C7;
+    border-radius: 3px;
+  }
+}

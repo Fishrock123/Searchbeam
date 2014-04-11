@@ -7,7 +7,7 @@ article.blog-post
     time(datetime='#{post.date}').post-info.date.inline!= moment(post.date).fromNow()
   br
   .content!= post.body
-  .kudo-div
+  .kudos-div
     - if (cookies['' + post._id] === 'true')
       a(href="").inline-b.kudos_button.icon.checked &#xF00C;
     - else

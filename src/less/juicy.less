@@ -1,0 +1,74 @@
+
+/* =======================
+  Fancy things.
+   ======================= */
+
+.invert {
+  transform: scale(1,-1);
+}
+
+.shadow {
+  header {
+    box-shadow: 0 3px 6px rgba(250, 250, 250, 0.8);
+  }
+  footer {
+    box-shadow: 0 -3px 6px rgba(250, 250, 250, 0.8);
+  }
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  transform: translateZ(0);
+}
+
+.boxed {
+  margin: 8px;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(10, 10, 10, 0.6);
+  padding: 6px @tiny;
+  display: inline-block;
+  line-height: @base;
+
+  &.small {
+    position: relative;
+    top: -3px;
+  }
+}
+
+#cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0;
+  background: rgba(0,0,0,0.76);
+}
+
+.cover-transition {
+  transition: opacity @regular-trans ease-in-out
+            , z-index @regular-trans ease-in-out;
+}
+
+.show_cover {
+  opacity: 1 !important;
+  z-index: 100 !important;
+}
+
+.blurable {
+  transform: translateZ(0);
+  transition: -webkit-filter @regular-trans linear;
+  -moz-transition: filter @regular-trans linear;
+}
+
+.blur {
+  filter: grayscale(100%) blur(1px);
+}
+
+.grayed {
+  filter: grayscale(100%);
+}
+

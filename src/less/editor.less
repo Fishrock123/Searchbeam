@@ -1,0 +1,39 @@
+
+.submit-post a {
+  text-decoration: none;
+}
+
+#editor {
+  textarea {
+    clear: both;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    padding-left: 15px;
+    font-size: @medium;
+    line-height: 25px;
+    border: 0;
+    border-left: 7px solid @orange;
+    min-height: 500px;
+
+    &.labeled {
+      padding-top: 32px;
+      margin-top: 0;
+    }
+
+    @media @Mobile-Large {
+      min-height: 200px
+    }
+  }
+
+  input {
+    clear: both;
+    display: block;
+    width: 80%;
+    padding: 7px;
+    padding-left: 15px;
+    font-size: @larger;
+    border: 0;
+    border-left: 7px solid @orange;
+  }
+}

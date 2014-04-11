@@ -21,10 +21,16 @@ module.exports = (grunt) ->
           { expand: true, cwd: 'src/retinajs', src: ['*.js', '!*.*.js'], dest: 'app/public/', filter: 'isFile', ext: '.min.js' }
         ]
 
+    less:
+      dist:
+        files: [
+          'app/public/ref.css': ['src/less/ref.less']
+        ]
+
     myth:
       dist:
         files: [
-          'app/public/ref.css': ['src/ref.css']
+          'app/public/ref.css': 'app/public/ref.css'
         ]
 
     cssmin:
@@ -66,7 +72,7 @@ module.exports = (grunt) ->
         }]
 
     copy:
-      main:
+      kapp:
         files: [
             { expand: true, cwd: 'app/public/kappacino/img',  src: '**', dest: '../kappacino/images', filter: 'isFile' }
         ]
@@ -76,6 +82,6 @@ module.exports = (grunt) ->
             { expand: true, cwd: 'node_modules/primus',  src: 'primus.js', dest: 'app/public', filter: 'isFile' }
         ]
 
-  grunt.registerTask "default", ["uglify", "myth", "cssmin", "copy:dist"]
-  grunt.registerTask "build", ["uglify", "myth", "cssmin", "copy:dist"]
-  grunt.registerTask "kappacino", ["uglify", "myth", "cssmin", "replace", "copy:main"]
+  grunt.registerTask "default",   ["uglify", "less", "myth", "cssmin", "copy:dist"]
+  grunt.registerTask "build",     ["uglify", "less", "myth", "cssmin", "copy:dist"]
+  grunt.registerTask "kappacino", ["cssmin", "replace", "copy:kapp"]

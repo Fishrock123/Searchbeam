@@ -49,7 +49,7 @@ $(document).ready(function() {
             $('#s_submit').parent().children(".icon").addClass('err').removeClass("hidden green")
           } else if (data.registered) {
             $('#s_submit').parent().children(".icon").removeClass("err hidden").addClass("green").html("&#xF00C;")
-            $('#s_submit').addClass('disabled greyed')
+            $('#s_submit').addClass('disabled grayed')
 
             $.ajax({
               type: "POST",
@@ -94,9 +94,9 @@ $(document).ready(function() {
   function checkValidated() {
     if (valid = (fields.user.valid && fields.pass.valid && fields.conf.valid)) {
       $('#err_msg').text('')
-      $('#s_submit').removeClass('disabled greyed')
+      $('#s_submit').removeClass('disabled grayed')
     } else {
-      $('#s_submit').addClass('disabled greyed')
+      $('#s_submit').addClass('disabled grayed')
     }
   }
 

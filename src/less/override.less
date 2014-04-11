@@ -1,0 +1,23 @@
+
+// Stupid mobile browsers.
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+// I reject your highlights and replace them with my own.
+::-moz-selection,
+::selection {
+  background: rgba(65, 65, 65, 0.1);
+  text-shadow: none;
+}
+
+// *sigh*
+//
+// Scrollbars cause some pages to be narrower than others.
+// This makes things shift between some pages.
+//
+// Bad UX? Dunno. It looks nicer.
+::-webkit-scrollbar,
+scrollbar {
+  width: 0;
+}
