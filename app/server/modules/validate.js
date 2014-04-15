@@ -15,7 +15,8 @@ function loadAuth(model) {
   userAvaliable('fishrock123', function(res) {
     assert(res.err, '18')
   })
-  userAvaliable('qq', function(res) { // Does not validate and should never be taken.
+  userAvaliable('qq', function(res) {
+    // Does not validate and should never be taken.
     assert(res.valid, '19')
   })
 }
