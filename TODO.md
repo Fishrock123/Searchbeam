@@ -7,10 +7,6 @@
 
 - Finish the Blog's Editor.
 
-- Integrate SASS or LESS someday?
-
-- Update to Express 4.
-
 - Validate the Login form.
 
 - Write more blog posts.
@@ -18,6 +14,9 @@
 
 ==== Completed Stuffs ====
 
+- ✓ Update to Express 4.
+
+- ✓ Integrate LESS.
 
 - ✓ Make the login button have a larger touchable area on mobile.
 
