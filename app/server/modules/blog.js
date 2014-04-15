@@ -3,7 +3,7 @@
 var mongoose = require('mongoose')
   , db, blogSchema, Post, postCount
 
-exports.loadDb = function(cb, dbString, native) {
+exports.loadDb = function(dbString, cb) {
 
   db = mongoose.createConnection(dbString, {
     db: {
@@ -15,7 +15,9 @@ exports.loadDb = function(cb, dbString, native) {
     }
   })
 
-  db.on('error', console.error.bind(console, 'Blog connection error:'))
+  db.on('error', function(err) {
+    console.log(err.stack)
+  })
 
   blogSchema = new mongoose.Schema({
     title: {
@@ -37,7 +39,7 @@ exports.loadDb = function(cb, dbString, native) {
   db.once('open', function() {
     console.log('Blog connected & loaded!')
 
-    cb()
+    if (cb) cb()
   })
 }
 

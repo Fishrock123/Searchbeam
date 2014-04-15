@@ -32,6 +32,7 @@ html(lang="en")
             var that = this;
             $.ajax({
               type: "POST",
+              url: "/api/v1/blog/kudos",
               contentType: "application/json",
               data: JSON.stringify({ postid: $(that).parent().parent().children('.blog-id').text() }),
               dataType: "json",
@@ -65,8 +66,8 @@ html(lang="en")
         script.
           $(document).ready(function() {
             $.ajax({
-              type: "POST",
-              url: 'blog-posts',
+              type: "GET",
+              url: '/api/v1/blog',
               contentType: "application/json",
               data: JSON.stringify({title: '#{query.title}', post_id: '#{query.id}'}),
               dataType: "html",
@@ -87,8 +88,8 @@ html(lang="en")
           $(document).ready(function() {
             function getPosts(i) {
               $.ajax({
-                type: "POST",
-                url: 'blog-posts',
+                type: "GET",
+                url: '/api/v1/blog',
                 contentType: "application/json",
                 data: JSON.stringify({ page: i }),
                 dataType: "html",

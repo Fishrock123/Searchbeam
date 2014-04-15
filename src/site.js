@@ -92,7 +92,7 @@ $(document).ready(function() {
     user = null
     $.ajax({
       type: "POST",
-      url: '/logout',
+      url: '/api/v1/auth/logout',
       dataType: "html",
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus)
@@ -109,7 +109,7 @@ $(document).ready(function() {
     $("#auth-err, #auth-success").hide()
     $.ajax({
       type: "POST",
-      url: '/auth',
+      url: '/api/v1/auth/login',
       data: $('#login').serialize(),
       dataType: "json",
       error: function(jqXHR, textStatus, errorThrown) {

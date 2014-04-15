@@ -14,7 +14,7 @@ html(lang="en")
 
       if (user && user.type === 'admin')
 
-        form(accept-charset="UTF-8", action="/blog-new", method="post")#new-post
+        form(accept-charset="UTF-8", action="/api/v1/blog", method="post")#new-post
           div(style="margin:0;padding:0;display:inline")
             input(name="utf8", type="hidden", value="✓")
 

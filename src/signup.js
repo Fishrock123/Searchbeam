@@ -18,7 +18,7 @@ $(document).ready(function() {
       if (ajax) ajax.abort()
       ajax = $.ajax({
         type: "POST",
-        url: 'register',
+        url: '/api/v1/auth/register',
         data: $(that).serialize(),
         dataType: "json",
         error: function(jqXHR, textStatus, errorThrown) {
@@ -53,7 +53,7 @@ $(document).ready(function() {
 
             $.ajax({
               type: "POST",
-              url: '/auth',
+              url: '/api/v1/auth/login',
               data: $(that).serialize(),
               dataType: "json",
               error: function(jqXHR, textStatus, errorThrown) {
@@ -118,7 +118,7 @@ $(document).ready(function() {
       if (self.ajax) self.ajax.abort()
       self.ajax = $.ajax({
         type: "POST",
-        url: 'validate',
+        url: '/api/v1/auth/validate',
         contentType: "application/json",
         data: JSON.stringify({ username: val }),
         dataType: "json",
@@ -158,7 +158,7 @@ $(document).ready(function() {
       if (self.ajax) self.ajax.abort()
       self.ajax = $.ajax({
         type: "POST",
-        url: 'validate',
+        url: '/api/v1/auth/validate',
         contentType: "application/json",
         data: JSON.stringify({ password: val }),
         dataType: "json",

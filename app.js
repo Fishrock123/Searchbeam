@@ -1,12 +1,19 @@
 
 // Import all the stuffs!
-var express = require('express')
+var env = process.env.NODE_ENV || 'development'
+  , express = require('express')
   , app = express()
   , server = require('http').createServer(app)
   , passport = require('passport')
   , mongoose = require('mongoose')
   , passportLocalMongoose = require('passport-local-mongoose')
   , compress = require('compression')
+  , favicon = require('static-favicon')
+  , bodyParser = require('body-parser')
+  , cookieParser = require('cookie-parser')
+  , cookieSession = require('cookie-session')
+  , methodOverride = require('method-override')
+  , errorHandler = require('errorhandler')
   , keys = require(__dirname + '/keys.json')
   , version = require(__dirname + '/package.json').version
   , db
@@ -23,19 +30,18 @@ app.set('views', __dirname + '/app/server/views')
 app.set('view engine', 'jade')
 app.locals.pretty = true
 app.use(compress())
-app.use(express.favicon(__dirname + '/app/public/SB-Logo.ico'))
-app.use(express.json())
-app.use(express.urlencoded())
-app.use(express.cookieParser(keys.express.cookies))
+app.use(favicon(__dirname + '/app/public/SB-Logo.ico'))
+app.use(bodyParser())
+app.use(cookieParser(keys.express.cookies))
 
-app.use(express.cookieSession({
+app.use(cookieSession({
     secret: keys.express.session
   , cookie: {
         signed: true
       , maxAge: 1000 * 60 * 60 * 4
     }
 }))
-app.use(express.methodOverride())
+app.use(methodOverride())
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -71,13 +77,14 @@ function finalAndOpen() {
     // When 'unsafe-inline' is supported...
     next()
   })
+
   app.use('/s/', express.static(__dirname + '/app/public'))
   app.use('/', express.static(__dirname + '/app/rootfiles'))
+
   app.use(function(req, res, next) {
     res.header('X-Geek-Status', 'You\'re awesome. p.s: Narwhals.')
     next()
   })
-  app.use(app.router)
 
   if (module_exists('../spacemaybe/spacemaybe server')) {
     console.log('starting game server')
@@ -100,23 +107,26 @@ require('./app/server/models/account')(db, function(Account) {
   passport.deserializeUser(Account.deserializeUser())
 
   // Development-specific options.
-  app.configure('development', function() {
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }))
+  if (env === 'development') {
+    console.log('Using development environment.')
+
+    app.use(errorHandler({ dumpExceptions: true, showStack: true }))
+
     db.once('open', function() {
       finalAndOpen()
-      require('./app/server/router')(app, passport, Account, keys.blog.dev, userKeyMap)
-
-      console.log('Using development environment.')
+      require('./app/server/router')(app, passport, Account, 'dev', userKeyMap)
     })
-  })
+  }
 
   // Production-environment-specific options.
-  app.configure('production', function() {
-    // Redirect all traffic to https
+  else if (env === 'production') {
+    console.log('Using production environment.')
+
     app.use(function (req, res, next) {
       // HSTS
       res.setHeader('Strict-Transport-Security', 'max-age=8640000; includeSubDomains')
 
+      // Redirect all traffic to https
       if (req.headers['x-forwarded-proto'] !== 'https') {
         return res.redirect(301, 'https://' + req.host + (req.path || '/'))
       } else next()
@@ -124,9 +134,7 @@ require('./app/server/models/account')(db, function(Account) {
 
     db.once('open', function() {
       finalAndOpen()
-      require('./app/server/router')(app, passport, Account, keys.blog.live, userKeyMap)
-
-      console.log('Using production environment.')
+      require('./app/server/router')(app, passport, Account, 'live', userKeyMap)
     })
-  })
+  }
 })
