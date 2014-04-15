@@ -1,4 +1,4 @@
-!!! 5
+doctype html
 //This site is hosted on node.js by nodejitsu! :D
 html(lang="en")
   head
@@ -17,7 +17,7 @@ html(lang="en")
     .animated.fadeInDown
       img(src="/s/XenonLogo.jpg", title="Xenon", alt="Xenon")
 
-    include ../template/ie8
+    include template/ie8
     div
       br
       .column
@@ -97,7 +97,7 @@ html(lang="en")
 
         function getStatus() {
           $.ajax({
-            url: "/xenon/status",
+            url: "/api/v1/game/xenon/status",
             type: "GET",
             success: function(result) {
               $('#status').fadeOut('slow', function() {
