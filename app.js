@@ -1,25 +1,35 @@
 
 // Import all the stuffs!
-var env = process.env.NODE_ENV || 'development'
-  , express = require('express')
-  , app = express()
-  , server = require('http').createServer(app)
-  , passport = require('passport')
-  , mongoose = require('mongoose')
-  , passportLocalMongoose = require('passport-local-mongoose')
-  , compress = require('compression')
-  , favicon = require('static-favicon')
-  , bodyParser = require('body-parser')
-  , cookieParser = require('cookie-parser')
-  , cookieSession = require('cookie-session')
-  , methodOverride = require('method-override')
-  , errorHandler = require('errorhandler')
-  , keys = require(__dirname + '/keys.json')
+var env     = process.env.NODE_ENV || 'development'
+
+  // json
+  , keys    = require(__dirname + '/keys.json')
   , version = require(__dirname + '/package.json').version
-  , db
+
+  // Express
+  , express = require('express')
+  , app     = express()
+  , server  = require('http').createServer(app)
+
+  // middleware
+  , compress       = require('compression')
+  , favicon        = require('static-favicon')
+  , bodyParser     = require('body-parser')
+  , cookieParser   = require('cookie-parser')
+  , cookieSession  = require('cookie-session')
+  , methodOverride = require('method-override')
+  , errorHandler   = require('errorhandler')
+  , passport       = require('passport')
+  , mongoose       = require('mongoose')
+  , passportLocalMongoose = require('passport-local-mongoose')
+
+  // options
   , session_opts = {
       secret: keys.express.session
     }
+
+  // other vars
+  , db
   , userKeyMap = {}
 
 console.log('APP VERSION = ' + version)
@@ -29,11 +39,12 @@ app.set('port', 8080)
 app.set('views', __dirname + '/app/server/views')
 app.set('view engine', 'jade')
 app.locals.pretty = true
+
+// Use all the middlewares!
 app.use(compress())
 app.use(favicon(__dirname + '/app/public/SB-Logo.ico'))
 app.use(bodyParser())
 app.use(cookieParser(keys.express.cookies))
-
 app.use(cookieSession({
     secret: keys.express.session
   , cookie: {
@@ -59,6 +70,7 @@ db.on('error', function(err) {
   console.log(err.stack)
 })
 
+
 setInterval(cleanKeyMap, 10000)
 
 function cleanKeyMap() {
@@ -67,6 +79,7 @@ function cleanKeyMap() {
       delete userKeyMap[key]
   }
 }
+
 
 function finalAndOpen() {
   app.use(function(req, res, next) {
@@ -100,6 +113,7 @@ function module_exists( name ) {
   try { return require.resolve( name ) }
   catch( e ) { return false }
 }
+
 
 require('./app/server/models/account')(db, function(Account) {
   passport.use(Account.createStrategy())
