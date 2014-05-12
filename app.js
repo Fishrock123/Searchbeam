@@ -46,11 +46,11 @@ app.use(favicon(__dirname + '/app/public/SB-Logo.ico'))
 app.use(bodyParser())
 app.use(cookieParser(keys.express.cookies))
 app.use(cookieSession({
-    keys: keys.express.session
-  , signed:      true
-  , secureProxy: env === 'production'
-  , httpOnly:    true
-  , maxAge: 1000 * 60 * 60 * 4 // 4 hours
+    keys        : keys.express.session
+  , signed      : true
+  , secureProxy : env === 'production'
+  , httpOnly    : true
+  , maxAge      : 1000 * 60 * 60 * 4 // 4 hours
 }))
 app.use(methodOverride())
 app.use(passport.initialize())
