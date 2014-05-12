@@ -17,7 +17,6 @@ var env     = process.env.NODE_ENV || 'development'
   , bodyParser     = require('body-parser')
   , cookieParser   = require('cookie-parser')
   , cookieSession  = require('cookie-session')
-  , methodOverride = require('method-override')
   , errorHandler   = require('errorhandler')
   , passport       = require('passport')
   , mongoose       = require('mongoose')
@@ -52,7 +51,6 @@ app.use(cookieSession({
   , httpOnly    : true
   , maxAge      : 1000 * 60 * 60 * 4 // 4 hours
 }))
-app.use(methodOverride())
 app.use(passport.initialize())
 app.use(passport.session())
 
