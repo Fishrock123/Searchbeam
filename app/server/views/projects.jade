@@ -134,21 +134,21 @@ html(lang="en")
         border: 1px dotted #555;
       }
 
-      #cli-s {
+      #term {
         font-family: source_sans_pro;
         background-color: #222;
         box-shadow: inset 0 0 6px rgba(10, 10, 10, 0.6);
         color: #06E500;
       }
-      #cli-s a {
+      #term a {
         font-family: source_sans_pro;
         text-decoration: none;
         color: #06E500;
       }
-      #cli-s a:hover {
+      #term a:hover {
         color: #06AA00;
       }
-      #cli-s p span {
+      #term p span {
         background-color: #1E1E1E;
         border: 1px dotted #049A00;
       }
@@ -178,6 +178,13 @@ html(lang="en")
       .column
         .padd
           .padd-half
+          .proj#term
+            h3
+              a(href="https://github.com/repo-utils/org-labels", target="_blank") org-labels
+            p
+              | A <!---->
+              span node.js
+              |  command-line tool to help manage organization-wide GitHub issue labels.
           .proj#kappacino
             h3
               a(href="http://kappacino.com/", target="_blank") kappacino.com
@@ -189,31 +196,20 @@ html(lang="en")
               |  and <!---->
               span CSS
               |  workings of the site's pages.
-          .proj#cli-s
-            h3
-              a(href="https://github.com/fishrock123/cli-status", target="_blank") cli-status
-            p
-              | Flexible status and progress indicators for your <!---->
-              span Node.js
-              |  cli.
           .proj#xenon
             h3
               a(href="xenon", target="_blank") Xenon
             p
-              | A functional but mostly incomplete 2D open-world MMO wild-west game written in <!---->
+              | A functional but incomplete 2D open-world top-down shooter written in <!---->
               span Java
               | .
           .proj#bukkit
             h3
               a(href="http://dev.bukkit.org/home/", target="_blank") My Bukkit plugins
             p
+              | Inactive <!---->
               span Java
-              |  plugins I made for the minecraft server mod 'Bukkit'.
-              br
-              | These were my <!---->
-              span first code projects
-              | , and some of them I only maintain.
-              | As of now, I update them only very rarely.
+              |  plugins I made years ago for the minecraft server mod 'Bukkit'.
       .column
         .padd
           .padd-top
@@ -223,6 +219,14 @@ html(lang="en")
             .padd-small
             p
               | Contributor to
+          .subproj.git
+            h4
+              a(href="https://github.com/expressjs", target="_blank") Expressjs
+              span  &nbsp; -&nbsp; Organization for Official Middleware.
+          .subproj.git
+            h4
+              a(href="https://github.com/expressjs/mime-type/commits?author=Fishrock123", target="_blank") mime-types
+              span  &nbsp; -&nbsp; Content-Types.
           .subproj.git
             h4
               a(href="https://github.com/artursapek/mondrian/commits?author=Fishrock123", target="_blank") mondrian.io
@@ -235,12 +239,6 @@ html(lang="en")
             h4
               a(href="https://github.com/senchalabs/connect/commits?author=Fishrock123", target="_blank") senchalabs/connect
               span  &nbsp; -&nbsp; Node.js middleware layer.
-          .subproj.git
-            h4
-              a(href="https://github.com/koajs/compress/commits?author=Fishrock123", target="_blank") koajs/compress
-              span  &nbsp; -&nbsp; Gzip middleware for <!---->
-              a(href="https://github.com/koajs/koa") koa
-              | .
           .subproj.git
             h4
               a(href="https://github.com/primus/primus/commits?author=Fishrock123", target="_blank") primus
