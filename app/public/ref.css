@@ -129,8 +129,8 @@ header span {
 
 @media screen and (max-width: 640px) {
   header span {
-    margin-left: 14px;
-    margin-right: 14px;
+    margin-left: 13px;
+    margin-right: 13px;
   }
 }
 
