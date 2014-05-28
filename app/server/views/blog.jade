@@ -34,7 +34,7 @@ html(lang="en")
               type: "POST",
               url: "/api/v1/blog/kudos",
               contentType: "application/json",
-              data: JSON.stringify({ postid: $(that).parent().parent().children('.blog-id').text() }),
+              data: JSON.stringify({ postid: $(that).parent().parent().children('.blog-id').attr('data-post-id') }),
               dataType: "json",
               error: function(jqXHR, textStatus, errorThrown) {
                 console.log("Kudos error: " + textStatus);
