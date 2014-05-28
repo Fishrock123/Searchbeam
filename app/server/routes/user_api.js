@@ -15,7 +15,7 @@ router.get('/data', function(req, res) {
     , displayname: req.user.displayname || req.user.username
     , type: req.user.type
   }
-  if (!req.query.game) return res.json(out)
+  if (!req.query.game) return res.json(400, out)
 
   if (req.query.game === 'space') {
 
@@ -29,7 +29,7 @@ router.get('/data', function(req, res) {
         out.user_game_data = {
           color: doc.games.space.color
         }
-        res.json(out)
+        res.json(201, out)
       })
 
     } else if (!req.user.games.space) {
@@ -42,14 +42,14 @@ router.get('/data', function(req, res) {
         out.user_game_data = {
           color: doc.games.space.color
         }
-        res.json(out)
+        res.json(201, out)
       })
 
     } else {
       out.user_game_data = {
         color: req.user.games.space.color
       }
-      res.json(out)
+      res.json(200, out)
     }
   }
 })

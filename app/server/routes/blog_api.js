@@ -23,7 +23,7 @@ router.post('/kudos', function(req, res) {
             signed: true,
             maxAge: 90000000000 // Probably like a few years.
           })
-          res.json({ kudos: doc.kudos, self: true })
+          res.json(200, { kudos: doc.kudos, self: true })
         }
       })
     } else if (req.body.action = 'unkudo') {
@@ -37,7 +37,7 @@ router.post('/kudos', function(req, res) {
           res.clearCookie('' + req.body.postid, 'true', {
             signed: true
           })
-          res.json({ kudos: doc.kudos, self: false })
+          res.json(200, { kudos: doc.kudos, self: false })
         }
       })
     }

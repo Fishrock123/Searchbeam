@@ -20,7 +20,7 @@ router.get('/session_key', function(req, res) {
   crypto.randomBytes(48, function(ex, buf) {
     if (ex) {
       console.error(ex)
-      res.json({ err: 'Internal server error. Please contact @Fishrock123 <fishrock123@rocketmail.com>' })
+      res.json(500, { err: 'Internal server error. Please contact @Fishrock123 <fishrock123@rocketmail.com>' })
       return
     }
     var token = buf.toString('hex')
@@ -35,6 +35,6 @@ router.get('/session_key', function(req, res) {
 
     userKeyMap[token] = user
 
-    res.json({ session_key: token })
+    res.json(201, { session_key: token })
   })
 })
