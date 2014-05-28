@@ -134,6 +134,8 @@ require('./app/server/models/account')(db, function(Account) {
   else if (env === 'production') {
     console.log('Using production environment.')
 
+    app.set('trust proxy', 1)
+
     app.use(function (req, res, next) {
       // HSTS
       res.setHeader('Strict-Transport-Security', 'max-age=8640000; includeSubDomains')
