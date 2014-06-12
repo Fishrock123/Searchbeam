@@ -11,6 +11,8 @@
 
 - Write more blog posts.
 
+- Re-style the nav menu to be a hidden sidebar.
+
 
 ==== Completed Stuffs ====
 
