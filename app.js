@@ -13,7 +13,7 @@ var env     = process.env.NODE_ENV || 'development'
 
   // middleware
   , compress       = require('compression')
-  , favicon        = require('static-favicon')
+  , favicon        = require('serve-favicon')
   , bodyParser     = require('body-parser')
   , cookieParser   = require('cookie-parser')
   , cookieSession  = require('cookie-session')

@@ -41,24 +41,26 @@ EventEmitter.prototype.emit = function emit(event, a1, a2, a3, a4, a5) {
     , i;
 
   if (1 === length) {
+    if (fn.__EE3_once) this.removeListener(event, fn);
+
     switch (len) {
       case 1:
-        fn.call(fn.context || this);
+        fn.call(fn.__EE3_context || this);
       break;
       case 2:
-        fn.call(fn.context || this, a1);
+        fn.call(fn.__EE3_context || this, a1);
       break;
       case 3:
-        fn.call(fn.context || this, a1, a2);
+        fn.call(fn.__EE3_context || this, a1, a2);
       break;
       case 4:
-        fn.call(fn.context || this, a1, a2, a3);
+        fn.call(fn.__EE3_context || this, a1, a2, a3);
       break;
       case 5:
-        fn.call(fn.context || this, a1, a2, a3, a4);
+        fn.call(fn.__EE3_context || this, a1, a2, a3, a4);
       break;
       case 6:
-        fn.call(fn.context || this, a1, a2, a3, a4, a5);
+        fn.call(fn.__EE3_context || this, a1, a2, a3, a4, a5);
       break;
 
       default:
@@ -66,18 +68,16 @@ EventEmitter.prototype.emit = function emit(event, a1, a2, a3, a4, a5) {
           args[i - 1] = arguments[i];
         }
 
-        fn.apply(fn.context || this, args);
+        fn.apply(fn.__EE3_context || this, args);
     }
-
-    if (fn.once) this.removeListener(event, fn);
   } else {
     for (i = 1, args = new Array(len -1); i < len; i++) {
       args[i - 1] = arguments[i];
     }
 
     for (i = 0; i < length; fn = listeners[++i]) {
-      fn.apply(fn.context || this, args);
-      if (fn.once) this.removeListener(event, fn);
+      if (fn.__EE3_once) this.removeListener(event, fn);
+      fn.apply(fn.__EE3_context || this, args);
     }
   }
 
@@ -96,7 +96,7 @@ EventEmitter.prototype.on = function on(event, fn, context) {
   if (!this._events) this._events = {};
   if (!this._events[event]) this._events[event] = [];
 
-  fn.context = context;
+  fn.__EE3_context = context;
   this._events[event].push(fn);
 
   return this;
@@ -111,7 +111,7 @@ EventEmitter.prototype.on = function on(event, fn, context) {
  * @api public
  */
 EventEmitter.prototype.once = function once(event, fn, context) {
-  fn.once = true;
+  fn.__EE3_once = true;
   return this.on(event, fn, context);
 };
 
@@ -129,7 +129,7 @@ EventEmitter.prototype.removeListener = function removeListener(event, fn) {
     , events = [];
 
   for (var i = 0, length = listeners.length; i < length; i++) {
-    if (fn && listeners[i] !== fn && listeners[i].fn !== fn) {
+    if (fn && listeners[i] !== fn) {
       events.push(listeners[i]);
     }
   }
@@ -246,6 +246,9 @@ function Primus(url, options) {
 
   var primus = this;
 
+  // The maximum number of messages that can be placed in queue.
+  options.queueSize = 'queueSize' in options ? options.queueSize : Infinity;
+
   // Connection timeout duration.
   options.timeout = 'timeout' in options ? options.timeout : 10e3;
 
@@ -274,6 +277,8 @@ function Primus(url, options) {
   primus.attempt = null;                        // Current back off attempt.
   primus.socket = null;                         // Reference to the internal connection.
   primus.latency = 0;                           // Latency between messages.
+  primus.stamps = 0;                            // Counter to make timestamps unqiue.
+  primus.disconnect = false;                    // Did we receive a disconnect packet?
   primus.transport = options.transport;         // Transport options.
   primus.transformers = {                       // Message transformers.
     outgoing: [],
@@ -407,16 +412,35 @@ try {
 
     //
     // If we don't obtain a port number (e.g. when using zombie) then try
-    // and guess at a value from the 'href' value
+    // and guess at a value from the 'href' value.
     //
     if (!data.port) {
-      if (!data.href) data.href = '';
-      if ((data.href.match(/\:/g) || []).length > 1) {
-        data.port = data.href.split(':')[2].split('/')[0];
-      } else {
-        data.port = ('https' === data.href.substr(0, 5)) ? 443 : 80;
+      var splits = (data.href || '').split('/');
+      if (splits.length > 2) {
+        var host = splits[2]
+          , atSignIndex = host.lastIndexOf('@');
+
+        if (~atSignIndex) host = host.slice(atSignIndex + 1);
+
+        splits = host.split(':');
+        if (splits.length === 2) data.port = splits[1];
       }
     }
+
+    //
+    // IE quirk: The `protocol` is parsed as ":" when a protocol agnostic URL
+    // is used. In this case we extract the value from the `href` value.
+    //
+    if (':' === data.protocol) {
+      data.protocol = data.href.substr(0, data.href.indexOf(':') + 1);
+    }
+
+    //
+    // Safari 5.1.7 (windows) quirk: When parsing a URL without a port number
+    // the `port` in the data object will default to "0" instead of the expected
+    // "". We're going to do an explicit check on "0" and force it to "".
+    //
+    if ('0' === data.port) data.port = '';
 
     //
     // Browsers do not parse authorization information, so we need to extract
@@ -550,8 +574,8 @@ Primus.prototype.initialise = function initialise(options) {
     var readyState = primus.readyState;
 
     primus.readyState = Primus.OPENING;
-    if (readyState !== Primus.OPENING) {
-      primus.emit('readyStateChange');
+    if (readyState !== primus.readyState) {
+      primus.emit('readyStateChange', 'opening');
     }
 
     start = +new Date();
@@ -560,25 +584,32 @@ Primus.prototype.initialise = function initialise(options) {
   primus.on('incoming::open', function opened() {
     if (primus.attempt) primus.attempt = null;
 
+    //
+    // The connection has been openend so we should set our state to
+    // (writ|read)able so our stream compatibility works as intended.
+    //
+    primus.writable = true;
+    primus.readable = true;
+
     var readyState = primus.readyState;
 
     primus.readyState = Primus.OPEN;
-    if (readyState !== Primus.OPEN) {
-      primus.emit('readyStateChange');
+    if (readyState !== primus.readyState) {
+      primus.emit('readyStateChange', 'open');
     }
+
+    primus.latency = +new Date() - start;
 
     primus.emit('open');
     primus.clearTimeout('ping', 'pong').heartbeat();
 
     if (primus.buffer.length) {
       for (var i = 0, length = primus.buffer.length; i < length; i++) {
-        primus.write(primus.buffer[i]);
+        primus._write(primus.buffer[i]);
       }
 
-      primus.buffer.length = 0;
+      primus.buffer = [];
     }
-
-    primus.latency = +new Date() - start;
   });
 
   primus.on('incoming::pong', function pong(time) {
@@ -622,30 +653,7 @@ Primus.prototype.initialise = function initialise(options) {
       // Handle all "primus::" prefixed protocol messages.
       //
       if (primus.protocol(data)) return;
-
-      for (var i = 0, length = primus.transformers.incoming.length; i < length; i++) {
-        var packet = { data: data };
-
-        if (false === primus.transformers.incoming[i].call(primus, packet)) {
-          //
-          // When false is returned by an incoming transformer it means that's
-          // being handled by the transformer and we should not emit the `data`
-          // event.
-          //
-          return;
-        }
-
-        data = packet.data;
-      }
-
-      //
-      // We always emit 2 arguments for the data event, the first argument is the
-      // parsed data and the second argument is the raw string that we received.
-      // This allows you to do some validation on the parsed data and then save
-      // the raw string in your database or what ever so you don't have the
-      // stringify overhead.
-      //
-      primus.emit('data', data, raw);
+      primus.transforms(primus, primus, 'incoming', data, raw);
     });
   });
 
@@ -653,17 +661,31 @@ Primus.prototype.initialise = function initialise(options) {
     var readyState = primus.readyState;
 
     //
+    // This `end` started with the receiving of a primus::server::close packet
+    // which indicated that the user/developer on the server closed the
+    // connection and it was not a result of a network disruption. So we should
+    // kill the connection without doing a reconnect.
+    //
+    if (primus.disconnect) {
+      primus.disconnect = false;
+      return primus.end();
+    }
+
+    //
     // Always set the readyState to closed, and if we're still connecting, close
     // the connection so we're sure that everything after this if statement block
     // is only executed because our readyState is set to `open`.
     //
     primus.readyState = Primus.CLOSED;
-    if (readyState !== Primus.CLOSED) {
-      primus.emit('readyStateChange');
+    if (readyState !== primus.readyState) {
+      primus.emit('readyStateChange', 'end');
     }
 
     if (primus.timers.connect) primus.end();
     if (readyState !== Primus.OPEN) return;
+
+    this.writable = false;
+    this.readable = false;
 
     //
     // Clear all timers in case we're not going to reconnect.
@@ -679,10 +701,15 @@ Primus.prototype.initialise = function initialise(options) {
     primus.emit('close');
 
     //
-    // The disconnect was unintentional, probably because the server shut down.
-    // So we should just start a reconnect procedure.
+    // The disconnect was unintentional, probably because the server has
+    // shutdown, so if the reconnection is enabled start a reconnect procedure.
     //
-    if (~primus.options.strategy.indexOf('disconnect')) primus.reconnect();
+    if (~primus.options.strategy.indexOf('disconnect')) {
+      return primus.reconnect();
+    }
+
+    primus.emit('outgoing::end');
+    primus.emit('end');
   });
 
   //
@@ -769,7 +796,9 @@ Primus.prototype.protocol = function protocol(msg) {
       // The server is closing the connection, forcefully disconnect so we don't
       // reconnect again.
       //
-      if ('close' === value) this.end();
+      if ('close' === value) {
+        this.disconnect = true;
+      }
     break;
 
     case 'id':
@@ -785,6 +814,70 @@ Primus.prototype.protocol = function protocol(msg) {
   }
 
   return true;
+};
+
+/**
+ * Execute the set of message transformers from Primus on the incoming or
+ * outgoing message.
+ * This function and it's content should be in sync with Spark#transforms in
+ * spark.js.
+ *
+ * @param {Primus} primus Reference to the Primus instance with message transformers.
+ * @param {Spark|Primus} connection Connection that receives or sends data.
+ * @param {String} type The type of message, 'incoming' or 'outgoing'.
+ * @param {Mixed} data The data to send or that has been received.
+ * @param {String} raw The raw encoded data.
+ * @returns {Primus}
+ * @api public
+ */
+Primus.prototype.transforms = function transforms(primus, connection, type, data, raw) {
+  var packet = { data: data }
+    , fns = primus.transformers[type];
+
+  //
+  // Iterate in series over the message transformers so we can allow optional
+  // asynchronous execution of message transformers which could for example
+  // retrieve additional data from the server, do extra decoding or even
+  // message validation.
+  //
+  (function transform(index, done) {
+    var transformer = fns[index++];
+
+    if (!transformer) return done();
+
+    if (1 === transformer.length) {
+      if (false === transformer.call(connection, packet)) {
+        //
+        // When false is returned by an incoming transformer it means that's
+        // being handled by the transformer and we should not emit the `data`
+        // event.
+        //
+        return;
+      }
+
+      return transform(index, done);
+    }
+
+    transformer.call(connection, packet, function finished(err, arg) {
+      if (err) return connection.emit('error', err);
+      if (false === arg) return;
+
+      transform(index, done);
+    });
+  }(0, function done() {
+    //
+    // We always emit 2 arguments for the data event, the first argument is the
+    // parsed data and the second argument is the raw string that we received.
+    // This allows you, for exampele, to do some validation on the parsed data
+    // and then save the raw string in your database without the stringify
+    // overhead.
+    //
+    if ('incoming' === type) return connection.emit('data', packet.data, raw);
+
+    connection._write(packet.data);
+  }));
+
+  return this;
 };
 
 /**
@@ -829,38 +922,48 @@ Primus.prototype.open = function open() {
  * @api public
  */
 Primus.prototype.write = function write(data) {
-  var primus = this
-    , packet;
+  context(this, 'write');
+  this.transforms(this, this, 'outgoing', data);
 
-  context(primus, 'write');
+  return true;
+};
 
-  if (Primus.OPEN === primus.readyState) {
-    for (var i = 0, length = primus.transformers.outgoing.length; i < length; i++) {
-      packet = { data: data };
+/**
+ * The actual message writer.
+ *
+ * @param {Mixed} data The message that needs to be written.
+ * @returns {Boolean}
+ * @api private
+ */
+Primus.prototype._write = function write(data) {
+  var primus = this;
 
-      if (false === primus.transformers.outgoing[i].call(primus, packet)) {
-        //
-        // When false is returned by an incoming transformer it means that's
-        // being handled by the transformer and we should not emit the `data`
-        // event.
-        //
-        return;
-      }
-
-      data = packet.data;
+  //
+  // The connection is closed, normally this would already be done in the
+  // `spark.write` method, but as `_write` is used internally, we should also
+  // add the same check here to prevent potential crashes by writing to a dead
+  // socket.
+  //
+  if (Primus.OPEN !== primus.readyState) {
+    //
+    // If the buffer is at capacity, remove the first item.
+    //
+    if (this.buffer.length === this.options.queueSize) {
+      this.buffer.splice(0, 1);
     }
 
-    primus.encoder(data, function encoded(err, packet) {
-      //
-      // Do a "save" emit('error') when we fail to parse a message. We don't
-      // want to throw here as listening to errors should be optional.
-      //
-      if (err) return primus.listeners('error').length && primus.emit('error', err);
-      primus.emit('outgoing::data', packet);
-    });
-  } else {
-    primus.buffer.push(data);
+    this.buffer.push(data);
+    return false;
   }
+
+  primus.encoder(data, function encoded(err, packet) {
+    //
+    // Do a "save" emit('error') when we fail to parse a message. We don't
+    // want to throw here as listening to errors should be optional.
+    //
+    if (err) return primus.listeners('error').length && primus.emit('error', err);
+    primus.emit('outgoing::data', packet);
+  });
 
   return true;
 };
@@ -930,10 +1033,10 @@ Primus.prototype.timeout = function timeout() {
           .clearTimeout('connect');
   }
 
-  primus.timers.connect = setTimeout(function setTimeout() {
+  primus.timers.connect = setTimeout(function expired() {
     remove(); // Clean up old references.
 
-    if (Primus.readyState === Primus.OPEN || primus.attempt) return;
+    if (primus.readyState === Primus.OPEN || primus.attempt) return;
 
     primus.emit('timeout');
 
@@ -1017,18 +1120,18 @@ Primus.prototype.backoff = function backoff(callback, opts) {
       ), opts.maxDelay)
     : opts.minDelay;
 
-  //
-  // Emit a `reconnecting` event with current reconnect options. This allows
-  // them to update the UI and provide their users with feedback.
-  //
-  primus.emit('reconnecting', opts);
-
   primus.timers.reconnect = setTimeout(function delay() {
     opts.backoff = false;
     primus.clearTimeout('reconnect');
 
     callback(undefined, opts);
   }, opts.timeout);
+
+  //
+  // Emit a `reconnecting` event with current reconnect options. This allows
+  // them to update the UI and provide their users with feedback.
+  //
+  primus.emit('reconnecting', opts);
 
   return primus;
 };
@@ -1066,20 +1169,35 @@ Primus.prototype.reconnect = function reconnect() {
  * Close the connection.
  *
  * @param {Mixed} data last packet of data.
+ * @returns {Primus}
  * @api public
  */
 Primus.prototype.end = function end(data) {
   context(this, 'end');
 
-  if (this.readyState === Primus.CLOSED && !this.timers.connect) return this;
+  if (this.readyState === Primus.CLOSED && !this.timers.connect) {
+    //
+    // If we are reconnecting stop the reconnection procedure.
+    //
+    if (this.timers.reconnect) {
+      this.clearTimeout('reconnect');
+      this.attempt = null;
+      this.emit('end');
+    }
+
+    return this;
+  }
+
   if (data) this.write(data);
 
   this.writable = false;
+  this.readable = false;
 
   var readyState = this.readyState;
   this.readyState = Primus.CLOSED;
-  if (readyState !== Primus.CLOSED) {
-    this.emit('readyStateChange');
+
+  if (readyState !== this.readyState) {
+    this.emit('readyStateChange', 'end');
   }
 
   for (var timeout in this.timers) {
@@ -1151,40 +1269,80 @@ Primus.prototype.querystring = function querystring(query) {
   // the lastIndex property so we can continue executing this loop until we've
   // parsed all results.
   //
-  for (; part = parser.exec(query); result[part[1]] = part[2]);
+  for (;
+    part = parser.exec(query);
+    result[decodeURIComponent(part[1])] = decodeURIComponent(part[2])
+  );
 
   return result;
+};
+
+/**
+ * Transform a query string object back in to string equiv.
+ *
+ * @param {Object} obj The query string object.
+ * @returns {String}
+ * @api private
+ */
+Primus.prototype.querystringify = function querystringify(obj) {
+  var pairs = [];
+
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      pairs.push(encodeURIComponent(key) +'='+ encodeURIComponent(obj[key]));
+    }
+  }
+
+  return pairs.join('&');
 };
 
 /**
  * Generates a connection URI.
  *
  * @param {String} protocol The protocol that should used to crate the URI.
- * @param {Boolean} querystring Do we need to include a query string.
  * @returns {String|options} The URL.
  * @api private
  */
-Primus.prototype.uri = function uri(options, querystring) {
+Primus.prototype.uri = function uri(options) {
   var url = this.url
-    , server = [];
+    , server = []
+    , qsa = false;
 
   //
-  // Backwards compatible with Primus 1.4.0
-  // @TODO Remove me for Primus 2.0
+  // Query strings are only allowed when we've received clearance for it.
   //
-  if ('string' === typeof options) {
-    options = { protocol: options };
-    if (querystring) options.query = querystring;
-  }
+  if (options.query) qsa = true;
 
   options = options || {};
   options.protocol = 'protocol' in options ? options.protocol : 'http';
   options.query = url.search && 'query' in options ? (url.search.charAt(0) === '?' ? url.search.slice(1) : url.search) : false;
-  options.secure = 'secure' in options ? options.secure : url.protocol === 'https:';
+  options.secure = 'secure' in options ? options.secure : (url.protocol === 'https:' || url.protocol === 'wss:');
   options.auth = 'auth' in options ? options.auth : url.auth;
   options.pathname = 'pathname' in options ? options.pathname : this.pathname.slice(1);
-  options.port = 'port' in options ? options.port : url.port || (options.secure ? 443 : 80);
+  options.port = 'port' in options ? +options.port : +url.port || (options.secure ? 443 : 80);
   options.host = 'host' in options ? options.host : url.hostname || url.host.replace(':'+ url.port, '');
+
+  //
+  // Allow transformation of the options before we construct a full URL from it.
+  //
+  this.emit('outgoing::url', options);
+
+  //
+  // `url.host` might be undefined (e.g. when using zombie) so we use the
+  // hostname and port defined above.
+  //
+  var host = (443 !== options.port && 80 !== options.port)
+    ? options.host +':'+ options.port
+    : options.host;
+
+  //
+  // We need to make sure that we create a unique connection URL every time to
+  // prevent bfcache back forward cache of becoming an issue. We're doing this
+  // by forcing an cache busting query string in to the URL.
+  //
+  var querystring = this.querystring(options.query || '');
+  querystring._primuscb = +new Date() +'-'+ this.stamps++;
+  options.query = this.querystringify(querystring);
 
   //
   // Automatically suffix the protocol so we can supply `ws` and `http` and it gets
@@ -1192,8 +1350,8 @@ Primus.prototype.uri = function uri(options, querystring) {
   //
   server.push(options.secure ? options.protocol +'s:' : options.protocol +':', '');
 
-  if (options.auth) server.push(options.auth +'@'+ url.host);
-  else server.push(url.host);
+  if (options.auth) server.push(options.auth +'@'+ host);
+  else server.push(host);
 
   //
   // Pathnames are optional as some Transformers would just use the pathname
@@ -1205,7 +1363,8 @@ Primus.prototype.uri = function uri(options, querystring) {
   // Optionally add a search query, again, not supported by all Transformers.
   // SockJS is known to throw errors when a query string is included.
   //
-  if (options.query) server.push('?'+ options.query);
+  if (qsa) server.push('?'+ options.query);
+  else delete options.query;
 
   if (options.object) return options;
   return server.join('/');
