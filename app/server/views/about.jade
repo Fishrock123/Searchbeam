@@ -29,7 +29,7 @@ html(lang="en")
         .inline-padd &bull;
         a(href="http://www.linkedin.com/pub/jeremiah-senkpiel/73/878/bb7", target="_blank").icon &#xF0E1;
 
-      p.about.wide.centered.downset - A 20 year old Canadian who is constantly hacking away at various projects.
+      p.about.wide.centered.downset - A 21 year old Canadian who is constantly hacking away at various projects.
 
       .left
         .padd-half
@@ -107,19 +107,19 @@ html(lang="en")
               b.dark.boxed
                 abbr(title="Server-side JavaScript") Node.js
 
+              b.dark.boxed
+                abbr(title="Fast, Unopinionated, Minimalist Web Framework.") Express
+
+              b.dark.boxed
+                abbr(title="Version Control & GitHub.com") Git(Hub)
+
               b.dark.boxed HTML5
 
               b.dark.boxed
                 abbr(title="Cascading Style Sheets") CSS
 
               b.dark.boxed
-                abbr(title="Version Control & GitHub.com") Git(Hub)
-
-              b.dark.boxed
                 abbr(title="Mac OS X") OS X
-
-              .boxed
-                abbr(title="Prettier JavaScript") CoffeeScript
 
               .boxed Game Development
 
@@ -132,27 +132,27 @@ html(lang="en")
                 abbr(title="Node HTML Template Engine") Jade
 
               .boxed
-                abbr(title="Sinatra-like Node Web App Framework") Express
-
-              .boxed
                 abbr(title="Abstraction Layer for Real-Time Node.js Networking.") Primus
 
               .boxed
-                abbr(title="The Best WebGL 2D Renderer") Pixi.js
-
-              .boxed jQuery
+                abbr(title="Awesome JavaScript Test Framework") Mocha
 
               .boxed
-                abbr(title="Dynamic CSS Extension") LESS
+                abbr(title="The Best WebGL 2D Renderer") Pixi.js
 
               .boxed
                 abbr(title="The Best Plain Text HTML Formatting Syntax") Markdown
 
               .boxed
+                abbr(title="Dynamic CSS Extension") LESS
+
+              .boxed
                 abbr(title="Node Task Runner") Grunt
 
-              .boxed.small
-                abbr(title="Awesome JavaScript Test Framework") Mocha
+              .boxed
+                abbr(title="Prettier JavaScript") CoffeeScript
+
+              .boxed.small jQuery
 
               .boxed.small
                 abbr(title="Scalable Vector Graphics") SVG
@@ -211,6 +211,12 @@ html(lang="en")
               |   Employment &amp; Volunteering
             .padd-small
             p.about.inline
+              b Volunteer
+              | , <!---->
+              a(href="https://github.com/expressjs") Express.js
+              |  - Admin & Collaborator
+              .e-date.inline  &nbsp;(2014 - Current)
+            p.about.inline
               b Freelance Web (Full-Stack) Developer
               .e-date.inline  &nbsp;(2012 - Current)
             p.about.inline
@@ -243,7 +249,7 @@ html(lang="en")
                 a(href='http://www.flickr.com/photos/42104933@N03/', target='_blank') Flickr
                 | .
               .padd-small
-              .about I'm the Dungeon Master for a Dungeons &amp; Dragons adventure.
+              .about I'm the Dungeon Master for a Dungeons &amp; Dragons (5E) adventure.
               .padd-small
               .about I lack proficiency with a nerf gun, but I shoot .22 calibre rifles occasionally.
 
@@ -251,28 +257,3 @@ html(lang="en")
 
   .shadow
     include template/footer
-
-      script.
-        // Be more specific for the 'about' page.
-        ga('create', 'UA-41544042-2', 'jit.su');
-        ga('send', 'pageview');
-
-        $(document).ready(function() {
-          $('#etcbtn').click(function(e) {
-            if ($('#etc').is(':visible')) {
-              $('#etc_arrow').removeClass('invert');
-              $('html, body').animate({
-                scrollTop: $('#etc').offset().top + $('#etc').height() - 52 /* Height of footer and margins */ - $(window).height()
-              }, 300, 'swing', function() {
-                $('#etc').addClass('hidden');
-              });
-            } else {
-              $('#etc_arrow').addClass('invert');
-              $('#etc').removeClass('hidden');
-              $('html, body').animate({
-                scrollTop: $(document).height() - $(window).height()
-              }, 300);
-            }
-            return false;
-          });
-        });
