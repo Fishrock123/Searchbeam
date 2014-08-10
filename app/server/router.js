@@ -102,7 +102,8 @@ module.exports = function(app, passport, Account, env, userKeyMap) {
 
     if (req.accepts('json')) {
       res.type('json')
-      res.json(404, { error: '404: Not found' })
+      res.status(404)
+      res.json({ error: '404: Not found' })
       return
     }
 

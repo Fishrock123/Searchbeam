@@ -42,7 +42,8 @@ app.locals.pretty = true
 // Use all the middlewares!
 app.use(compress())
 app.use(favicon(__dirname + '/app/public/SB-Logo.ico'))
-app.use(bodyParser())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(cookieParser(keys.express.cookies))
 app.use(cookieSession({
     keys        : keys.express.session

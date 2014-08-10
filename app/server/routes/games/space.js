@@ -17,7 +17,8 @@ router.get('/color', function(req, res) {
     return res.status(400).end()
 
   res.type('json')
-  res.json(200, { color: req.user.games.space.color })
+  res.status(200)
+  res.json({ color: req.user.games.space.color })
 })
 
 router.post('/color', function(req, res) {
@@ -29,16 +30,16 @@ router.post('/color', function(req, res) {
   res.type('json')
 
   if (!req.user.games || !req.user.games.space)
-    res.json(404, { err: 'You have never played spacemaybe.' })
+    res.status(404).json({ err: 'You have never played spacemaybe.' })
 
   if (!color_.valid(req.body.color))
-    res.json(400, { err: 'Server received an invalid color code.' })
+    res.status(400).json({ err: 'Server received an invalid color code.' })
 
   else if (color_.dark(req.body.color))
-    res.json(400, { err: 'That color is too dark.' })
+    res.status(400).json({ err: 'That color is too dark.' })
 
   else if (color_.white(req.body.color))
-    res.json(400, { err: 'That color is too white.' })
+    res.status(400).json({ err: 'That color is too white.' })
 
   else {
     Account.findByIdAndUpdate(req.user._id, { 'games.space': { color: req.body.color }}, null, function(err, doc) {
@@ -46,7 +47,8 @@ router.post('/color', function(req, res) {
         console.log(err)
         return res.status(500).end()
       }
-      res.json(201, { color: req.body.color })
+      res.status(201)
+      res.json({ color: req.body.color })
     })
   }
 })

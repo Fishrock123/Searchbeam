@@ -21,11 +21,11 @@ router.post('/login', function(req, res, next) {
   res.type('json')
   passport.authenticate('local', function(err, user) {
     if (err) {
-      res.json(500, { error: err })
+      res.status(500).json({ error: err })
       return next(err)
     }
     if (!user) {
-      res.json(401, { error: "That user does not exist." })
+      res.status(401).json({ error: "That user does not exist." })
       return
     }
     req.logIn(user, function(err) {
@@ -33,7 +33,8 @@ router.post('/login', function(req, res, next) {
       console.log('Successfully authenticated ' + req.user.username)
       jade.renderFile(btn_path, { user: req.user }, function(err, html) {
         if (err) { return next(err) }
-        res.json(200, {
+        res.status(200)
+        res.json({
             username: user.username
           , displayname: user.displayname || user.username
           , html: html
@@ -57,7 +58,7 @@ router.post('/logout', function(req, res) {
 router.post('/validate', function(req, res) {
   res.type('json')
   validate.form(req.body, function(out) {
-    res.json(200, out)
+    res.status(200).json(out)
   })
 })
 
@@ -65,16 +66,17 @@ router.post('/register', function(req, res) {
   res.type('json')
   validate.form(req.body, function(out) {
     if (!out.user || out.user.err || !out.pass || out.pass.err) {
-      res.json(400, out)
+      res.status(400).json(out)
     } else if (out.user.valid && out.pass.valid) {
       console.log('registering a new account with username: ' + req.body.username)
       Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
         if (err) {
           console.log(err)
-          res.json(500, { err: 'Error registering account. Please contact @Fishrock123 <fishrock123@rocketmail.com>'})
+          res.status(500)
+          res.json({ err: 'Error registering account. Please contact @Fishrock123 <fishrock123@rocketmail.com>'})
         } else {
           out.registered = true
-          res.json(201, out)
+          res.status(201).json(out)
           console.log('Successfully registered a new account: ' + req.body.username)
         }
       })

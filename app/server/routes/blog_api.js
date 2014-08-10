@@ -23,7 +23,8 @@ router.post('/kudos', function(req, res) {
             signed: true,
             maxAge: 90000000000 // Probably like a few years.
           })
-          res.json(200, { kudos: doc.kudos, self: true })
+          res.status(200)
+          res.json({ kudos: doc.kudos, self: true })
         }
       })
     } else if (req.body.action = 'unkudo') {
@@ -37,7 +38,8 @@ router.post('/kudos', function(req, res) {
           res.clearCookie('' + req.body.postid, 'true', {
             signed: true
           })
-          res.json(200, { kudos: doc.kudos, self: false })
+          res.status(200)
+          res.json({ kudos: doc.kudos, self: false })
         }
       })
     }
@@ -94,8 +96,7 @@ router.post('/', function(req, res) {
     }, function(error) {
       if (error) res.end('Internal Server Error: ' + error)
       else {
-        res.status(200)
-        res.redirect('../blog')
+        res.status(200).redirect('../blog')
       }
     })
   } else {
@@ -111,8 +112,7 @@ router.delete('/', function(req, res){
     }, function(error) {
       if (error) res.end('Internal Server Error: ' + error)
       else {
-        res.status(200)
-        res.redirect('../blog')
+        res.status(200).redirect('../blog')
       }
     })
   } else {
