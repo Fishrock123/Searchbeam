@@ -8,7 +8,7 @@ var fs      = require('fs')
   , version = require('../../package.json').version
 
   // pages
-  , subdirs = ['xenon', 'kappacino']
+  , subdirs = ['xenon']
 
   // api
   , auth     = require('./routes/auth')
