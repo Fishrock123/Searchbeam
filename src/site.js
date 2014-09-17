@@ -9,11 +9,11 @@ $(document).ready(function() {
     , page = window.location.pathname.slice(1) + window.location.search
 
   page = page || 'home'
-  page = page.match(/home|about|projects|blog(?!\?title=|\?id=)/)
+  page = page.match(/home|about|contact/)
   if (page && page.length > 0)
     $('#' + page[0]).children().addClass('current-page')
 
-  console.log('    ‚‚\n!  ∞¨ ⁻⁻)⧜\n    ˙˙˙˙') // awww yeah
+  console.log('    ‚‚          awww yeah\n!  ∞¨ ⁻⁻)⧜      ascii pig\n    ˙˙˙˙        *oink* ;o') // awww yeah
 
   $window.scroll(function() {
     ((s = $window.scrollTop()) > 25 ? s = 25 : s) < 0 ? s = 0 : s
