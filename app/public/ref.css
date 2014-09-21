@@ -160,7 +160,7 @@ footer a {
   text-decoration: none;
 }
 
-footer div {
+footer > div {
   display: inline;
   position: fixed;
   bottom: 5px;
@@ -533,6 +533,10 @@ pre code {
 .icon-small {
   font-size: 16px;
   line-height: 20px;
+}
+
+.icon-tiny {
+  font-size: 10px;
 }
 
 .txt {
