@@ -1,21 +1,13 @@
-# Temp files
+# temp files
 *~
 *#
 
-# Node Modules
+# npm
 node_modules
 npm-debug.log
 
-# File system
+# OS X
 .DS_Store
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# Game stuff
-app/public/spacemaybe
-app/server/views/space.jade
 
 # Authorization llama says Shoo.
 keys.json
