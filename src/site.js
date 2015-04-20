@@ -20,4 +20,22 @@ $(document).ready(function() {
     $hdr_line.css('height', (55 - s) + 'px')
     lastScroll = s
   })
+
+  $('#etcbtn').click(function() {
+    if ($('#etc').is(':visible')) {
+      $('#etc_arrow').removeClass('invert')
+      $('html, body').animate({
+        scrollTop: $('#etc').offset().top + $('#etc').height() - 52 /* Height of footer and margins */ - $window.height()
+      }, 300, 'swing', function() {
+        $('#etc').addClass('hidden')
+      })
+    } else {
+      $('#etc_arrow').addClass('invert')
+      $('#etc').removeClass('hidden')
+      $('html, body').animate({
+        scrollTop: $(document).height() - $window.height()
+      }, 300)
+    }
+    return false
+  })
 })
