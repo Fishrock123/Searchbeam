@@ -1,19 +1,5 @@
 .centered
   .padd-bottom
-#cover.hide_cover(style="position:fixed;z-index:-1;")
-if user
-  script.
-    var user = {
-        username: '#{user.username}'
-      , displayname: '#{user.displayname || user.username}'
-    }
-else
-  script.
-    var user = null
-#auth_touchbox
-a(href='#')#auth.faint
-  include ../auth/button
-include ../auth/login
 footer
   #site-info.blurable
     span#version= 'searchbeam.jit.su v' + version
