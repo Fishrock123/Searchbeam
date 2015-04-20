@@ -13,7 +13,6 @@ var fs      = require('fs')
   // api
   , auth     = require('./routes/auth')
   , user_api = require('./routes/user_api')
-  , blog_api = require('./routes/blog_api')
   , games    = require('./routes/games')
 
 
@@ -82,7 +81,6 @@ module.exports = function(app, passport, Account, env, userKeyMap) {
 
   api.use('/auth', auth(Account, passport))
   api.use('/user', user_api(Account))
-  api.use('/blog', blog_api(keys.blog[env]))
   api.use('/game', games(Account, userKeyMap, keys))
 
 
