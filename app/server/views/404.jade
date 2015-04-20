@@ -11,15 +11,14 @@ html(lang="en")
     .centered
       code.large Error: 404!
       .padd-half
-      .animated.flipInX
-        | Oh Noes! The page you tried to go to does not exist.
-        .padd-small
-        code
-          | (
-          span.light= url
-          | )
-        .padd-small
-        | You should probably head back <!---->
-        a(href="https://searchbeam.jit.su").inline.icon &#xF015;
-        | .
+      | Oh Noes! The page you tried to go to does not exist.
+      .padd-small
+      code
+        | (
+        span.light= url
+        | )
+      .padd-small
+      | You should probably head back <!---->
+      a(href="https://searchbeam.jit.su").inline.icon &#xF015;
+      | .
   include template/footer
