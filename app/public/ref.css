@@ -92,7 +92,6 @@ header .line {
   border-bottom: 1px solid #555555;
   margin-left: auto;
   margin-right: auto;
-  -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
 
@@ -295,67 +294,6 @@ blockquote {
   width: 100%;
 }
 
-.blog-post {
-  max-width: 550px;
-  text-align: center;
-  padding: 0 18px 42px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.blog-post h2 {
-  font-weight: normal;
-  float: left;
-  text-align: left;
-  margin: 4px 4%;
-  font-family: 'source_sans_pro-bold';
-  font-size: 24px;
-  width: 100%;
-}
-
-.blog-post h2 a {
-  color: #383838;
-}
-
-.blog-post h2 a:active,
-.blog-post h2 a:focus,
-.blog-post h2 a:hover {
-  color: #ff8300;
-}
-
-.blog-post .content {
-  text-align: left;
-  font-family: 'source_sans_pro';
-  line-height: 23px;
-  padding-top: 20px;
-}
-
-.blog-post .content a {
-  color: #262626;
-  border-bottom: 1px solid #D1D1D1;
-}
-
-.blog-post .content a:active,
-.blog-post .content a:focus,
-.blog-post .content a:hover {
-  color: #ff8300;
-}
-
-.blog-post .post-info {
-  font-size: 12px;
-  margin-top: 12px;
-}
-
-.blog-post .date {
-  line-height: 24px;
-  float: right;
-  text-align: right;
-  font-family: 'source_sans_pro';
-  margin: auto 6px;
-  position: relative;
-  top: 4px;
-}
-
 .blog-line {
   margin-top: 2px;
   margin-bottom: 2px;
@@ -363,31 +301,6 @@ blockquote {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
-}
-
-.blog-padd {
-  padding-top: 42px;
-}
-
-.kudos_button {
-  color: #646464;
-  top: 1px;
-  position: relative;
-  width: 21px;
-  text-align: center;
-}
-
-.kudos_button:hover {
-  color: #06e030;
-}
-
-.kudos-div {
-  font-size: 18px;
-  float: right;
-  margin-right: 20%;
-  padding: 2px 6px 3px 3px;
-  border: 1px solid #C7C7C7;
-  border-radius: 3px;
 }
 
 p {
@@ -444,7 +357,6 @@ abbr {
 }
 
 a {
-  -webkit-transition: all 0.18s linear;
   transition: all 0.18s linear;
   text-decoration: none;
   color: #e97b08;
@@ -730,7 +642,6 @@ pre code {
 }
 
 .cover-transition {
-  -webkit-transition: opacity 0.8s ease-in-out, z-index 0.8s ease-in-out;
   transition: opacity 0.8s ease-in-out, z-index 0.8s ease-in-out;
 }
 
@@ -742,7 +653,6 @@ pre code {
 .blurable {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-transition: -webkit-filter 0.8s linear;
   transition: -webkit-filter 0.8s linear;
   -moz-transition: filter 0.8s linear;
 }
@@ -839,7 +749,6 @@ input.disabled:hover {
   color: #646464;
   font-size: 12px;
   z-index: 299;
-  -webkit-transition: color 0.8s ease-in-out;
   transition: color 0.8s ease-in-out;
 }
 
@@ -972,7 +881,6 @@ input.disabled:hover {
 }
 
 #etc {
-  -webkit-transition: all 0.18s linear;
   transition: all 0.18s linear;
 }
 
@@ -983,7 +891,6 @@ input.disabled:hover {
 }
 
 #etc_arrow {
-  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   position: relative;
   top: 1px;
