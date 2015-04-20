@@ -1,8 +1,5 @@
 User-Agent: *
 Disallow: /signup
 Disallow: /auth
-Disallow: /blog-delete
-Disallow: /blog-new
-Disallow: /kappacino/
 Disallow: /s/
 Disallow: /register
