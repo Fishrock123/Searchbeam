@@ -1,5 +1,5 @@
-## This is the source of my personal website, [searchbeam.jit.su](https://searchbeam.jit.su/).
+## [searchbeam.jit.su](https://searchbeam.jit.su/)
 
-The site hosts my portfolio and blog; though it will eventually also host some games.
+This is my personal site that hosts my portfolio.
 
-`© 2012-2014 Jeremiah Senkpiel`
+`© 2012-2015 Jeremiah Senkpiel`
