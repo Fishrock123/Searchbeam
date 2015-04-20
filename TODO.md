@@ -1,20 +1,14 @@
 
 === The To-Do List for SearchBeam.jit.su ===
 
-- Modularity & Unit Tests.
-
-- Move the Kappacino.com dev pages into different project directory.
-
-- Finish the Blog's Editor.
-
-- Validate the Login form.
-
-- Write more blog posts.
+- Maybe restyle to #33CC99 as a new color
 
 - Re-style the nav menu to be a hidden sidebar.
 
 
 ==== Completed Stuffs ====
+
+- ✓ Remove blog.
 
 - ✓ Update to Express 4.
 
