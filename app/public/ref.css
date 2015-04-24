@@ -192,7 +192,7 @@ blockquote {
 }
 
 .wide {
-  width: 86%;
+  max-width: 700px;
 }
 
 .full {
@@ -201,7 +201,6 @@ blockquote {
 
 .left {
   text-align: left;
-  float: left;
 }
 
 .right {
@@ -280,9 +279,13 @@ blockquote {
 }
 
 .padd-about {
-  margin: 0 40px;
+  margin: 0 22px;
   margin-bottom: 10px;
   line-height: 1.2em;
+}
+
+.padd-about h2 {
+  position: relative;
 }
 
 .padd-half {
@@ -665,6 +668,13 @@ pre code {
 .grayed {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+}
+
+.chevron:before {
+  content: '\F054';
+  position: absolute;
+  left: -18px;
+  top: 2px;
 }
 
 form .icon {
