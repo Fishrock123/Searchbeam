@@ -147,7 +147,7 @@ blockquote {
 // =============================================================================
 
 .wide {
-  width: 86%;
+  max-width: 700px;
 }
 
 .full {
@@ -156,7 +156,6 @@ blockquote {
 
 .left {
   text-align: left;
-  float: left;
 }
 
 .right {
@@ -237,9 +236,13 @@ blockquote {
   }
 
   &-about {
-    margin: 0 40px;
+    margin: 0 22px;
     margin-bottom: 10px;
     line-height: 1.2em;
+
+    h2 {
+      position: relative;
+    }
   }
 
   &-half {

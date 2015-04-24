@@ -24,39 +24,31 @@ html(lang="en")
         | aka "Fishrock123"
 
       p.about.wide.centered.downset 21 &nbsp;-&nbsp; Canadian &nbsp;-&nbsp; Self-Taught
+      
+      .padd-small
 
       .left
         .padd-half
           .line
-          .column
-            .padd-about
+          .wide.centered
+            .padd-about.centered.text-left.inline-b
               h2
-                .icon.icon-small &#xF054;
-                |   well then
+                .icon.icon-small.chevron
+                | well then
               p.about I type things and computers do things.
 
-              p.about Across the web, front and back, browsers and servers.
+              p.about Web and tools developer.
+              
+              p.about io.js Technical Committee member.
 
-              p.about Open-source collaborater and community member.
+              p.about Open-source collaborater.
+              
+            .padd-small
 
-          .column
-            .padd-half
-            .padd-about
-              blockquote
-                .about “… able to easily turn a mock-up into reality, he is a reliable and skilled web developer.”
-                .padd-half
-                cite
-                  | - Sara Miscavage, <!---->
-                  a(href="http://www.kappacino.com/", target="_blank") &nbsp;kappacino.com
-              .padd-small
-              .padd-small
-              .blog-line
-          .wide.centered
-            .text-left
-              .padd-small
+            .padd-about.text-left
               h2
-                .icon.icon-small &#xF054;
-                |   Philosophy
+                .icon.icon-small.chevron
+                | Philosophy
               p.about I greatly enjoy developing and shipping products, always striving for the highest possible quality.
 
               p.about Iteration is an integral part of my daily workflow, and I'm never afraid to re-write things for the better. I'm a constant learner and firmly believe that hands-on experience is crucial.
@@ -75,33 +67,31 @@ html(lang="en")
             .about
               b.dark.boxed JavaScript
               
-              b.dark.boxed HTML5
-
               b.dark.boxed
-                abbr(title="Cascading Style Sheets") CSS
+                abbr(title="Server-side JavaScript") io.js / Node.js
                 
               b.dark.boxed
                 abbr(title="Version Control & GitHub.com") Git & Github
                 
               b.dark.boxed
-                abbr(title="Server-side JavaScript") io.js / Node.js
-
-              b.dark.boxed
-                abbr(title="Fast, Unopinionated, Minimalist Web Framework") Express
-
-              b.dark.boxed
                 abbr(title="Mac OS X") OS X
+              
+              b.dark.boxed HTML5
+
+              b.dark.boxed
+                abbr(title="Cascading Style Sheets") CSS
+                
+              .boxed
+                abbr(title="Fast, Unopinionated, Minimalist Web Framework") Express
                 
               .boxed
                 abbr(title="A Javascript Library For Building User Interfaces") React.js
-
-              .boxed API Structuring
+                
+              .boxed
+                abbr(title="The Streaming Build System") Gulp.js
               
               .boxed
                 abbr(title="Expressive, Dynamic, Robust CSS") Stylus
-
-              .boxed
-                abbr(title="Representational State Transfer") REST
 
               .boxed Game Development
 
@@ -109,33 +99,27 @@ html(lang="en")
                 abbr(title="Awesome JavaScript Test Framework") Mocha
                 
               .boxed
-                abbr(title="The Streaming Build System") Gulp.js
-
-              .boxed
-                abbr(title="The Best Plain Text HTML Formatting Syntax") Markdown
-                
-              .boxed Minimalist Design
-
-              .boxed
                 abbr(title="Abstraction Layer for Real-Time Node.js Networking.") Primus (websockets)
 
               .boxed
-                abbr(title="The Best WebGL 2D Renderer") Pixi.js
+                abbr(title="The Best Plain Text HTML Formatting Syntax") Markdown
 
-              .boxed.small
+              .boxed
                 abbr(title="Dynamic CSS Extension") LESS
                 
               .boxed
                 abbr(title="Node HTML Template Engine") Jade
 
-              .boxed.small
-                abbr(title="Node Task Runner") Grunt
+              .boxed
+                abbr(title="The Best WebGL 2D Renderer") Pixi.js
+                
+              .boxed Minimalist Design
+                
+              .boxed.small 
+                abbr(title="A Blazing-Fast Safe Systems Programming Language") Rust
 
               .boxed.small
                 abbr(title="Prettier JavaScript") CoffeeScript
-
-              .boxed.small
-                abbr(title="Scalable Vector Graphics") SVG
 
               .boxed.small Java
 
@@ -154,10 +138,6 @@ html(lang="en")
               a(href="https://github.com/jshttp/style-guide", target="_blank").boxed jshttp's style guide
 
               a(href="https://github.com/repo-utils/org-labels", target="_blank").boxed org-labels
-
-              a(href="https://github.com/Fishrock123/set-env", target="_blank").boxed set-env
-
-              a(href="https://github.com/expressjs/mime-types", target="_blank").boxed mime-types
 
               a(href="https://github.com/Fishrock123/primus-spark-latency", target="_blank").boxed primus-spark-latency
 
@@ -181,33 +161,44 @@ html(lang="en")
             .padd-half
 
           .wide.centered
-            .padd-small
-            h2
-              .icon.icon-small &#xF0B1;
-              |   Employment &amp; Volunteering
-            .padd-small
-            p.about.inline
-              b Node.js Web Developer
-              | , <!---->
-              a(href="http://zambah.com") Zambah Inc
-              .e-date.inline  &nbsp;(2014 - 2015)
-            p.about.inline
-              b Volunteer
-              | , <!---->
-              a(href="https://github.com/expressjs") Express.js
-              |  - Collaborator
-              .e-date.inline  &nbsp;(2014 - Current)
-            p.about.inline
-              b Freelance Node.js Web Developer
-              .e-date.inline  &nbsp;(2012 - Current)
-            p.about.inline
-            p.about.inline
-              b Volunteer
-              | , <!---->
-              a(href="http://www.whitbybrassband.com/juniorband.php") Whitby Brass Band
-              |  - Percussionist
-              .e-date.inline  &nbsp;(2011 - Current)
-            .padd-half
+            .padd-about
+              .padd-small
+              h2
+                .icon.icon-small &#xF0B1;
+                |   Employment &amp; Volunteering
+              .padd-small
+              p.about
+                .inline-b
+                  b Volunteer
+                  | , <!---->
+                  a(href="https://github.com/iojs") io.js
+                  |  - Technical Committee
+                .e-date.inline-b  &nbsp;(2015 - Current)
+              p.about
+                .inline-b
+                  b Node.js Web Developer
+                  | , <!---->
+                  a(href="http://zambah.com") Zambah Inc
+                .e-date.inline-b  &nbsp;(2014 - 2015)
+              p.about
+                .inline-b
+                  b Volunteer
+                  | , <!---->
+                  a(href="https://github.com/expressjs") Express.js
+                  |  - Collaborator
+                .e-date.inline-b  &nbsp;(2014 - Current)
+              p.about
+                .inline-b
+                  b Freelance Node.js Web Developer
+                .e-date.inline-b  &nbsp;(2012 - 2014)
+              p.about
+                .inline-b
+                  b Volunteer
+                  | , <!---->
+                  a(href="http://www.whitbybrassband.com/juniorband.php") Whitby Brass Band
+                  |  - Percussionist
+                .e-date.inline-b  &nbsp;(2011 - Current)
+              .padd-small
 
 
           .wide.centered
@@ -218,7 +209,7 @@ html(lang="en")
                 | Watercooler <!---->
                 span.icon#etc_arrow &#xF077;
             .padd-about.hidden#etc
-              .about I absolutely love being outside, camping is a must in the summer!
+              .about I absolutely love being outside, hiking is a must!
               .padd-small
               .about
                 | I do some photography, which can be seen on my <!---->
